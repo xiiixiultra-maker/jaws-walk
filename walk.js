@@ -34,49 +34,50 @@
 
   // ---------------------------------------------------------------- markup + scoped style
   const css = `
-#jaws-walk{--gold:#C9A24B;--gold-lt:#E7C980;--ink:#0A0A0A;--jw-serif:"Bodoni MT","Bodoni Moda",Didot,"Bodoni 72",Georgia,serif;
- --jw-sans:"Gill Sans MT","Gill Sans","Segoe UI",sans-serif;position:relative;background:var(--ink);color:#fff;font-family:var(--jw-sans)}
-#jaws-walk *,#jaws-walk *::before,#jaws-walk *::after{box-sizing:border-box}
-#jaws-walk .jw-track{position:relative}
-#jaws-walk .jw-stage{position:sticky;top:var(--jw-top,0px);height:calc(100vh - var(--jw-top,0px));height:calc(100dvh - var(--jw-top,0px));
+#jaws-walk{--gold:#C9A24B;--gold-lt:#E7C980;--gold-rgb:201,162,75;--ink:#0A0A0A;--jw-serif:"Bodoni MT","Bodoni Moda",Didot,"Bodoni 72",Georgia,serif;
+ --jw-sans:"Gill Sans MT","Gill Sans","Segoe UI",sans-serif}
+#jaws-walk#jaws-walk{position:relative;background:var(--ink);color:#fff;font-family:var(--jw-sans)}
+#jaws-walk#jaws-walk *,#jaws-walk#jaws-walk *::before,#jaws-walk#jaws-walk *::after{box-sizing:border-box}
+#jaws-walk#jaws-walk .jw-track{position:relative}
+#jaws-walk#jaws-walk .jw-stage{position:sticky;top:var(--jw-top,0px);height:calc(100vh - var(--jw-top,0px));height:calc(100dvh - var(--jw-top,0px));
  overflow:hidden;container-type:size;background:var(--ink)}
-#jaws-walk .jw-stage.jw-manual{position:absolute;left:0;right:0;top:0;will-change:transform}
-#jaws-walk.jw-capture .jw-stage{position:fixed;inset:0;height:100vh;transform:none}
-#jaws-walk canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-#jaws-walk .jw-scrim{position:absolute;inset:auto 0 0 0;height:55%;pointer-events:none;
+#jaws-walk#jaws-walk .jw-stage.jw-manual{position:absolute;left:0;right:0;top:0;will-change:transform}
+#jaws-walk#jaws-walk.jw-capture .jw-stage{position:fixed;inset:0;height:100vh;transform:none}
+#jaws-walk#jaws-walk canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#jaws-walk#jaws-walk .jw-scrim{position:absolute;inset:auto 0 0 0;height:55%;pointer-events:none;
  background:linear-gradient(to top,rgba(10,10,10,.72),rgba(10,10,10,.35) 45%,rgba(10,10,10,0))}
-#jaws-walk .jw-cap{position:absolute;left:clamp(18px,5vw,72px);right:clamp(18px,5vw,72px);bottom:clamp(56px,11vh,140px);
+#jaws-walk#jaws-walk .jw-cap{position:absolute;left:clamp(18px,5vw,72px);right:clamp(18px,5vw,72px);bottom:clamp(56px,11vh,140px);
  left:clamp(18px,5cqw,72px);right:clamp(18px,5cqw,72px);bottom:clamp(56px,11cqh,140px);opacity:0;pointer-events:none;margin:0;padding:0}
-#jaws-walk .jw-cap.live{pointer-events:auto}
-#jaws-walk .jw-eyebrow{font:600 clamp(11px,1.35vw,15px)/1.2 var(--jw-sans);font-size:clamp(11px,1.35cqw,15px);letter-spacing:.26em;
+#jaws-walk#jaws-walk .jw-cap.live{pointer-events:auto}
+#jaws-walk#jaws-walk .jw-eyebrow{font:600 clamp(11px,1.35vw,15px)/1.2 var(--jw-sans);font-size:clamp(11px,1.35cqw,15px);letter-spacing:.26em;
  text-transform:uppercase;color:var(--gold-lt);margin:0 0 .9em}
-#jaws-walk .jw-en{font:700 clamp(38px,6.4vw,100px)/.98 var(--jw-serif);font-size:clamp(38px,6.4cqw,100px);margin:0;max-width:14ch;
+#jaws-walk#jaws-walk .jw-en{font:700 clamp(38px,6.4vw,100px)/.98 var(--jw-serif);font-size:clamp(38px,6.4cqw,100px);margin:0;max-width:14ch;
  color:#fff;letter-spacing:0;text-transform:none;text-shadow:0 2px 24px rgba(0,0,0,.35)}
-#jaws-walk .jw-es{font:italic 400 clamp(21px,3vw,44px)/1.1 var(--jw-serif);font-size:clamp(21px,3cqw,44px);color:var(--gold);margin:.35em 0 0}
-#jaws-walk .jw-btn{display:inline-block;margin-top:1.2em;font:700 clamp(13px,1.4vw,16px)/1 var(--jw-sans);letter-spacing:.14em;
- text-transform:uppercase;color:var(--ink);text-decoration:none;padding:1.1em 1.6em;border-radius:999px;
- background:linear-gradient(180deg,#F0D894,var(--gold) 55%,#A9832F);box-shadow:0 0 34px rgba(201,162,75,.45)}
-#jaws-walk .jw-pin{position:absolute;left:0;top:0;opacity:0;display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;
+#jaws-walk#jaws-walk .jw-es{font:italic 400 clamp(21px,3vw,44px)/1.1 var(--jw-serif);font-size:clamp(21px,3cqw,44px);color:var(--gold);margin:.35em 0 0}
+#jaws-walk#jaws-walk .jw-btn{display:inline-block;margin-top:1.2em;font:700 clamp(13px,1.4vw,16px)/1 var(--jw-sans);letter-spacing:.14em;
+ text-transform:uppercase;color:var(--btn-ink,var(--ink));text-decoration:none;padding:1.1em 1.6em;border-radius:999px;
+ background:var(--btn-bg,linear-gradient(180deg,#F0D894,var(--gold) 55%,#A9832F));box-shadow:var(--btn-glow,0 0 34px rgba(var(--gold-rgb),.45))}
+#jaws-walk#jaws-walk .jw-pin{position:absolute;left:0;top:0;opacity:0;display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;
  font:600 12px/1 var(--jw-sans);letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;z-index:2;pointer-events:none}
-#jaws-walk .jw-pin.flip{flex-direction:row-reverse}
-#jaws-walk .jw-pin i{position:relative;width:14px;height:14px;border-radius:50%;background:var(--gold);
- box-shadow:0 0 0 4px rgba(201,162,75,.28),0 0 18px var(--gold)}
-#jaws-walk .jw-pin i::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--gold-lt);animation:jw-ping 2s ease-out infinite}
-#jaws-walk .jw-pin span{padding:.7em .95em;border-radius:999px;background:rgba(10,10,10,.55);-webkit-backdrop-filter:blur(6px);
- backdrop-filter:blur(6px);border:1px solid rgba(201,162,75,.6);white-space:normal;line-height:1.15}
-#jaws-walk .jw-pin i{flex:none}
+#jaws-walk#jaws-walk .jw-pin.flip{flex-direction:row-reverse}
+#jaws-walk#jaws-walk .jw-pin i{position:relative;width:14px;height:14px;border-radius:50%;background:var(--gold);
+ box-shadow:0 0 0 4px rgba(var(--gold-rgb),.28),0 0 18px var(--gold)}
+#jaws-walk#jaws-walk .jw-pin i::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--gold-lt);animation:jw-ping 2s ease-out infinite}
+#jaws-walk#jaws-walk .jw-pin span{padding:.7em .95em;border-radius:999px;background:rgba(10,10,10,.55);-webkit-backdrop-filter:blur(6px);
+ backdrop-filter:blur(6px);border:1px solid rgba(var(--gold-rgb),.6);white-space:normal;line-height:1.15}
+#jaws-walk#jaws-walk .jw-pin i{flex:none}
 @keyframes jw-ping{from{transform:scale(.6);opacity:1}to{transform:scale(1.9);opacity:0}}
-#jaws-walk .jw-rooms{position:absolute;right:clamp(10px,2vw,22px);top:50%;transform:translateY(-50%);display:grid;gap:10px;z-index:2}
-#jaws-walk .jw-rooms b{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s,transform .3s}
-#jaws-walk .jw-rooms b.on{background:var(--gold);transform:scale(1.4)}
-#jaws-walk .jw-bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);box-shadow:0 0 10px var(--gold)}
-#jaws-walk .jw-loader{position:absolute;inset:0;display:grid;place-items:center;background:var(--ink);z-index:5;
+#jaws-walk#jaws-walk .jw-rooms{position:absolute;right:clamp(10px,2vw,22px);top:50%;transform:translateY(-50%);display:grid;gap:10px;z-index:2}
+#jaws-walk#jaws-walk .jw-rooms b{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.35);transition:background .3s,transform .3s}
+#jaws-walk#jaws-walk .jw-rooms b.on{background:var(--gold);transform:scale(1.4)}
+#jaws-walk#jaws-walk .jw-bar{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+#jaws-walk#jaws-walk .jw-loader{position:absolute;inset:0;display:grid;place-items:center;background:var(--ink);z-index:5;
  font:600 12px/1 var(--jw-sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt);transition:opacity .6s}
-#jaws-walk .jw-skip{position:absolute;left:12px;top:12px;z-index:6;padding:.8em 1.1em;border-radius:999px;background:var(--ink);
+#jaws-walk#jaws-walk .jw-skip{position:absolute;left:12px;top:12px;z-index:6;padding:.8em 1.1em;border-radius:999px;background:var(--ink);
  color:var(--gold-lt);font:600 12px/1 var(--jw-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
  transform:translateY(-200%)}
-#jaws-walk .jw-skip:focus{transform:none}
-@media (prefers-reduced-motion:reduce){#jaws-walk .jw-pin i::after{animation:none}}`;
+#jaws-walk#jaws-walk .jw-skip:focus{transform:none}
+@media (prefers-reduced-motion:reduce){#jaws-walk#jaws-walk .jw-pin i::after{animation:none}}`;
   if (!document.getElementById('jaws-walk-css')) {
     const st = document.createElement('style');
     st.id = 'jaws-walk-css';
