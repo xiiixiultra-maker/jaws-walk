@@ -1,0 +1,621 @@
+<!-- JAWS 2 home sections v2: one Duda HTML widget under the office walk.
+     Type: Bodoni Moda (Google Fonts, OFL) + Apfel Grotezk (Collletttivo, OFL, hosted on the jaws-walk Pages repo).
+     Images: office renders and the Dr. Wagner cutout from the jaws-walk Pages repo; procedure photos from jawspodiatry.com.
+     No tracking and no forms. Every booking link goes to /booking. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap">
+<style>
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Mittel.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Fett.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+
+/* office palette: wall white, floor grey, charcoal sign wall, teak, brass and lit gold, green velvet */
+#jaws-home#jaws-home{--wall:#F7F6F3;--mist:#ECEBE7;--paper:#FBFAF7;--ink:#2A2827;--night:#1B1A19;--soft:#5B5752;--teak:#8A6141;--teak-dk:#5E412C;--teak-lt:#C9A07A;
+  --brass:#A9853F;--gold:#D9B68C;--velvet:#1F5A48;--cream:#F4EFE7;--mute:#ABA498;
+  --serif:"Bodoni Moda","Bodoni MT",Didot,"Bodoni 72",Georgia,serif;--sans:"Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif;
+  --top:110px;--ease:cubic-bezier(.2,.7,.2,1);
+  display:block;background:var(--wall);color:var(--ink);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;text-align:left;overflow-x:clip}
+@media (min-width:1025px){#jaws-home#jaws-home{--top:89px}}
+#jaws-home#jaws-home *,#jaws-home#jaws-home *::before,#jaws-home#jaws-home *::after{box-sizing:border-box}
+#jaws-home#jaws-home h2,#jaws-home#jaws-home h3,#jaws-home#jaws-home p,#jaws-home#jaws-home figure,#jaws-home#jaws-home blockquote,
+#jaws-home#jaws-home ol,#jaws-home#jaws-home ul,#jaws-home#jaws-home dl,#jaws-home#jaws-home dt,#jaws-home#jaws-home dd{margin:0;padding:0}
+#jaws-home#jaws-home img{display:block;max-width:100%;height:auto}
+#jaws-home#jaws-home a{color:inherit}
+#jaws-home#jaws-home section{position:relative;margin:0}
+#jaws-home#jaws-home .jh-wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,56px)}
+
+/* type */
+#jaws-home#jaws-home .jh-kicker{display:flex;align-items:center;gap:14px;margin:0 0 22px;font:italic 500 clamp(16px,1.3vw,19px)/1.2 var(--serif);color:var(--teak)}
+#jaws-home#jaws-home .jh-kicker::before{content:"";flex:0 0 36px;height:1px;background:currentColor;opacity:.7}
+#jaws-home#jaws-home .jh-display{margin:0;font:500 clamp(44px,6.4vw,104px)/.96 var(--serif);letter-spacing:-.02em;color:inherit;text-wrap:balance}
+#jaws-home#jaws-home .jh-display em{font-style:italic}
+#jaws-home#jaws-home .jh-es{margin:.5em 0 0;font:italic 400 clamp(19px,2vw,28px)/1.25 var(--serif);color:var(--velvet)}
+#jaws-home#jaws-home p{font-size:clamp(16px,1.15vw,18px);color:var(--soft)}
+#jaws-home#jaws-home .jh-dark{background:var(--night);color:var(--cream);isolation:isolate}
+#jaws-home#jaws-home .jh-dark p{color:#CFC8BC}
+#jaws-home#jaws-home .jh-dark .jh-kicker{color:var(--gold)}
+#jaws-home#jaws-home .jh-dark .jh-es{color:var(--gold)}
+
+/* mirror gold, like the sign in the office */
+#jaws-home#jaws-home .jh-gold{background:linear-gradient(105deg,#6E5121 0%,#B48B3E 22%,#E2C17C 38%,#94702F 54%,#CDA85E 72%,#6E5121 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;padding:0 .06em 0 0;animation:jhSheen 9s ease-in-out infinite alternate}
+#jaws-home#jaws-home .jh-dark .jh-gold{background-image:linear-gradient(105deg,#9C7633 0%,#E7C987 20%,#FFF3D1 34%,#C29A4D 50%,#F0D79C 70%,#A9853F 100%)}
+@keyframes jhSheen{from{background-position:100% 50%}to{background-position:0% 50%}}
+
+/* film grain and a soft light that follows the pointer on the dark sections */
+#jaws-home#jaws-home .jh-dark::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(560px circle at var(--mx,70%) var(--my,25%),rgba(243,226,188,.10),transparent 62%)}
+#jaws-home#jaws-home .jh-dark::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.08;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* scroll reveals (only once the script runs, so the copy is always there without it) */
+#jaws-home#jaws-home.jh-js .jh-r{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0ms)}
+#jaws-home#jaws-home.jh-js .jh-r.is-in{opacity:1;transform:none}
+#jaws-home#jaws-home.jh-js .jh-split .jh-w{display:inline-block;opacity:0;transform:translateY(.45em);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0)*75ms)}
+#jaws-home#jaws-home.jh-js .jh-split.is-in .jh-w{opacity:1;transform:none}
+
+/* buttons and chips */
+#jaws-home#jaws-home .jh-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;padding:20px 32px;border-radius:999px;
+  font:500 16px/1 var(--sans);color:#fff;text-decoration:none;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#A17654,#7A5537);
+  box-shadow:0 14px 34px rgba(94,65,44,.35),inset 0 1px 0 rgba(255,255,255,.18);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+#jaws-home#jaws-home .jh-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,240,210,.45),transparent);transform:skewX(-20deg);transition:left .9s var(--ease)}
+#jaws-home#jaws-home .jh-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(94,65,44,.45),inset 0 1px 0 rgba(255,255,255,.2)}
+#jaws-home#jaws-home .jh-btn:hover::after{left:130%}
+#jaws-home#jaws-home .jh-btn.ghost{background:transparent;border:1px solid rgba(243,226,188,.45);box-shadow:none}
+#jaws-home#jaws-home .jh-chip{display:inline-flex;align-items:center;padding:12px 18px;border-radius:999px;border:1px solid rgba(138,97,65,.4);color:var(--teak-dk);text-decoration:none;
+  font:500 15px/1 var(--sans);transition:background .3s,border-color .3s,transform .3s var(--ease)}
+#jaws-home#jaws-home .jh-chip:hover{background:rgba(201,160,122,.16);border-color:var(--teak);transform:translateY(-2px)}
+#jaws-home#jaws-home .jh-dark .jh-chip{border-color:rgba(243,226,188,.32);color:#F3EADB;background:rgba(255,255,255,.04);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#jaws-home#jaws-home .jh-dark .jh-chip:hover{background:rgba(217,182,140,.16);border-color:var(--gold)}
+#jaws-home#jaws-home .jh-link{display:inline-flex;align-items:center;gap:12px;margin-top:28px;padding-bottom:8px;border-bottom:1px solid rgba(138,97,65,.4);font:500 16px/1 var(--sans);color:var(--teak-dk);text-decoration:none}
+#jaws-home#jaws-home .jh-link::after{content:"\2192";transition:transform .3s var(--ease)}
+#jaws-home#jaws-home .jh-link:hover::after{transform:translateX(5px)}
+#jaws-home#jaws-home a:focus-visible,#jaws-home#jaws-home button:focus-visible{outline:2px solid var(--teak-lt);outline-offset:4px}
+
+/* 1. intro */
+#jaws-home#jaws-home .jh-intro{background:var(--wall);padding:clamp(90px,11vw,170px) 0 clamp(70px,8vw,120px)}
+#jaws-home#jaws-home .jh-intro-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(36px,6vw,110px);align-items:end}
+#jaws-home#jaws-home .jh-intro-copy p+p{margin-top:1em}
+#jaws-home#jaws-home .jh-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(60px,7vw,110px);border-top:1px solid rgba(42,40,39,.14)}
+#jaws-home#jaws-home .jh-stats>div{padding:32px 24px 0 0}
+#jaws-home#jaws-home .jh-stats>div+div{padding-left:clamp(16px,2vw,32px);border-left:1px solid rgba(42,40,39,.1)}
+#jaws-home#jaws-home .jh-stats dt{font:500 clamp(52px,5.8vw,96px)/1 var(--serif);letter-spacing:-.03em}
+#jaws-home#jaws-home .jh-stats dd{margin-top:14px;max-width:16ch;font:500 15px/1.35 var(--sans);color:var(--soft)}
+
+/* 2. the office tour (pins on wide screens, swipes on phones) */
+#jaws-home#jaws-home .jh-suite-pin{position:relative;z-index:2;padding:clamp(80px,9vw,120px) 0}
+#jaws-home#jaws-home .jh-suite-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(28px,3.4vw,48px)}
+#jaws-home#jaws-home .jh-suite-head .jh-display{font-size:clamp(42px,5vw,80px)}
+#jaws-home#jaws-home .jh-note{max-width:30ch;font-size:15px;color:var(--mute)}
+#jaws-home#jaws-home .jh-track{display:flex;gap:clamp(16px,2vw,28px);padding:0 clamp(20px,5vw,56px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#jaws-home#jaws-home .jh-track::-webkit-scrollbar{display:none}
+#jaws-home#jaws-home .jh-room{flex:0 0 auto;width:min(76vw,360px);margin:0;scroll-snap-align:center}
+#jaws-home#jaws-home .jh-room-img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:4px;background:#2A2827}
+#jaws-home#jaws-home .jh-room-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.12) translate3d(var(--px,0px),0,0)}
+#jaws-home#jaws-home .jh-room-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.32));pointer-events:none}
+#jaws-home#jaws-home .jh-room figcaption{display:flex;flex-direction:column;gap:4px;margin-top:16px}
+#jaws-home#jaws-home .jh-room b{font:500 clamp(22px,1.8vw,28px)/1.1 var(--serif);color:var(--cream)}
+#jaws-home#jaws-home .jh-room span{font-size:15px;line-height:1.4;color:var(--mute)}
+#jaws-home#jaws-home .jh-suite-bar{height:1px;margin:clamp(28px,3.4vw,46px) clamp(20px,5vw,56px) 0;background:rgba(243,226,188,.16);overflow:hidden}
+#jaws-home#jaws-home .jh-suite-bar span{display:block;height:100%;background:var(--gold);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+#jaws-home#jaws-home .jh-suite.is-pinned .jh-suite-pin{position:sticky;top:var(--top);height:calc(100vh - var(--top));padding:0;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+#jaws-home#jaws-home .jh-suite.is-pinned .jh-track{overflow:visible;scroll-snap-type:none;will-change:transform;transform:translate3d(var(--tx,0px),0,0)}
+#jaws-home#jaws-home .jh-suite.is-pinned .jh-room{width:auto}
+#jaws-home#jaws-home .jh-suite.is-pinned .jh-room-img{height:min(50vh,540px)}
+
+/* 3. Dr. Wagner in front of the glowing sign, his name set in front of him */
+#jaws-home#jaws-home .jh-doc{background:#121110;overflow:hidden}
+#jaws-home#jaws-home .jh-doc-bg,#jaws-home#jaws-home .jh-doc-stage{height:calc(100vh - var(--top));max-height:940px;min-height:600px}
+#jaws-home#jaws-home .jh-doc-bg{position:absolute;inset:0 0 auto;z-index:0;background:#121110 url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-wide.webp") center 22%/cover no-repeat}
+#jaws-home#jaws-home .jh-doc-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 28%,rgba(18,17,16,.05),rgba(18,17,16,.78) 72%),linear-gradient(180deg,rgba(18,17,16,.15) 0%,rgba(18,17,16,.35) 60%,#121110 100%)}
+#jaws-home#jaws-home .jh-doc-stage{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
+#jaws-home#jaws-home .jh-doc-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(18,17,16,0),rgba(18,17,16,.82) 72%,#121110)}
+#jaws-home#jaws-home .jh-doc-cut{position:relative;z-index:1;height:80%;width:auto;max-width:none;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+#jaws-home#jaws-home .jh-doc-name{position:absolute;z-index:3;left:0;right:0;bottom:6%;margin:0;text-align:center;white-space:nowrap;font-family:var(--serif);font-weight:600;line-height:.9;letter-spacing:-.03em;
+  transform:translate3d(0,var(--front,0px),0);filter:drop-shadow(0 6px 24px rgba(0,0,0,.55))}
+#jaws-home#jaws-home .jh-doc-name span{display:block;font-size:clamp(40px,6.2vw,104px);color:#F1E6D2}
+#jaws-home#jaws-home .jh-doc-name em{display:block;margin-top:.04em;font-size:clamp(56px,10.4vw,178px);font-style:italic}
+#jaws-home#jaws-home .jh-doc-copy{position:relative;z-index:2;padding:clamp(60px,7vw,110px) 0 clamp(90px,10vw,150px)}
+#jaws-home#jaws-home .jh-doc-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,6vw,100px);align-items:start}
+#jaws-home#jaws-home .jh-dark .jh-doc-line{font:500 clamp(30px,3.2vw,50px)/1.08 var(--serif);letter-spacing:-.015em;color:var(--cream)}
+#jaws-home#jaws-home .jh-doc-grid p+p{margin-top:1em}
+#jaws-home#jaws-home .jh-proof{display:flex;align-items:baseline;gap:18px;margin:32px 0 34px;padding-top:26px;border-top:1px solid rgba(243,226,188,.16)}
+#jaws-home#jaws-home .jh-proof b{font:500 clamp(48px,4.8vw,76px)/1 var(--serif);letter-spacing:-.02em}
+#jaws-home#jaws-home .jh-proof span{max-width:28ch;font-size:16px;line-height:1.45;color:#CFC8BC}
+
+/* 4. procedures as an editorial index */
+#jaws-home#jaws-home .jh-procs{background:var(--paper);padding:clamp(90px,11vw,170px) 0}
+#jaws-home#jaws-home .jh-index{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,100px);align-items:start;margin-top:clamp(44px,5vw,72px)}
+#jaws-home#jaws-home .jh-index-list{list-style:none;border-top:1px solid rgba(42,40,39,.14)}
+#jaws-home#jaws-home .jh-proc{border-bottom:1px solid rgba(42,40,39,.14)}
+#jaws-home#jaws-home .jh-proc-btn{all:unset;box-sizing:border-box;display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:20px;padding:26px 0;cursor:pointer}
+#jaws-home#jaws-home .jh-proc-name{font:500 clamp(27px,3vw,46px)/1.05 var(--serif);letter-spacing:-.015em;color:var(--ink);transition:color .35s,transform .6s var(--ease)}
+#jaws-home#jaws-home .jh-proc.is-on .jh-proc-name{font-style:italic;color:var(--teak-dk);transform:translateX(10px)}
+#jaws-home#jaws-home .jh-proc-btn:hover .jh-proc-name{color:var(--teak-dk)}
+#jaws-home#jaws-home .jh-proc-tag{flex:0 0 auto;font:500 14px/1.2 var(--sans);color:var(--teak)}
+#jaws-home#jaws-home .jh-proc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+#jaws-home#jaws-home .jh-proc.is-on .jh-proc-body{grid-template-rows:1fr}
+#jaws-home#jaws-home .jh-proc-body>div{overflow:hidden}
+#jaws-home#jaws-home .jh-proc-body p{max-width:46ch;padding:0 0 20px 10px}
+#jaws-home#jaws-home .jh-proc-body .jh-chip{margin:0 0 28px 10px}
+#jaws-home#jaws-home .jh-proc-img{display:none}
+#jaws-home#jaws-home .jh-index-media{position:sticky;top:calc(var(--top) + 40px);aspect-ratio:4/5;border-radius:4px;overflow:hidden;background:var(--mist)}
+#jaws-home#jaws-home .jh-index-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity .8s var(--ease),transform 1.4s var(--ease)}
+#jaws-home#jaws-home .jh-index-media img.is-on{opacity:1;transform:scale(1)}
+
+/* 5. reviews */
+#jaws-home#jaws-home .jh-reviews{background:var(--mist);padding:clamp(90px,11vw,160px) 0;text-align:center}
+#jaws-home#jaws-home .jh-reviews .jh-kicker{justify-content:center}
+#jaws-home#jaws-home .jh-quotes{display:grid;max-width:1000px;margin:clamp(34px,4vw,56px) auto 0}
+#jaws-home#jaws-home .jh-quote{grid-area:1/1;opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease);pointer-events:none}
+#jaws-home#jaws-home .jh-quote.is-on{opacity:1;transform:none;pointer-events:auto}
+#jaws-home#jaws-home .jh-stars{margin-bottom:24px;font-size:18px;letter-spacing:.3em;color:var(--brass)}
+#jaws-home#jaws-home .jh-quote blockquote{font:italic 400 clamp(24px,2.7vw,40px)/1.32 var(--serif);color:var(--ink);text-wrap:balance}
+#jaws-home#jaws-home .jh-quote figcaption{margin-top:26px;font:500 16px/1 var(--sans);color:var(--teak-dk)}
+#jaws-home#jaws-home .jh-dots{display:flex;justify-content:center;gap:10px;margin-top:36px}
+#jaws-home#jaws-home .jh-dots button{all:unset;cursor:pointer;width:34px;height:3px;border-radius:2px;background:rgba(42,40,39,.18);transition:background .3s}
+#jaws-home#jaws-home .jh-dots button.is-on{background:var(--teak)}
+#jaws-home#jaws-home .jh-fine{margin-top:26px;font-size:13px;color:#8C867D}
+
+/* 6. press */
+#jaws-home#jaws-home .jh-press{padding:38px 0 42px;overflow:hidden;text-align:center}
+#jaws-home#jaws-home .jh-press .jh-kicker{justify-content:center;margin-bottom:18px}
+#jaws-home#jaws-home .jh-marq{position:relative;z-index:2;display:flex;width:max-content;animation:jhMarq 42s linear infinite}
+#jaws-home#jaws-home .jh-marq ul{display:flex;align-items:center;list-style:none}
+#jaws-home#jaws-home .jh-marq li{position:relative;padding:0 36px;white-space:nowrap;font:italic 400 clamp(22px,2.2vw,32px)/1.2 var(--serif);color:#EDE6DA}
+#jaws-home#jaws-home .jh-marq li::after{content:"";position:absolute;right:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--gold);transform:translateY(-50%)}
+@keyframes jhMarq{to{transform:translateX(-50%)}}
+
+/* 7. closing call to action over the procedure room */
+#jaws-home#jaws-home .jh-cta{background:#121110;padding:clamp(120px,14vw,220px) 0 0;overflow:hidden}
+#jaws-home#jaws-home .jh-cta-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+#jaws-home#jaws-home .jh-cta-bg::before{content:"";position:absolute;inset:0;background:url("https://xiiixiultra-maker.github.io/jaws-walk/office/or-wide.webp") center 40%/cover no-repeat;animation:jhKen 30s ease-in-out infinite alternate}
+#jaws-home#jaws-home .jh-cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,17,16,.5) 0%,rgba(18,17,16,.8) 50%,#121110 88%)}
+@keyframes jhKen{from{transform:scale(1.04)}to{transform:scale(1.14)}}
+#jaws-home#jaws-home .jh-cta-inner{max-width:1120px;text-align:center}
+#jaws-home#jaws-home .jh-cta .jh-kicker{justify-content:center}
+#jaws-home#jaws-home .jh-cta .jh-display{font-size:clamp(46px,7.4vw,124px);color:#F7F2E9}
+#jaws-home#jaws-home .jh-ask{margin:46px 0 16px;font:500 15px/1.2 var(--sans);color:#D8D1C5}
+#jaws-home#jaws-home .jh-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+#jaws-home#jaws-home .jh-cta-btns{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:40px}
+#jaws-home#jaws-home .jh-visit{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:clamp(90px,10vw,150px);padding-top:40px;padding-bottom:64px;border-top:1px solid rgba(243,226,188,.14)}
+#jaws-home#jaws-home .jh-visit h3{margin-bottom:10px;font:italic 500 19px/1.2 var(--serif);color:var(--gold)}
+#jaws-home#jaws-home .jh-visit p{font-size:15px}
+#jaws-home#jaws-home .jh-visit a{color:#F3EADB;text-decoration:none;border-bottom:1px solid rgba(243,226,188,.35)}
+
+@media (max-width:900px){
+  #jaws-home#jaws-home .jh-intro-grid,#jaws-home#jaws-home .jh-doc-grid,#jaws-home#jaws-home .jh-index{grid-template-columns:1fr}
+  #jaws-home#jaws-home .jh-stats{grid-template-columns:1fr 1fr}
+  #jaws-home#jaws-home .jh-stats>div:nth-child(3){padding-left:0;border-left:0}
+  #jaws-home#jaws-home .jh-stats>div:nth-child(n+3){margin-top:8px;border-top:1px solid rgba(42,40,39,.1)}
+  #jaws-home#jaws-home .jh-suite-head{flex-direction:column;align-items:flex-start;gap:18px}
+  #jaws-home#jaws-home .jh-index-media{display:none}
+  #jaws-home#jaws-home .jh-proc-img{display:block;width:calc(100% - 10px);margin:4px 0 20px 10px;aspect-ratio:16/10;object-fit:cover;border-radius:4px}
+  #jaws-home#jaws-home .jh-doc-stage,#jaws-home#jaws-home .jh-doc-bg{height:min(128vw,760px);min-height:500px}
+  #jaws-home#jaws-home .jh-doc-cut{height:78%}
+  #jaws-home#jaws-home .jh-doc-name span{font-size:9.6vw}
+  #jaws-home#jaws-home .jh-doc-name em{font-size:13.4vw}
+  #jaws-home#jaws-home .jh-visit{grid-template-columns:1fr;gap:22px}
+}
+@media (max-width:600px){
+  #jaws-home#jaws-home .jh-cta-btns .jh-btn{width:100%}
+  #jaws-home#jaws-home .jh-stats dd{font-size:14px}
+  #jaws-home#jaws-home .jh-proc-btn{flex-direction:column;gap:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  #jaws-home#jaws-home *,#jaws-home#jaws-home *::before,#jaws-home#jaws-home *::after{animation:none!important;transition:none!important}
+}
+
+/* booking bar on phones, moved to <body> by the script so nothing in the page can trap it */
+#jh-dock#jh-dock{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:none;gap:10px;padding:8px;border-radius:999px;
+  background:rgba(27,26,25,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 18px 40px rgba(0,0,0,.35);
+  transform:translateY(160%);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+#jh-dock#jh-dock.is-on{transform:none}
+@media (max-width:767px){#jh-dock#jh-dock{display:flex}}
+#jh-dock#jh-dock a{display:flex;align-items:center;justify-content:center;text-decoration:none;font:500 16px/1 "Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif}
+#jh-dock#jh-dock .jh-dock-book{flex:1;padding:16px 20px;border-radius:999px;color:#fff;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#A17654,#7A5537)}
+#jh-dock#jh-dock .jh-dock-call{flex:0 0 52px;border-radius:999px;border:1px solid rgba(243,226,188,.35);color:#D9B68C}
+</style>
+
+<div id="jaws-home">
+
+  <section class="jh-intro" aria-labelledby="jh-intro-t">
+    <div class="jh-wrap jh-intro-grid">
+      <div>
+        <p class="jh-kicker jh-r">Welcome to Jaws Podiatry</p>
+        <h2 id="jh-intro-t" class="jh-display jh-split">An unforgettable foot and ankle <em class="jh-gold">experience</em></h2>
+        <p class="jh-es jh-r" style="--d:250ms">Una experiencia inolvidable</p>
+      </div>
+      <div class="jh-intro-copy jh-r" style="--d:150ms">
+        <p>Jaws Podiatry is a 5-star rated cosmetic and aesthetic foot surgery center led by Dr. Abraham Wagner, Doctor of Podiatric Medicine. Patients come from across Florida, the country and around the world.</p>
+        <p>Our procedures are minimally invasive and performed with local anesthesia, without pins or screws, so patients can walk immediately after surgery.</p>
+        <a class="jh-link" href="#suite">Step inside the office</a>
+      </div>
+    </div>
+    <div class="jh-wrap">
+      <dl class="jh-stats">
+        <div class="jh-r"><dt><span class="jh-gold" data-count="17">17</span></dt><dd>Years of practice</dd></div>
+        <div class="jh-r" style="--d:100ms"><dt><span class="jh-gold">5&#9733;</span></dt><dd>Rated practice</dd></div>
+        <div class="jh-r" style="--d:200ms"><dt><span class="jh-gold">1,000s</span></dt><dd>Surgeries performed</dd></div>
+        <div class="jh-r" style="--d:300ms"><dt><span class="jh-gold" data-count="50">50</span></dt><dd>Cities our patients come from</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="jh-suite jh-dark" id="suite" aria-labelledby="jh-suite-t">
+    <div class="jh-suite-pin">
+      <div class="jh-wrap jh-suite-head">
+        <div>
+          <p class="jh-kicker">Step inside</p>
+          <h2 id="jh-suite-t" class="jh-display jh-split">A space made to <em class="jh-gold">calm you</em></h2>
+          <p class="jh-es">Pase adelante</p>
+        </div>
+        <p class="jh-note">Our Hollywood office, rebuilt in 3D from the real rooms.</p>
+      </div>
+      <div class="jh-track">
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/entrance.webp" alt="3D render of the Jaws Podiatry entrance: the gold JAWS sign on a charcoal wall between teak slats" width="900" height="1200" loading="lazy"></div><figcaption><b>The entrance</b><span>The gold sign that greets you.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/reception.webp" alt="3D render of the reception desk with teak slats and two YouTube Creator Awards on the wall" width="900" height="1200" loading="lazy"></div><figcaption><b>Reception</b><span>Our concierge team checks you in.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/lounge.webp" alt="3D render of the lounge: green velvet chairs, a teak slat wall with LED strips and colorful foot art" width="900" height="1200" loading="lazy"></div><figcaption><b>The lounge</b><span>Green velvet, teak and original art.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/mirror.webp" alt="3D render of the lounge corner with a round-cornered mirror on the teak wall and fresh tulips" width="900" height="1200" loading="lazy"></div><figcaption><b>The mirror wall</b><span>A quiet corner before your visit.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/hallway.webp" alt="3D render of the hallway with lit teak slats leading back to the gold sign" width="900" height="1200" loading="lazy"></div><figcaption><b>The hallway</b><span>Teak slats, lit from within.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/exam-a.webp" alt="3D render of an exam room with a gray treatment chair, a navy velvet chair and a gold stool" width="900" height="1200" loading="lazy"></div><figcaption><b>Exam suite</b><span>Private, bright and calm.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/exam-b.webp" alt="3D render of the consultation room with a DPM art print and a navy velvet chair" width="900" height="1200" loading="lazy"></div><figcaption><b>The DPM suite</b><span>Where your plan comes together.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/procedure.webp" alt="3D render of the procedure room with a surgical chair, gold stools and teak panels" width="900" height="1200" loading="lazy"></div><figcaption><b>The procedure room</b><span>Where your new beginning happens.</span></figcaption></figure>
+        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/sterile.webp" alt="3D render of the sterile station with white cabinets and a gold instrument tray" width="900" height="1200" loading="lazy"></div><figcaption><b>The sterile station</b><span>Right next to the procedure room.</span></figcaption></figure>
+      </div>
+      <div class="jh-suite-bar" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <section class="jh-doc jh-dark" id="doctor" aria-labelledby="jh-doc-t">
+    <div class="jh-doc-bg" aria-hidden="true"></div>
+    <div class="jh-doc-stage">
+      <img class="jh-doc-cut" src="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-cutout.webp" alt="Dr. Abraham Wagner, DPM, smiling in olive scrubs in front of the gold JAWS sign" width="899" height="914" loading="lazy">
+      <h2 id="jh-doc-t" class="jh-doc-name"><span>Dr. Abraham</span> <em class="jh-gold">Wagner, DPM</em></h2>
+    </div>
+    <div class="jh-wrap jh-doc-copy">
+      <div class="jh-doc-grid">
+        <div class="jh-r">
+          <p class="jh-kicker">Meet the doctor</p>
+          <p class="jh-doc-line">No two feet are alike, so every patient gets a plan made for them.</p>
+          <p class="jh-es">Conozca al Dr. Wagner</p>
+        </div>
+        <div class="jh-r" style="--d:150ms">
+          <p>The difference starts the second you call our office. From our concierge to our staff and team of podiatrists, we make everything as convenient and stress-free as possible.</p>
+          <p>Passion, clinical outcomes and a powerful sense of family are the cornerstones of Jaws Podiatry.</p>
+          <p class="jh-proof"><b class="jh-gold">1M+</b><span>subscribers learn foot care on the Jaws Podiatry YouTube channel.</span></p>
+          <a class="jh-btn" href="/booking">Book a consult</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jh-procs" id="procedures" aria-labelledby="jh-procs-t">
+    <div class="jh-wrap">
+      <p class="jh-kicker jh-r">Functional and aesthetic solutions</p>
+      <h2 id="jh-procs-t" class="jh-display jh-split">Featured <em class="jh-gold">procedures</em></h2>
+      <p class="jh-es jh-r" style="--d:200ms">Procedimientos destacados</p>
+      <div class="jh-index">
+        <ol class="jh-index-list">
+          <li class="jh-proc is-on">
+            <button class="jh-proc-btn" type="button" aria-expanded="true"><span class="jh-proc-name">Brachymetatarsia</span><span class="jh-proc-tag">Toe length</span></button>
+            <div class="jh-proc-body"><div>
+              <img class="jh-proc-img" src="https://www.jawspodiatry.com/wp-content/uploads/2024/05/Brachymetatarsia.jpg" alt="Close-up of toes" width="1300" height="1089" loading="lazy">
+              <p>Lengthens a short metatarsal bone to improve how the foot works and how it looks.</p>
+              <a class="jh-chip" href="/booking">Ask about brachymetatarsia</a>
+            </div></div>
+          </li>
+          <li class="jh-proc">
+            <button class="jh-proc-btn" type="button" aria-expanded="false"><span class="jh-proc-name">Toe shortening and lengthening</span><span class="jh-proc-tag">Toe alignment</span></button>
+            <div class="jh-proc-body"><div>
+              <img class="jh-proc-img" src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Toe-Shortening-Lengthening-Straightening.jpeg" alt="Bare feet in the sand" width="1000" height="702" loading="lazy">
+              <p>Brings long, short or crooked toes in line with the rest of the foot for comfort and a natural look.</p>
+              <a class="jh-chip" href="/booking">Ask about toe alignment</a>
+            </div></div>
+          </li>
+          <li class="jh-proc">
+            <button class="jh-proc-btn" type="button" aria-expanded="false"><span class="jh-proc-name">Bunion and bunionette surgery</span><span class="jh-proc-tag">Minimally invasive</span></button>
+            <div class="jh-proc-body"><div>
+              <img class="jh-proc-img" src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Cosmetic-Bunion-Surgery.jpg" alt="Hands holding a foot with a bunion" width="1200" height="800" loading="lazy">
+              <p>For when pads, shields and wide shoes stop helping and the joint keeps getting worse.</p>
+              <a class="jh-chip" href="/booking">Ask about bunions</a>
+            </div></div>
+          </li>
+          <li class="jh-proc">
+            <button class="jh-proc-btn" type="button" aria-expanded="false"><span class="jh-proc-name">Hammertoe correction</span><span class="jh-proc-tag">Lesser toes</span></button>
+            <div class="jh-proc-body"><div>
+              <img class="jh-proc-img" src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Podiatry-Services.jpg" alt="Gloved hands examining toes" width="600" height="600" loading="lazy">
+              <p>Straightens bent toes caused by muscle and ligament imbalance before they get worse.</p>
+              <a class="jh-chip" href="/booking">Ask about hammertoes</a>
+            </div></div>
+          </li>
+          <li class="jh-proc">
+            <button class="jh-proc-btn" type="button" aria-expanded="false"><span class="jh-proc-name">Toe tucks and side tucks</span><span class="jh-proc-tag">Soft tissue</span></button>
+            <div class="jh-proc-body"><div>
+              <img class="jh-proc-img" src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Toe-Tuck-Side-Tuck-Surgery.jpg" alt="Legs and feet resting on a white floor" width="1200" height="746" loading="lazy">
+              <p>Slims the toes and the sides of the foot by removing fatty tissue.</p>
+              <a class="jh-chip" href="/booking">Ask about toe tucks</a>
+            </div></div>
+          </li>
+          <li class="jh-proc">
+            <button class="jh-proc-btn" type="button" aria-expanded="false"><span class="jh-proc-name">Corn removal</span><span class="jh-proc-tag">Comfort</span></button>
+            <div class="jh-proc-body"><div>
+              <img class="jh-proc-img" src="https://www.jawspodiatry.com/wp-content/uploads/2022/09/Corn-Removal-Surgery.jpg" alt="Hand on the side of a foot" width="1200" height="800" loading="lazy">
+              <p>Removes painful corns that topical treatments can't fix, so your favorite shoes fit again.</p>
+              <a class="jh-chip" href="/booking">Ask about corns</a>
+            </div></div>
+          </li>
+        </ol>
+        <div class="jh-index-media" aria-hidden="true">
+          <img class="is-on" src="https://www.jawspodiatry.com/wp-content/uploads/2024/05/Brachymetatarsia.jpg" alt="" loading="lazy">
+          <img src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Toe-Shortening-Lengthening-Straightening.jpeg" alt="" loading="lazy">
+          <img src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Cosmetic-Bunion-Surgery.jpg" alt="" loading="lazy">
+          <img src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Podiatry-Services.jpg" alt="" loading="lazy">
+          <img src="https://www.jawspodiatry.com/wp-content/uploads/2022/12/Toe-Tuck-Side-Tuck-Surgery.jpg" alt="" loading="lazy">
+          <img src="https://www.jawspodiatry.com/wp-content/uploads/2022/09/Corn-Removal-Surgery.jpg" alt="" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jh-reviews" id="reviews" aria-labelledby="jh-rev-t">
+    <div class="jh-wrap">
+      <p class="jh-kicker jh-r">In their words</p>
+      <h2 id="jh-rev-t" class="jh-display jh-split">Patients <em class="jh-gold">say it best</em></h2>
+      <div class="jh-quotes">
+        <figure class="jh-quote is-on">
+          <div class="jh-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>&ldquo;I felt comfortable through the whole procedure and Dr. Wagner definitely made me feel empowered on making the right decision. &hellip; His passion for his patients is incredible and you can tell he loves what he does.&rdquo;</blockquote>
+          <figcaption>Jason B.</figcaption>
+        </figure>
+        <figure class="jh-quote">
+          <div class="jh-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>&ldquo;I had minimally invasive bunion surgery at JAWS and I can&rsquo;t praise Dr. Wagner and his staff enough &hellip; I was very nervous but the caring, compassionate staff made me feel at ease.&rdquo;</blockquote>
+          <figcaption>Valerie B.</figcaption>
+        </figure>
+        <figure class="jh-quote">
+          <div class="jh-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>&ldquo;Dr. Wagner is not a typical doctor. He is caring, talented and very creative! &hellip; His whole crew will make you feel safe and comfortable with all the steps of your journey from beginning to end.&rdquo;</blockquote>
+          <figcaption>Yola W.</figcaption>
+        </figure>
+      </div>
+      <div class="jh-dots">
+        <button type="button" class="is-on" aria-label="Show review 1"></button>
+        <button type="button" aria-label="Show review 2"></button>
+        <button type="button" aria-label="Show review 3"></button>
+      </div>
+      <p class="jh-fine">Individual results vary.</p>
+    </div>
+  </section>
+
+  <section class="jh-press jh-dark" aria-label="Press">
+    <p class="jh-kicker jh-wrap">As featured in</p>
+    <div class="jh-marq">
+      <ul><li>New York Post</li><li>Univision</li><li>Telemundo</li><li>Miami Herald</li><li>Essence</li><li>NewBeauty</li><li>Vibe</li><li>BET</li><li>Vanidades</li></ul>
+      <ul aria-hidden="true"><li>New York Post</li><li>Univision</li><li>Telemundo</li><li>Miami Herald</li><li>Essence</li><li>NewBeauty</li><li>Vibe</li><li>BET</li><li>Vanidades</li></ul>
+    </div>
+  </section>
+
+  <section class="jh-cta jh-dark" id="visit" aria-labelledby="jh-cta-t">
+    <div class="jh-cta-bg" aria-hidden="true"></div>
+    <div class="jh-wrap jh-cta-inner">
+      <p class="jh-kicker jh-r">Your next step</p>
+      <h2 id="jh-cta-t" class="jh-display jh-split">Your new beginning <em class="jh-gold">starts here</em></h2>
+      <p class="jh-es jh-r" style="--d:250ms">Su nuevo comienzo empieza aqu&iacute;</p>
+      <p class="jh-ask jh-r" style="--d:350ms">What would you like to talk about?</p>
+      <div class="jh-chips jh-r" style="--d:450ms">
+        <a class="jh-chip" href="/booking">Short toes</a>
+        <a class="jh-chip" href="/booking">Toe shortening</a>
+        <a class="jh-chip" href="/booking">Bunions</a>
+        <a class="jh-chip" href="/booking">Hammertoes</a>
+        <a class="jh-chip" href="/booking">Toe tucks</a>
+        <a class="jh-chip" href="/booking">Corns</a>
+        <a class="jh-chip" href="/booking">Something else</a>
+      </div>
+      <div class="jh-cta-btns jh-r" style="--d:550ms">
+        <a class="jh-btn" href="/booking">Book your consultation</a>
+        <a class="jh-btn ghost" href="tel:+19549227333">Call (954) 922-7333</a>
+      </div>
+    </div>
+    <div class="jh-wrap jh-visit">
+      <div>
+        <h3>Visit</h3>
+        <p>3700 Washington St, Suite 403<br>Hollywood, FL 33021</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=3700+Washington+St+403+Hollywood+FL+33021" target="_blank" rel="noopener">Get directions</a></p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <p>Monday to Friday, 9 AM to 5 PM<br>Saturday and Sunday, closed</p>
+      </div>
+      <div>
+        <h3>Call</h3>
+        <p><a href="tel:+19549227333">(954) 922-7333</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div id="jh-dock" role="region" aria-label="Quick booking">
+    <a class="jh-dock-book" href="/booking">Book a consult</a>
+    <a class="jh-dock-call" href="tel:+19549227333" aria-label="Call (954) 922-7333"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></a>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('jaws-home');
+  if (!root || root.getAttribute('data-ready')) return;
+  root.setAttribute('data-ready', '1');
+  var mm = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };
+  var reduce = mm('(prefers-reduced-motion: reduce)').matches;
+  var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
+  root.classList.add('jh-js');
+
+  // headline words rise one by one; the gold <em> moves as one word so its gradient stays intact
+  each(root.querySelectorAll('.jh-split'), function (el) {
+    var i = 0;
+    each(Array.prototype.slice.call(el.childNodes), function (n) {
+      if (n.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          var w = document.createElement('span');
+          w.className = 'jh-w'; w.style.setProperty('--i', i++); w.textContent = part;
+          frag.appendChild(w);
+        });
+        el.replaceChild(frag, n);
+      } else if (n.nodeType === 1) {
+        var wrap = document.createElement('span');
+        wrap.className = 'jh-w'; wrap.style.setProperty('--i', i++);
+        el.replaceChild(wrap, n); wrap.appendChild(n);
+      }
+    });
+  });
+
+  function countUp(el) {
+    var to = +el.getAttribute('data-count');
+    if (reduce || !to) return;
+    var t0 = null;
+    el.textContent = '0';
+    var step = function (t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / 1600);
+      el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+    setTimeout(function () { el.textContent = to; }, 2600);
+  }
+
+  var targets = root.querySelectorAll('.jh-r, .jh-split, [data-count]');
+  var seen = function (el) { el.classList.add('is-in'); if (el.hasAttribute('data-count')) countUp(el); };
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { seen(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    each(targets, function (el) { io.observe(el); });
+  } else each(targets, seen);
+
+  // the office tour pins and slides sideways on wide screens; phones swipe it
+  var suite = root.querySelector('.jh-suite');
+  var pin = suite && suite.querySelector('.jh-suite-pin');
+  var track = suite && suite.querySelector('.jh-track');
+  var bar = suite && suite.querySelector('.jh-suite-bar');
+  var rooms = suite ? suite.querySelectorAll('.jh-room-img img') : [];
+  var wide = mm('(min-width: 901px)');
+  var dist = 0, pinned = false;
+  var headerTop = function () { return parseFloat(getComputedStyle(root).getPropertyValue('--top')) || 0; };
+  function clipped(el) {
+    for (var p = el.parentElement; p && p !== document.body; p = p.parentElement) {
+      if (p === root) continue;
+      var s = getComputedStyle(p);
+      if (/(hidden|scroll|auto)/.test(s.overflowX + ' ' + s.overflowY)) return true;
+    }
+    return false;
+  }
+  function layout() {
+    if (!suite) return;
+    pinned = wide.matches && !reduce && !clipped(suite);
+    suite.classList.toggle('is-pinned', pinned);
+    if (!pinned) { suite.style.height = ''; track.style.removeProperty('--tx'); return; }
+    var last = track.lastElementChild;
+    var full = last.offsetLeft + last.offsetWidth + parseFloat(getComputedStyle(track).paddingRight);
+    dist = Math.max(0, full - pin.clientWidth);
+    suite.style.height = (pin.offsetHeight + dist) + 'px';
+    update();
+  }
+
+  var doc = root.querySelector('.jh-doc-stage');
+  var walk = document.getElementById('jaws-walk');
+  var cta = root.querySelector('.jh-cta');
+  var dock = document.getElementById('jh-dock');
+  if (dock) {
+    each(document.querySelectorAll('#jh-dock'), function (d) { if (d !== dock) d.parentNode.removeChild(d); });
+    document.body.appendChild(dock);
+  }
+
+  function update() {
+    var vh = window.innerHeight, vw = window.innerWidth;
+    if (pinned) {
+      var r = suite.getBoundingClientRect(), span = suite.offsetHeight - pin.offsetHeight;
+      var p = span > 0 ? Math.min(1, Math.max(0, (headerTop() - r.top) / span)) : 0;
+      track.style.setProperty('--tx', (-p * dist).toFixed(1) + 'px');
+      bar.style.setProperty('--p', p.toFixed(4));
+      each(rooms, function (img) {
+        var b = img.parentNode.getBoundingClientRect();
+        img.style.setProperty('--px', (((b.left + b.width / 2) - vw / 2) / vw * -40).toFixed(1) + 'px');
+      });
+    }
+    if (doc && !reduce) {
+      var d = doc.getBoundingClientRect();
+      if (d.bottom > 0 && d.top < vh) {
+        doc.style.setProperty('--front', ((d.top + d.height / 2 - vh / 2) / vh * -50).toFixed(1) + 'px');
+      }
+    }
+    if (dock) {
+      var after = walk ? walk.getBoundingClientRect().bottom < 0 : window.pageYOffset > vh;
+      var nearEnd = cta ? cta.getBoundingClientRect().top < vh * 0.8 : false;
+      dock.classList.toggle('is-on', after && !nearEnd);
+    }
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; update(); });
+  }, { passive: true });
+  window.addEventListener('resize', layout);
+  if (wide.addEventListener) wide.addEventListener('change', layout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+  window.addEventListener('load', layout);
+  layout();
+  update();
+
+  // procedures: hover or tap a name to open it and swap the photo
+  var procs = root.querySelectorAll('.jh-proc');
+  var shots = root.querySelectorAll('.jh-index-media img');
+  var hoverable = mm('(hover: hover) and (min-width: 901px)');
+  function pick(i) {
+    each(procs, function (li, k) {
+      li.classList.toggle('is-on', k === i);
+      li.querySelector('.jh-proc-btn').setAttribute('aria-expanded', k === i ? 'true' : 'false');
+    });
+    each(shots, function (im, k) { im.classList.toggle('is-on', k === i); });
+  }
+  each(procs, function (li, k) {
+    var b = li.querySelector('.jh-proc-btn');
+    b.addEventListener('click', function () { pick(k); });
+    b.addEventListener('mouseenter', function () { if (hoverable.matches) pick(k); });
+  });
+
+  // reviews rotate every 7 seconds and pause while the pointer is on them
+  var quotes = root.querySelectorAll('.jh-quote');
+  var dots = root.querySelectorAll('.jh-dots button');
+  var q = 0, timer = null;
+  function show(i) {
+    q = (i + quotes.length) % quotes.length;
+    each(quotes, function (el, k) { el.classList.toggle('is-on', k === q); });
+    each(dots, function (d, k) { d.classList.toggle('is-on', k === q); });
+  }
+  function auto() { clearInterval(timer); if (!reduce && quotes.length > 1) timer = setInterval(function () { show(q + 1); }, 7000); }
+  each(dots, function (d, k) { d.addEventListener('click', function () { show(k); auto(); }); });
+  var qbox = root.querySelector('.jh-quotes');
+  if (qbox) { qbox.addEventListener('mouseenter', function () { clearInterval(timer); }); qbox.addEventListener('mouseleave', auto); }
+  auto();
+
+  // a soft light follows the pointer across the dark sections
+  if (mm('(pointer: fine)').matches && !reduce) {
+    each(root.querySelectorAll('.jh-dark'), function (sec) {
+      sec.addEventListener('pointermove', function (e) {
+        var r = sec.getBoundingClientRect();
+        sec.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        sec.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+  }
+})();
+</script>
