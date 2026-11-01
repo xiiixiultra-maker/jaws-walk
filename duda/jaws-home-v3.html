@@ -803,7 +803,8 @@
     if (want && !vidOn) {                  // the loop starts on the same frame as the lit still, so the swap can't be seen
       vidOn = true;
       clearTimeout(vidTimer);
-      if (!dvid.getAttribute('src')) dvid.src = dvid.getAttribute(mm('(max-width: 767px)').matches ? 'data-tall' : 'data-wide');
+      var src = dvid.getAttribute(mm('(max-width: 767px)').matches ? 'data-tall' : 'data-wide');   // phone crop or 16:9
+      if (dvid.getAttribute('src') !== src) dvid.src = src;
       try { dvid.currentTime = 0; } catch (x) { /* not loaded yet: it starts at 0 anyway */ }
       var go = function () { if (vidOn) dbg.classList.add('is-playing'); };
       var pr = dvid.play();
@@ -840,7 +841,7 @@
       var d = doc.getBoundingClientRect();
       if (!reduce && d.bottom > 0 && d.top < vh) doc.style.setProperty('--front', ((d.top + d.height / 2 - vh / 2) / vh * -50).toFixed(1) + 'px');
       docLights(d, vh);
-      if (d.top < vh * 0.5 && d.bottom > vh * 0.75) holding = true;   // his name sits where the booking bar would
+      if (d.top < vh * 0.5 && d.bottom > vh - 110) holding = true;    // his name would sit under the booking bar
     }
     holding = updateLines() || holding;
     if (dock) {                            // out of the way during the walk, the pinned screens and the closing section
