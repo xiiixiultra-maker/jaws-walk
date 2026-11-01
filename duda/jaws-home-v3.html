@@ -193,25 +193,31 @@
 #jaws-home#jaws-home .jh-sig-foot{display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:clamp(44px,5vw,72px)}
 #jaws-home#jaws-home .jh-sig-foot p{max-width:42ch}
 
-/* 4. the surgeon: in front of the glowing sign, his name set in front of him */
+/* 4. the surgeon: the real office photo, Dr. Wagner in JAWS scrubs under the lit gold sign between the teak slat
+   columns (tools/make_wagner_slats.py); the room's lights come up as you arrive, the frame slowly breathes, and his
+   name is set in front of him */
 #jaws-home#jaws-home .jh-doc{background:#121110;overflow:hidden}
 #jaws-home#jaws-home .jh-doc-bg,#jaws-home#jaws-home .jh-doc-stage{height:calc(100vh - var(--top));max-height:940px;min-height:600px}
-#jaws-home#jaws-home .jh-doc-bg{position:absolute;inset:0 0 auto;z-index:0;overflow:hidden;background:#121110 url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-wide.webp") center 22%/cover no-repeat;
-  /* gone before its edge: at a fractional height the last, half-covered pixel row let the bright video through */
+#jaws-home#jaws-home .jh-doc-bg{position:absolute;inset:0 0 auto;z-index:0;overflow:hidden;background:#121110;
+  /* gone before its edge: at a fractional height the last, half-covered pixel row let the light through */
   -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent 98%);mask-image:linear-gradient(180deg,#000 82%,transparent 98%)}
-#jaws-home#jaws-home .jh-doc-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 28%,rgba(18,17,16,.05),rgba(18,17,16,.78) 72%),linear-gradient(180deg,rgba(18,17,16,.15) 0%,rgba(18,17,16,.35) 60%,#121110 97%)}
-/* lights-off render of the same frame on top: the script fades it out as the section scrolls in, then the loop plays */
-#jaws-home#jaws-home .jh-doc-video,#jaws-home#jaws-home .jh-doc-dark{position:absolute;inset:0;width:100%;height:100%;margin:0}   /* Duda's theme gives video a 10px margin */
-#jaws-home#jaws-home .jh-doc-video{object-fit:cover;object-position:50% 22%;opacity:0;transition:opacity .7s ease}
-#jaws-home#jaws-home .jh-doc-bg.is-playing .jh-doc-video{opacity:1}
-#jaws-home#jaws-home .jh-doc-dark{background:#0d0c0b url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-dark.webp") center 22%/cover no-repeat;opacity:0}
+#jaws-home#jaws-home .jh-doc-photo,#jaws-home#jaws-home .jh-doc-dark{position:absolute;inset:0;margin:0;transform-origin:50% 40%;
+  background:#121110 url("https://xiiixiultra-maker.github.io/jaws-walk/office/wagner-slats-wide.webp") 50% 40%/cover no-repeat;
+  animation:jhBreathe 18s ease-in-out infinite alternate}
+@keyframes jhBreathe{from{transform:scale(1)}to{transform:scale(1.045)}}
+/* the lights-off twin on top (only the sign glows): the script fades it out as the section scrolls in */
+#jaws-home#jaws-home .jh-doc-dark{background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/office/wagner-slats-wide-dark.webp");opacity:0}
 #jaws-home#jaws-home.jh-js .jh-doc-dark{opacity:var(--dark,1)}
+@media (max-width:900px){      /* phones and tablets: the stage is about as tall as it is wide, so the full-length crop */
+  #jaws-home#jaws-home .jh-doc-photo{background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/office/wagner-slats-tall.webp");background-position:50% 18%}
+  #jaws-home#jaws-home .jh-doc-dark{background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/office/wagner-slats-tall-dark.webp");background-position:50% 18%}}
+@media (prefers-reduced-motion:reduce){#jaws-home#jaws-home .jh-doc-photo,#jaws-home#jaws-home .jh-doc-dark{animation:none}}
+#jaws-home#jaws-home .jh-doc-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 85% 75% at 50% 38%,rgba(18,17,16,0),rgba(18,17,16,.45) 88%),linear-gradient(180deg,rgba(18,17,16,.08) 0%,rgba(18,17,16,.2) 55%,#121110 97%)}
 #jaws-home#jaws-home .jh-doc-stage{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
 #jaws-home#jaws-home .jh-doc-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(18,17,16,0),rgba(18,17,16,.82) 70%,#121110 94%)}   /* solid before the edge: no seam */
 /* the pointer light of the dark sections lit the copy under the stage but not the stage's solid foot, which read as a
    hairline across the bottom of his photo; this section has the sign's own light, so it goes without */
 #jaws-home#jaws-home .jh-doc::before{display:none}
-#jaws-home#jaws-home .jh-doc-cut{position:relative;z-index:1;height:80%;width:auto;max-width:none;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
 #jaws-home#jaws-home .jh-doc-name{position:absolute;z-index:3;left:0;right:0;bottom:6%;margin:0;text-align:center;white-space:nowrap;font-family:var(--serif);font-weight:600;line-height:.9;letter-spacing:-.03em;font-variation-settings:"opsz" 28;
   transform:translate3d(0,var(--front,0px),0);filter:drop-shadow(0 6px 24px rgba(0,0,0,.55))}
 #jaws-home#jaws-home .jh-doc-name span{display:block;font-size:clamp(40px,6.2vw,104px);color:#F1E6D2}
@@ -387,7 +393,6 @@
   #jaws-home#jaws-home .jh-reel-row::-webkit-scrollbar{display:none}
   #jaws-home#jaws-home .jh-reel{flex:0 0 58vw;max-width:260px;scroll-snap-align:center}
   #jaws-home#jaws-home .jh-doc-stage,#jaws-home#jaws-home .jh-doc-bg{height:min(128vw,760px);min-height:500px}
-  #jaws-home#jaws-home .jh-doc-cut{height:78%}
   #jaws-home#jaws-home .jh-doc-name span{font-size:9.6vw}
   #jaws-home#jaws-home .jh-doc-name em{font-size:13.4vw}
   #jaws-home#jaws-home .jh-visit{grid-template-columns:1fr;gap:22px}
@@ -546,14 +551,11 @@
   </section>
 
   <section class="jh-doc jh-dark" id="doctor" aria-labelledby="jh-doc-t">
-    <div class="jh-doc-bg" aria-hidden="true">
-      <video class="jh-doc-video" muted playsinline loop preload="none" data-wide="https://xiiixiultra-maker.github.io/jaws-walk/office/sign-loop-wide.mp4" data-tall="https://xiiixiultra-maker.github.io/jaws-walk/office/sign-loop-tall.mp4"></video>
-      <div class="jh-doc-dark"></div>
+    <div class="jh-doc-bg">
+      <div class="jh-doc-photo" role="img" aria-label="Dr. Abraham Wagner, DPM, smiling in JAWS scrubs under the gold JAWS sign, between the teak slat walls of his office"></div>
+      <div class="jh-doc-dark" aria-hidden="true"></div>
     </div>
     <div class="jh-doc-stage">
-      <img class="jh-doc-cut" src="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer-sign.webp"
-        srcset="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer-sign-sm.webp 657w, https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer-sign.webp 1033w"
-        sizes="(max-width: 900px) 92vw, 46vw" alt="Dr. Abraham Wagner, DPM, smiling in a pinstripe blazer in front of the gold JAWS sign" width="1033" height="1100" loading="lazy">
       <h2 id="jh-doc-t" class="jh-doc-name"><span>Dr. Abraham</span> <em class="jh-gold">Wagner, DPM</em></h2>
     </div>
     <div class="jh-wrap jh-doc-copy">
@@ -969,7 +971,7 @@
     update();
   }
 
-  // the lights come up on the sign behind Dr. Wagner as his section scrolls in, then the camera starts to breathe
+  // the room's lights come up around Dr. Wagner as his section scrolls in (a breathing loop plays if the bg has a video)
   var dbg = root.querySelector('.jh-doc-bg');
   var dvid = dbg && dbg.querySelector('video');
   var vidOK = !!dvid && !reduce && !(navigator.connection && navigator.connection.saveData);
