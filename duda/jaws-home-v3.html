@@ -89,8 +89,8 @@
 #jaws-home#jaws-home .jh-btns{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 #jaws-home#jaws-home a:focus-visible,#jaws-home#jaws-home button:focus-visible,#jaws-home#jaws-home summary:focus-visible{outline:2px solid var(--teak-lt);outline-offset:4px}
 
-/* 1. intro and numbers */
-#jaws-home#jaws-home .jh-intro{background:var(--wall);padding:clamp(90px,11vw,170px) 0 clamp(60px,7vw,100px)}
+/* 1. intro and numbers: dark, so the gold instruments' glow and glints read, with the soft pointer light of the dark sections */
+#jaws-home#jaws-home .jh-intro{background:var(--night);padding:clamp(90px,11vw,170px) 0 clamp(60px,7vw,100px)}
 #jaws-home#jaws-home .jh-intro-h{font-size:clamp(42px,7.2vw,120px)}
 #jaws-home#jaws-home .jh-intro-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,110px);align-items:start;margin-top:clamp(26px,3vw,44px)}
 #jaws-home#jaws-home .jh-intro-row .jh-es{margin:0}
@@ -100,6 +100,10 @@
 /* a lower optical size keeps the hairlines of big gold numbers and names from vanishing */
 #jaws-home#jaws-home .jh-stats dt{font:500 clamp(52px,5.8vw,96px)/1 var(--serif);letter-spacing:-.03em;font-variation-settings:"opsz" 28}
 #jaws-home#jaws-home .jh-stats dd{margin-top:14px;max-width:16ch;font:500 15px/1.35 var(--sans);color:var(--soft)}
+#jaws-home#jaws-home .jh-dark .jh-stats{border-top-color:rgba(243,226,188,.16)}
+#jaws-home#jaws-home .jh-dark .jh-stats>div+div{border-left-color:rgba(243,226,188,.12)}
+#jaws-home#jaws-home .jh-dark .jh-stats dd{color:#B9B1A4}
+#jaws-home#jaws-home .jh-dark .jh-link{color:#F3EADB;border-bottom-color:rgba(243,226,188,.4)}
 #jaws-home#jaws-home .jh-intro .jh-fine{margin-top:26px}
 /* floating gold instruments (NVIDIA SimReady models, CC BY 4.0) as 36-frame turns drawn on canvas, their shadow, the
    gold's warm bounce and the glare baked in: the pointer (or the scroll, on touch screens) turns them; the tweezers
@@ -110,11 +114,12 @@
 @keyframes jhBob{from{translate:0 -7px}to{translate:0 9px}}
 #jaws-home#jaws-home .jh-tool-hemostat{width:clamp(170px,24vw,380px);aspect-ratio:473/402;right:2.5%;top:2%;animation-duration:7s}
 #jaws-home#jaws-home .jh-tool-scalpel{width:clamp(140px,17vw,280px);aspect-ratio:414/294;left:6%;top:52%;animation-duration:5.2s;animation-delay:-2s}
-#jaws-home#jaws-home .jh-tool-tweezers{width:clamp(150px,17vw,270px);aspect-ratio:377/274;left:0;top:0;opacity:0;animation:none;
+#jaws-home#jaws-home .jh-tool-tweezers{width:clamp(150px,17vw,270px);aspect-ratio:382/280;left:0;top:0;opacity:0;animation:none;
   background:no-repeat 0 0/100% 100%;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
 #jaws-home#jaws-home .jh-tool-tweezers.is-in{opacity:1}
 #jaws-home#jaws-home .jh-lift{display:inline-block;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),filter 1.1s ease}
 #jaws-home#jaws-home .jh-lift.is-lifted{transform:translate3d(0,var(--lift,-14px),0) rotate(-1.5deg);filter:drop-shadow(8px 18px 12px rgba(42,40,39,.2))}
+#jaws-home#jaws-home .jh-dark .jh-lift.is-lifted{filter:drop-shadow(8px 18px 14px rgba(0,0,0,.55))}
 #jaws-home#jaws-home .jh-lift.is-lifted,#jaws-home#jaws-home .jh-tool-tweezers.is-lifted{animation:jhBob 6s ease-in-out infinite alternate}
 @media (max-width:900px){#jaws-home#jaws-home .jh-tool-scalpel,#jaws-home#jaws-home .jh-tool-hemostat{display:none}
   #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(160px,44vw,260px)}}
@@ -367,7 +372,7 @@
 
 <div id="jaws-home">
 
-  <section class="jh-intro" aria-labelledby="jh-intro-t">
+  <section class="jh-intro jh-dark" aria-labelledby="jh-intro-t">
     <div class="jh-tools" aria-hidden="true">
       <canvas class="jh-tool jh-tool-hemostat" data-tool="hemostat"></canvas>
       <canvas class="jh-tool jh-tool-scalpel" data-tool="scalpel"></canvas>
@@ -955,7 +960,7 @@
   var liftEl = intro && intro.querySelector('.jh-lift');
   var TOOLS_BASE = 'https://xiiixiultra-maker.github.io/jaws-walk/tools3d/';
   var TURN_N = 36, TURN_COLS = 6;
-  var TWEEZ = { desk: [377, 274, 0.0344, 0.812], phone: [428, 95, 0.0375, 0.3586] };   // image size, tips (share of it)
+  var TWEEZ = { desk: [382, 280, 0.0468, 0.8158], phone: [430, 98, 0.0438, 0.377] };   // image size, tips (share of it)
   var LIFT = -14, lifted = false, toolsOn = false, toolsVis = false, layers = [];
   var turn = { want: 17, shown: 17, on: false };
   if (liftEl) liftEl.style.setProperty('--lift', LIFT + 'px');
