@@ -5,8 +5,8 @@
      YouTube numbers read live on 10/31/2026: 1.78M subscribers, 1,104,497,600 views, 2,603 videos.
      Video thumbnails are his own YouTube Shorts thumbnails, shrunk to webp and hosted in the jaws-walk Pages repo (yt/).
      Type: Bodoni Moda (Google Fonts, OFL) + Apfel Grotezk (Collletttivo, OFL, hosted on the jaws-walk Pages repo).
-     Floating instruments: 3D models by NVIDIA SimReady Assets (CC BY 4.0), rendered in gold (tools3d/).
-     Confidence lines: stills and a swash loop from our own beach film's final render (beach/).
+     Floating instruments: 3D models by NVIDIA SimReady Assets (CC BY 4.0), rendered in gold with their shadows (tools3d/).
+     Confidence lines: our own beach film's final render, scrubbed with the scroll (beach/scrub/), stills underneath (beach/).
      No tracking and no forms. Every booking link goes to /booking. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,23 +101,23 @@
 #jaws-home#jaws-home .jh-stats dt{font:500 clamp(52px,5.8vw,96px)/1 var(--serif);letter-spacing:-.03em;font-variation-settings:"opsz" 28}
 #jaws-home#jaws-home .jh-stats dd{margin-top:14px;max-width:16ch;font:500 15px/1.35 var(--sans);color:var(--soft)}
 #jaws-home#jaws-home .jh-intro .jh-fine{margin-top:26px}
-/* floating gold instruments (NVIDIA SimReady models, CC BY 4.0) as 12-frame turns: the pointer (or the scroll, on
-   touch screens) turns them; the tweezers come down, pinch "confidence." and lift it off the page */
+/* floating gold instruments (NVIDIA SimReady models, CC BY 4.0) as 36-frame turns drawn on canvas, their shadow, the
+   gold's warm bounce and the glare baked in: the pointer (or the scroll, on touch screens) turns them; the tweezers
+   come down, pinch "confidence." and lift it off the page. The light comes from the upper left, like the renders. */
 #jaws-home#jaws-home .jh-tools{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
-#jaws-home#jaws-home .jh-tool{position:absolute;display:block;background-repeat:no-repeat;background-size:1200% 100%;
-  background-position:calc(var(--f,6) * 100% / 11) 0;transform:translate3d(var(--tx,0px),var(--ty,0px),0) rotate(var(--rot,0deg));
-  filter:drop-shadow(0 22px 18px rgba(42,40,39,.16)) drop-shadow(0 4px 5px rgba(42,40,39,.14));
+#jaws-home#jaws-home .jh-tool{position:absolute;display:block;height:auto;transform:translate3d(var(--tx,0px),var(--ty,0px),0);
   animation:jhBob 6s ease-in-out infinite alternate;will-change:transform}
 @keyframes jhBob{from{translate:0 -7px}to{translate:0 9px}}
-#jaws-home#jaws-home .jh-tool-hemostat{width:clamp(150px,21vw,330px);aspect-ratio:619/459;right:2%;top:4%;animation-duration:7s}
-#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(120px,15vw,240px);aspect-ratio:554/345;left:7%;top:54%;animation-duration:5.2s;animation-delay:-2s}
-#jaws-home#jaws-home .jh-tool-tweezers{width:clamp(140px,16vw,250px);aspect-ratio:532/400;left:0;top:0;opacity:0;animation:none;
-  transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
+#jaws-home#jaws-home .jh-tool-hemostat{width:clamp(170px,24vw,380px);aspect-ratio:473/402;right:2.5%;top:2%;animation-duration:7s}
+#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(140px,17vw,280px);aspect-ratio:414/294;left:6%;top:52%;animation-duration:5.2s;animation-delay:-2s}
+#jaws-home#jaws-home .jh-tool-tweezers{width:clamp(150px,17vw,270px);aspect-ratio:377/274;left:0;top:0;opacity:0;animation:none;
+  background:no-repeat 0 0/100% 100%;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
 #jaws-home#jaws-home .jh-tool-tweezers.is-in{opacity:1}
 #jaws-home#jaws-home .jh-lift{display:inline-block;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),filter 1.1s ease}
-#jaws-home#jaws-home .jh-lift.is-lifted{transform:translate3d(0,var(--lift,-14px),0) rotate(-1.5deg);filter:drop-shadow(0 18px 12px rgba(42,40,39,.2))}
+#jaws-home#jaws-home .jh-lift.is-lifted{transform:translate3d(0,var(--lift,-14px),0) rotate(-1.5deg);filter:drop-shadow(8px 18px 12px rgba(42,40,39,.2))}
 #jaws-home#jaws-home .jh-lift.is-lifted,#jaws-home#jaws-home .jh-tool-tweezers.is-lifted{animation:jhBob 6s ease-in-out infinite alternate}
-@media (max-width:900px){#jaws-home#jaws-home .jh-tool-scalpel,#jaws-home#jaws-home .jh-tool-hemostat{display:none}}
+@media (max-width:900px){#jaws-home#jaws-home .jh-tool-scalpel,#jaws-home#jaws-home .jh-tool-hemostat{display:none}
+  #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(160px,44vw,260px)}}
 
 /* 2. press, a quiet band right under the numbers */
 #jaws-home#jaws-home .jh-press{padding:34px 0 38px;overflow:hidden;text-align:center}
@@ -224,14 +224,18 @@
 #jaws-home#jaws-home .jh-suite.is-pinned .jh-room{width:auto}
 #jaws-home#jaws-home .jh-suite.is-pinned .jh-room-img{height:min(50vh,540px)}
 
-/* 8. one line per screen over close-ups of her feet from the beach film (final render): pins and fades line to line,
-   or stacks without the pin; the beach line plays a short swash loop */
+/* 8. one line per screen over her feet from the beach film (final render): the film scrubs with the scroll while the
+   lines fade one to the next, and the pointer moves it a touch for depth; without the pin the lines stack over stills */
 #jaws-home#jaws-home .jh-lines{background:#121110}
 #jaws-home#jaws-home .jh-lines-pin{position:relative;overflow:hidden}
 #jaws-home#jaws-home .jh-lines-bg{position:absolute;inset:0;z-index:0}
 #jaws-home#jaws-home .jh-lbg{position:absolute;inset:0;opacity:0;transform:scale(1.08);transition:opacity 1.6s ease,transform 9s linear}
 #jaws-home#jaws-home .jh-lbg.is-on{opacity:1;transform:scale(1.01)}
-#jaws-home#jaws-home .jh-lbg img,#jaws-home#jaws-home .jh-lbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#jaws-home#jaws-home .jh-lbg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#jaws-home#jaws-home .jh-lcanvas{position:absolute;left:-2%;top:-2%;width:104%;height:104%;opacity:0;transition:opacity .8s ease;
+  transform:translate3d(var(--lx,0px),var(--ly,0px),0)}
+#jaws-home#jaws-home .jh-lcanvas.is-drawn{opacity:1}
+#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lcanvas{display:none}
 #jaws-home#jaws-home .jh-lines-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(18,17,16,.72) 0%,rgba(18,17,16,.42) 42%,rgba(18,17,16,.08) 70%,rgba(18,17,16,.35) 100%)}
 #jaws-home#jaws-home .jh-lines-stage{position:relative;z-index:2;display:grid;justify-items:center;align-content:start;text-align:center;
@@ -365,9 +369,9 @@
 
   <section class="jh-intro" aria-labelledby="jh-intro-t">
     <div class="jh-tools" aria-hidden="true">
-      <i class="jh-tool jh-tool-hemostat" data-tool="hemostat"></i>
-      <i class="jh-tool jh-tool-scalpel" data-tool="scalpel"></i>
-      <i class="jh-tool jh-tool-tweezers" data-tool="tweezers"></i>
+      <canvas class="jh-tool jh-tool-hemostat" data-tool="hemostat"></canvas>
+      <canvas class="jh-tool jh-tool-scalpel" data-tool="scalpel"></canvas>
+      <i class="jh-tool jh-tool-tweezers"></i>
     </div>
     <div class="jh-wrap">
       <p class="jh-kicker jh-r">Cosmetic and aesthetic foot surgery</p>
@@ -551,9 +555,9 @@
       <div class="jh-lines-bg" aria-hidden="true">
         <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-0t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-0w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
         <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-1t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-1w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
-        <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2w.webp" alt="" width="1080" height="608" loading="lazy"></picture>
-          <video class="jh-lvid" muted playsinline loop preload="none" data-wide="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2-loop-wide.mp4" data-tall="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2-loop-tall.mp4"></video></div>
+        <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
         <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-3t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-3w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
+        <canvas class="jh-lcanvas"></canvas>
       </div>
       <div class="jh-lines-stage">
         <div class="jh-line jh-line-intro">
@@ -702,6 +706,7 @@
   root.setAttribute('data-ready', '1');
   var mm = function (q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; };
   var reduce = mm('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = mm('(hover: hover) and (pointer: fine)').matches;
   var each = function (list, fn) { Array.prototype.forEach.call(list, fn); };
   root.classList.add('jh-js');
 
@@ -779,44 +784,124 @@
   var lineBgs = lines ? lines.querySelectorAll('.jh-lbg') : [];
   var lbar = lines && lines.querySelector('.jh-lines-bar');
   var lpinned = false, lcur = -1;
+  var LINE_AT = [0, 0.3, 0.6, 0.86];       // where each line takes over, as a share of the scroll through the section
   function layoutLines() {
     if (!lines) return;
     lpinned = !reduce && !clipped(lines);
     lines.classList.toggle('is-pinned', lpinned);
-    lines.style.height = lpinned ? (lpin.offsetHeight * (1 + (lineEls.length - 1) * 0.8)) + 'px' : '';   // stable when a phone's address bar moves
+    lines.style.height = lpinned ? (lpin.offsetHeight * (1 + (lineEls.length - 1) * 1.05)) + 'px' : '';   // stable when a phone's address bar moves
     lcur = -1;
+    sizeScrub();
   }
   function updateLines() {                 // true while the pin holds the screen
     if (!lpinned) return false;
     var r = lines.getBoundingClientRect(), span = lines.offsetHeight - lpin.offsetHeight;
     var p = span > 0 ? Math.min(1, Math.max(0, (headerTop() - r.top) / span)) : 0;
-    var i = Math.round(p * (lineEls.length - 1));
+    var i = 0;
+    while (i + 1 < LINE_AT.length && p >= LINE_AT[i + 1]) i++;
     if (i !== lcur) {
       lcur = i;
       each(lineEls, function (el, k) { el.classList.toggle('is-on', k === i); });
       each(lineBgs, function (el, k) { el.classList.toggle('is-on', k === i); });
     }
     if (lbar) lbar.style.setProperty('--p', p.toFixed(4));
-    var holds = r.top <= headerTop() + 1 && r.bottom >= window.innerHeight - 1;
-    lineVideos(lcur, r.bottom > 0 && r.top < window.innerHeight);
-    return holds;
+    var vh = window.innerHeight;
+    if (!scrub.cut && scrub.fit && r.top < vh * 2 && r.bottom > -vh) loadScrub(scrub.fit);   // a couple of screens ahead
+    scrub.want = p * (SCRUB_N - 1);
+    scrub.vis = r.bottom > 0 && r.top < vh;
+    scrubKick();
+    return r.top <= headerTop() + 1 && r.bottom >= vh - 1;
   }
-  function lineVideos(i, inView) {         // the beach line's swash loop plays only while its screen is up
-    each(lineBgs, function (el, k) {
-      var v = el.querySelector('video');
-      if (!v || reduce) return;
-      if (k === i && inView) {
-        var tall = mm('(max-aspect-ratio: 4/5)').matches;
-        var src = v.getAttribute(tall ? 'data-tall' : 'data-wide');
-        if (v.getAttribute('src') !== src) v.src = src;
-        if (v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
-      } else if (!v.paused) v.pause();
+
+  // the beach film scrubs with the scroll: her footprints up the sand, her feet at the waterline, then the swash.
+  // Frames load coarse to fine; neighbours are blended and the playhead eases, so it glides; the pointer adds depth.
+  var SCRUB_BASE = 'https://xiiixiultra-maker.github.io/jaws-walk/beach/scrub/', SCRUB_N = 151;
+  var lcanvas = lines && lines.querySelector('.jh-lcanvas');
+  var lctx = lcanvas && lcanvas.getContext('2d');
+  var scrub = { cut: '', fit: '', imgs: [], want: 0, shown: 0, on: false, vis: false, dirty: true, mx: 0, my: 0, px: 0, py: 0 };
+  function sizeScrub() {                   // the canvas to its box, and the cut that fits it (wide, or tall for phones)
+    if (!lcanvas || !lpinned) return;
+    var cw = lcanvas.clientWidth, ch = lcanvas.clientHeight;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2, Math.sqrt(2.4e6 / Math.max(1, cw * ch)));
+    var w = Math.round(cw * dpr), h = Math.round(ch * dpr);
+    if (Math.abs(lcanvas.width - w) > 1 || Math.abs(lcanvas.height - h) > 1) { lcanvas.width = w; lcanvas.height = h; scrub.dirty = true; }
+    scrub.fit = lpin.clientWidth / Math.max(1, lpin.clientHeight) < 0.8 ? 't' : 'w';
+    if (scrub.cut && scrub.cut !== scrub.fit) loadScrub(scrub.fit);
+    scrubKick();
+  }
+  function loadScrub(c) {
+    scrub.cut = c;
+    var imgs = scrub.imgs = new Array(SCRUB_N), order = [], seen = {}, next = 0, busy = 0;
+    [0, SCRUB_N - 1].concat([16, 8, 4, 2, 1].reduce(function (a, s) { for (var k = 0; k < SCRUB_N; k += s) a.push(k); return a; }, []))
+      .forEach(function (k) { if (!seen[k]) { seen[k] = 1; order.push(k); } });
+    (function pump() {
+      while (busy < 6 && next < order.length && scrub.cut === c) {
+        var k = order[next++], im = new Image();
+        busy++;
+        im.onload = (function (k, im) { return function () { busy--; imgs[k] = im; scrub.dirty = true; scrubKick(); pump(); }; })(k, im);
+        im.onerror = function () { busy--; pump(); };
+        im.src = SCRUB_BASE + c + '_' + ('00' + k).slice(-3) + '.webp';
+      }
+    })();
+  }
+  function frameAround(x) {                // the two loaded frames around x and the blend between them
+    var k0 = Math.floor(x), k1 = Math.min(SCRUB_N - 1, k0 + 1), a = scrub.imgs[k0], b = scrub.imgs[k1];
+    if (a && b) return [a, b, x - k0];
+    for (var d = 1; d < SCRUB_N; d++) {
+      if (scrub.imgs[k0 - d]) return [scrub.imgs[k0 - d], null, 0];
+      if (scrub.imgs[k0 + d]) return [scrub.imgs[k0 + d], null, 0];
+    }
+    return a ? [a, null, 0] : null;
+  }
+  function paintCover(img, alpha) {
+    var cw = lcanvas.width, ch = lcanvas.height, s = Math.max(cw / img.naturalWidth, ch / img.naturalHeight);
+    lctx.globalAlpha = alpha;
+    lctx.drawImage(img, (cw - img.naturalWidth * s) / 2, (ch - img.naturalHeight * s) / 2, img.naturalWidth * s, img.naturalHeight * s);
+  }
+  function scrubKick() {                   // wake the loop; it sleeps again once the film and the depth have settled
+    if (scrub.on || !scrub.vis || !lcanvas || !lpinned) return;
+    scrub.on = true;
+    requestAnimationFrame(scrubTick);
+  }
+  function scrubTick() {
+    if (!scrub.vis) { scrub.on = false; return; }
+    // blends while it moves, like motion blur, and comes to rest on a whole frame, never a ghost of two
+    var target = Math.abs(scrub.want - scrub.shown) < 0.6 ? Math.round(scrub.want) : scrub.want;
+    var d = target - scrub.shown, dx = scrub.mx - scrub.px, dy = scrub.my - scrub.py, moving = false;
+    if (Math.abs(d) > 0.01) { scrub.shown += d * 0.14; moving = true; }
+    else if (d) { scrub.shown = target; scrub.dirty = true; }
+    if (Math.abs(dx) > 0.05 || Math.abs(dy) > 0.05) {
+      scrub.px += dx * 0.08;
+      scrub.py += dy * 0.08;
+      lcanvas.style.setProperty('--lx', scrub.px.toFixed(2) + 'px');
+      lcanvas.style.setProperty('--ly', scrub.py.toFixed(2) + 'px');
+      moving = true;
+    }
+    if (moving || scrub.dirty) {
+      var f = frameAround(scrub.shown);
+      if (f) {
+        paintCover(f[0], 1);
+        if (f[1] && f[2] > 0.02) paintCover(f[1], f[2]);
+        lctx.globalAlpha = 1;
+        lcanvas.classList.add('is-drawn');
+      }
+      scrub.dirty = false;                   // a frame that arrives later wakes the loop again
+    }
+    if (moving) requestAnimationFrame(scrubTick);
+    else scrub.on = false;
+  }
+  if (lines && finePointer && !reduce) {
+    lines.addEventListener('pointermove', function (e) {
+      scrub.mx = (0.5 - e.clientX / window.innerWidth) * 26;
+      scrub.my = (0.5 - e.clientY / window.innerHeight) * 16;
+      scrubKick();
     });
   }
 
   function layout() {
     layoutLines();
     if (tweez && tweez.classList.contains('is-in')) placeTweezers(false);   // the word moves when the width changes
+    if (toolsOn) { sizeTools(); tweezImage(); }
     if (suite) {
       pinned = wide.matches && !reduce && !clipped(suite);
       suite.classList.toggle('is-pinned', pinned);
@@ -860,30 +945,93 @@
     }
   }
 
-  // floating gold instruments: 12 rendered frames each, so the pointer (or the scroll, on touch screens) turns them;
-  // the tweezers come down, pinch "confidence." and lift it off the page
+  // floating gold instruments: 36 rendered frames each, drawn on canvas with neighbouring frames blended and the turn
+  // eased, so they glide as the pointer moves (or the page scrolls, on touch screens). Their shadow, the warm bounce
+  // and the glare are baked in: the metal is drawn over a soft layer stored at a third of its size.
+  // The tweezers come down, pinch "confidence." and lift it off the page.
   var intro = root.querySelector('.jh-intro');
-  var tools = intro ? intro.querySelectorAll('.jh-tool') : [];
+  var tools = intro ? intro.querySelectorAll('canvas.jh-tool') : [];
   var tweez = intro && intro.querySelector('.jh-tool-tweezers');
   var liftEl = intro && intro.querySelector('.jh-lift');
   var TOOLS_BASE = 'https://xiiixiultra-maker.github.io/jaws-walk/tools3d/';
-  var TIP = [0.9566, 0.0643];              // where the tips sit in the tweezers' middle frame (share of its width, height)
-  var LIFT = -14, lifted = false, toolsOn = false;
-  var finePointer = mm('(hover: hover) and (pointer: fine)').matches;
+  var TURN_N = 36, TURN_COLS = 6;
+  var TWEEZ = { desk: [377, 274, 0.0344, 0.812], phone: [428, 95, 0.0375, 0.3586] };   // image size, tips (share of it)
+  var LIFT = -14, lifted = false, toolsOn = false, toolsVis = false, layers = [];
+  var turn = { want: 17, shown: 17, on: false };
   if (liftEl) liftEl.style.setProperty('--lift', LIFT + 'px');
   function loadTools() {
     if (toolsOn) return;
     toolsOn = true;
-    var sm = window.innerWidth < 768 ? '-sm' : '';
-    each(tools, function (t) { t.style.backgroundImage = 'url("' + TOOLS_BASE + t.getAttribute('data-tool') + sm + '.webp")'; });
+    each(tools, function (c, k) {
+      var l = layers[k] = { metal: new Image(), soft: new Image(), n: 0, buf: document.createElement('canvas') };
+      l.metal.onload = l.soft.onload = function () { if (++l.n === 2) sizeTools(); };
+      l.metal.src = TOOLS_BASE + c.getAttribute('data-tool') + '-36.webp';
+      l.soft.src = TOOLS_BASE + c.getAttribute('data-tool') + '-36-soft.webp';
+    });
+    tweezImage();
+  }
+  function sizeTools() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    each(tools, function (c, k) {
+      var l = layers[k], w = Math.round(c.clientWidth * dpr), h = Math.round(c.clientHeight * dpr);
+      if (l && w && (c.width !== w || c.height !== h)) { c.width = l.buf.width = w; c.height = l.buf.height = h; }
+    });
+    drawTools();
+  }
+  function cell(ctx, img, i, alpha, w, h) { // frame i of a 6 x 6 sheet, scaled to the canvas
+    var fw = img.naturalWidth / TURN_COLS, fh = img.naturalHeight / Math.ceil(TURN_N / TURN_COLS);
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(img, (i % TURN_COLS) * fw, Math.floor(i / TURN_COLS) * fh, fw, fh, 0, 0, w, h);
+  }
+  function drawTools() {
+    each(tools, function (c, k) {
+      var l = layers[k];
+      if (!l || l.n < 2 || !c.width) return;
+      var x = Math.max(0, Math.min(TURN_N - 1, k % 2 ? TURN_N - 1 - turn.shown : turn.shown));   // neighbours turn opposite ways
+      var i0 = Math.floor(x), i1 = Math.min(TURN_N - 1, i0 + 1), f = x - i0;
+      var w = c.width, h = c.height, ctx = c.getContext('2d'), b = l.buf.getContext('2d');
+      ctx.clearRect(0, 0, w, h);           // 'lighter' adds the two frames weighted to one: a true crossfade
+      ctx.globalCompositeOperation = 'lighter';
+      cell(ctx, l.soft, i0, 1 - f, w, h);
+      if (f > 0.002) cell(ctx, l.soft, i1, f, w, h);
+      b.clearRect(0, 0, w, h);
+      b.globalCompositeOperation = 'lighter';
+      cell(b, l.metal, i0, 1 - f, w, h);
+      if (f > 0.002) cell(b, l.metal, i1, f, w, h);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+      ctx.drawImage(l.buf, 0, 0);          // the metal over its shadow and glow
+    });
+  }
+  function turnTick() {                    // eases after the pointer and comes to rest on a whole frame
+    var target = Math.abs(turn.want - turn.shown) < 0.6 ? Math.round(turn.want) : turn.want;
+    var d = target - turn.shown;
+    turn.shown = Math.abs(d) < 0.004 ? target : turn.shown + d * 0.085;
+    drawTools();
+    if (turn.shown !== target && toolsVis) requestAnimationFrame(turnTick);
+    else turn.on = false;
+  }
+  function turnTools(x) {                  // x: 0 to 1 across the turn
+    turn.want = Math.max(0, Math.min(1, x)) * (TURN_N - 1);
+    if (!turn.on && toolsOn && toolsVis) { turn.on = true; requestAnimationFrame(turnTick); }
+  }
+  function tweezPose() { return window.innerWidth <= 900 ? 'phone' : 'desk'; }
+  function tweezImage() {                  // rendered in the pose they take: tips down-left, or level on phones
+    if (!tweez) return;
+    var p = tweezPose();
+    tweez.style.aspectRatio = TWEEZ[p][0] + ' / ' + TWEEZ[p][1];
+    if (toolsOn && tweez.getAttribute('data-pose') !== p) {
+      tweez.setAttribute('data-pose', p);
+      tweez.style.backgroundImage = 'url("' + TOOLS_BASE + 'tweezers-' + p + '.webp")';
+    }
   }
   function placeTweezers(waiting) {        // tips on the top of the word; waiting = drawn back along the tweezers, out of sight
     if (!tweez || !liftEl) return;
+    tweezImage();
+    var p = tweezPose(), t = TWEEZ[p];
     var wrap = liftEl.offsetParent, tw = tweez.offsetWidth, th = tweez.offsetHeight;
-    var narrow = window.innerWidth <= 900;  // one column: hold the word level by its end, clear of the line above
-    var rot = narrow ? 212 : 180, gx = narrow ? 0.9 : 0.5, gy = narrow ? 0.45 : 0.16;
-    var a = rot * Math.PI / 180, dx = (TIP[0] - 0.5) * tw, dy = (TIP[1] - 0.5) * th;
-    var tipX = tw / 2 + dx * Math.cos(a) - dy * Math.sin(a), tipY = th / 2 + dx * Math.sin(a) + dy * Math.cos(a);
+    var gx = p === 'phone' ? 0.9 : 0.5, gy = p === 'phone' ? 0.45 : 0.16;   // phones: hold the word level by its end
+    var tipX = t[2] * tw, tipY = t[3] * th;
     var x = wrap.offsetLeft + liftEl.offsetLeft + liftEl.offsetWidth * gx - tipX;
     var y = wrap.offsetTop + liftEl.offsetTop + liftEl.offsetHeight * gy - tipY + (lifted ? LIFT : 0);
     if (waiting) {                         // back away from the tips' direction
@@ -891,7 +1039,6 @@
       x += Math.cos(back) * tw * 0.9;
       y += Math.sin(back) * tw * 0.9;
     }
-    tweez.style.setProperty('--rot', rot + 'deg');
     tweez.style.setProperty('--tx', x.toFixed(1) + 'px');
     tweez.style.setProperty('--ty', y.toFixed(1) + 'px');
   }
@@ -916,18 +1063,13 @@
       }, 1250);
     }, 80);
   }
-  function turnTools(f) {
-    each(tools, function (t, k) {
-      if (t === tweez) return;
-      t.style.setProperty('--f', Math.round(k % 2 ? 11 - f : f));   // neighbours turn opposite ways
-    });
-  }
   function toolsScroll(vh) {               // drift with the scroll; touch screens also turn them with it
     if (!intro || !toolsOn) return;
     var r = intro.getBoundingClientRect();
-    if (r.bottom < 0 || r.top > vh) return;
-    if (!finePointer && !reduce) turnTools(11 * Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height))));
-    if (!reduce) each(tools, function (t, k) { if (t !== tweez) t.style.setProperty('--ty', (r.top * (k ? -0.12 : -0.06)).toFixed(1) + 'px'); });
+    toolsVis = r.bottom > 0 && r.top < vh;
+    if (!toolsVis) return;
+    if (!finePointer && !reduce) turnTools((vh - r.top) / (vh + r.height));
+    if (!reduce) each(tools, function (t, k) { t.style.setProperty('--ty', (r.top * (k ? -0.12 : -0.06)).toFixed(1) + 'px'); });
   }
   if (intro && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es, o) {
@@ -939,7 +1081,7 @@
     }, { threshold: 0.6 }).observe(heading);
   } else if (intro) { loadTools(); pinch(); }
   if (finePointer && !reduce) {
-    window.addEventListener('pointermove', function (e) { if (toolsOn) turnTools(11 * e.clientX / window.innerWidth); }, { passive: true });
+    window.addEventListener('pointermove', function (e) { turnTools(e.clientX / window.innerWidth); }, { passive: true });
   }
 
   var doc = root.querySelector('.jh-doc-stage');
