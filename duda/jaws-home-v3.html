@@ -97,8 +97,15 @@
    light of the dark sections; the two buttons sit in the first screen on phones too */
 #jaws-home#jaws-home .jh-intro{background:var(--night);padding:clamp(48px,9vh,120px) 0 clamp(60px,7vw,100px)}
 #jaws-home#jaws-home .jh-intro-cta{margin-top:clamp(24px,3vw,40px)}
+/* Dr. Wagner in his pinstripe blazer, relit for this dark (tools/relight_portrait.py): the warm key from the upper
+   left on his face, a gold rim on his far side, his waist and arms fading into the night. On wide screens he stands at
+   the right behind the headline and the instruments (the pointer light passes over him too); on phones and tablets he
+   opens the hero like a cover, with the headline over the fade */
+#jaws-home#jaws-home .jh-hero-doc{position:absolute;z-index:0;top:clamp(6px,1.5vh,20px);right:max(0px,calc(50% - 900px));
+  width:min(34vw,560px);pointer-events:none}
+#jaws-home#jaws-home .jh-hero-doc img{width:100%;height:auto}
 #jaws-home#jaws-home .jh-intro-h{font-size:clamp(42px,7.2vw,120px)}
-#jaws-home#jaws-home .jh-intro-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,110px);align-items:start;margin-top:clamp(26px,3vw,44px)}
+#jaws-home#jaws-home .jh-intro-row{display:grid;grid-template-columns:minmax(0,600px);gap:clamp(26px,2.6vw,36px);align-items:start;margin-top:clamp(26px,3vw,44px)}
 #jaws-home#jaws-home .jh-intro-row .jh-es{margin:0}
 #jaws-home#jaws-home .jh-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:clamp(60px,7vw,110px);border-top:1px solid rgba(42,40,39,.14)}
 #jaws-home#jaws-home .jh-stats>div{padding:32px 24px 0 0}
@@ -118,8 +125,8 @@
 #jaws-home#jaws-home .jh-tool{position:absolute;display:block;height:auto;transform:translate3d(var(--tx,0px),var(--ty,0px),0);
   animation:jhBob 6s ease-in-out infinite alternate;will-change:transform}
 @keyframes jhBob{from{translate:0 -7px}to{translate:0 9px}}
-#jaws-home#jaws-home .jh-tool-hemostat{width:clamp(170px,24vw,380px);aspect-ratio:473/402;right:2.5%;top:2%;animation-duration:7s}
-#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(140px,17vw,280px);aspect-ratio:414/294;left:2.5%;top:55%;animation-duration:5.2s;animation-delay:-2s}
+#jaws-home#jaws-home .jh-tool-hemostat{width:clamp(170px,24vw,380px);aspect-ratio:473/402;right:1.5%;top:46%;animation-duration:7s}
+#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(140px,17vw,280px);aspect-ratio:414/294;left:1%;top:74%;animation-duration:5.2s;animation-delay:-2s}
 #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(150px,17vw,270px);aspect-ratio:382/280;left:0;top:0;opacity:0;animation:none;
   background:no-repeat 0 0/100% 100%;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
 #jaws-home#jaws-home .jh-tool-tweezers.is-in{opacity:1}
@@ -131,7 +138,12 @@
 #jaws-home#jaws-home .jh-dark .jh-lift.is-lifted{filter:drop-shadow(8px 18px 14px rgba(0,0,0,.55))}
 #jaws-home#jaws-home .jh-lift.is-lifted,#jaws-home#jaws-home .jh-tool-tweezers.is-lifted{animation:jhBob 6s ease-in-out infinite alternate}
 @media (max-width:900px){#jaws-home#jaws-home .jh-tool-scalpel,#jaws-home#jaws-home .jh-tool-hemostat{display:none}
-  #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(160px,44vw,260px)}}
+  #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(160px,44vw,260px)}
+  #jaws-home#jaws-home .jh-intro{padding-top:8px}
+  #jaws-home#jaws-home .jh-hero-doc{position:relative;top:auto;right:auto;width:min(80vw,460px);margin:0 0 0 auto}
+  #jaws-home#jaws-home .jh-hero-doc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52%;
+    background:linear-gradient(180deg,rgba(27,26,25,0),rgba(27,26,25,.78) 62%,var(--night))}
+  #jaws-home#jaws-home .jh-intro-main{margin-top:calc(min(80vw,460px) * -0.5)}}
 
 /* 2. press, a quiet band right under the numbers */
 #jaws-home#jaws-home .jh-press{padding:34px 0 38px;overflow:hidden;text-align:center}
@@ -394,12 +406,15 @@
 <div id="jaws-home">
 
   <section class="jh-intro jh-dark" aria-labelledby="jh-intro-t">
+    <figure class="jh-hero-doc"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer.webp"
+      srcset="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer-sm.webp 481w, https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer.webp 751w"
+      sizes="(max-width: 900px) 82vw, 36vw" alt="Dr. Abraham Wagner, DPM, in a pinstripe blazer" width="751" height="1000" fetchpriority="high"></figure>
     <div class="jh-tools" aria-hidden="true">
       <canvas class="jh-tool jh-tool-hemostat" data-tool="hemostat"></canvas>
       <canvas class="jh-tool jh-tool-scalpel" data-tool="scalpel"></canvas>
       <i class="jh-tool jh-tool-tweezers"></i>
     </div>
-    <div class="jh-wrap">
+    <div class="jh-wrap jh-intro-main">
       <p class="jh-kicker jh-r">Cosmetic and aesthetic foot surgery</p>
       <h2 id="jh-intro-t" class="jh-display jh-intro-h jh-split">Beautiful feet.<br> <em class="jh-gold">Renewed</em> <em class="jh-gold jh-lift">confidence.</em></h2>
       <div class="jh-intro-row">
