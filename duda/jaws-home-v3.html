@@ -206,7 +206,9 @@
 #jaws-home#jaws-home.jh-js .jh-doc-dark{opacity:var(--dark,1)}
 #jaws-home#jaws-home .jh-doc-stage{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
 #jaws-home#jaws-home .jh-doc-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(18,17,16,0),rgba(18,17,16,.82) 70%,#121110 94%)}   /* solid before the edge: no seam */
-#jaws-home#jaws-home .jh-doc-stage::before{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;z-index:4;background:#121110}   /* Duda's scaled preview drew a hairline here */
+/* the pointer light of the dark sections lit the copy under the stage but not the stage's solid foot, which read as a
+   hairline across the bottom of his photo; this section has the sign's own light, so it goes without */
+#jaws-home#jaws-home .jh-doc::before{display:none}
 #jaws-home#jaws-home .jh-doc-cut{position:relative;z-index:1;height:80%;width:auto;max-width:none;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
 #jaws-home#jaws-home .jh-doc-name{position:absolute;z-index:3;left:0;right:0;bottom:6%;margin:0;text-align:center;white-space:nowrap;font-family:var(--serif);font-weight:600;line-height:.9;letter-spacing:-.03em;font-variation-settings:"opsz" 28;
   transform:translate3d(0,var(--front,0px),0);filter:drop-shadow(0 6px 24px rgba(0,0,0,.55))}
