@@ -19,7 +19,7 @@
   const root = document.getElementById('jaws-walk');
   if (!root || root.dataset.mounted) return;
   root.dataset.mounted = '1';
-  const VER = '3.2';
+  const VER = '3.3';
   const me = document.currentScript;
   const BASE = root.dataset.base || (me && me.src ? me.src.replace(/[^/]*$/, '') : '');
   const params = new URLSearchParams(location.search);
@@ -27,7 +27,8 @@
   const DUR = parseFloat(params.get('dur') || '30');
   const GAP = 0.22;                        // scroll length of a door transition, in chapter units
   const LIGHTS = !CAPTURE && root.dataset.lights !== 'off';
-  const LEAD = 0.5;                        // scroll length of the lights-up intro, in chapter units
+  const LEAD = 0.5;                        // scroll length of the first room's lights-up intro, in chapter units
+  const LEAD_ROOM = 0.3;                   // and of every later room's, right after its door
   const LINK = { '#book': root.dataset.book, '#doctor': root.dataset.doctor, '#procedures': root.dataset.procedures };
   const href = (h) => LINK[h || '#book'] || h || '#book';
 
@@ -233,11 +234,15 @@
     return r;
   }
 
-  function layout() {                     // scroll timeline: lights up, chapter, door, chapter, door, ...
+  function layout() {                     // scroll timeline: lights up, chapter, door, lights up, chapter, door, ...
     segs = [];
     let t = 0;
-    if (LIGHTS) { segs.push({ kind: 'lead', i: 0, a: 0, b: LEAD }); t = LEAD; }
     D.chapters.forEach((ch, i) => {
+      if (LIGHTS) {
+        const len = i ? LEAD_ROOM : LEAD;
+        segs.push({ kind: 'lead', i, a: t, b: t + len });
+        t += len;
+      }
       segs.push({ kind: 'ch', i, a: t, b: t + ch.scroll });
       t += ch.scroll;
       if (i < N - 1) { segs.push({ kind: 'door', i, a: t, b: t + GAP }); t += GAP; }
@@ -254,15 +259,22 @@
     return { s, k, cur };
   }
 
-  const dark = {};                        // the lights-off render of the walk's first frame, per cut
-  function loadDark() {
-    if (!LIGHTS) return;
-    for (const c of Object.keys(D.cuts)) {
+  const dark = {};                        // lights-off render of each room's first frame: dark[chapter][cut], null if missing
+  function darkFor(ci, c) {
+    if (!LIGHTS || ci < 0 || ci >= N) return null;
+    const m = dark[ci] || (dark[ci] = {});
+    if (!(c in m)) {
+      m[c] = null;
       const im = new Image();
       im.decoding = 'async';
-      im.onload = () => { dark[c] = im; dirty = true; };
-      im.src = `${BASE}${c}/${D.chapters[0].id}/dark_0001.webp` + (D.build ? `?b=${D.build}` : '');
+      im.onload = () => { m[c] = im; dirty = true; };
+      im.src = `${BASE}${c}/${D.chapters[ci].id}/dark_0001.webp` + (D.build ? `?b=${D.build}` : '');
     }
+    return m[c];
+  }
+  function ahead() {                      // the room you're in and the next one, so a dark room is ready at its door
+    darkFor(curCh, cutFor(curCh));
+    darkFor(curCh + 1, cutFor(Math.min(curCh + 1, N - 1)));
   }
 
   function draw(u) {                      // u = 0..1 over the whole walk
@@ -272,11 +284,13 @@
     if (!a) return false;
     ctx.globalCompositeOperation = 'source-over';
     const r = paint(a.img, 1);
-    if (lead && dark[a.c]) paint(dark[a.c], 1 - smooth(0.12, 0.9, k));   // the camera holds while the lights come up
+    const dk = lead && darkFor(s.i, a.c);
+    if (dk) paint(dk, 1 - smooth(0.12, 0.9, k));   // the camera holds while the lights come up
     if (door) {
       const b = frameAt(s.i + 1, 0);
-      if (b) paint(b.img, smooth(0.25, 0.75, k));
-      ctx.globalAlpha = 0.62 * Math.sin(Math.PI * k);
+      const bd = b && darkFor(s.i + 1, b.c);         // through the door, the next room waits in the dark
+      if (b) paint(bd || b.img, smooth(0.25, 0.75, k));
+      ctx.globalAlpha = (bd ? 0.15 : 0.62) * Math.sin(Math.PI * k);   // a softer glow when the next room is dark
       ctx.globalCompositeOperation = 'screen';
       ctx.fillStyle = '#fff1d6';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -391,7 +405,7 @@
     if (!live) { looping = false; return; }
     target = progress();
     const { cur } = where(target);
-    if (cur !== curCh) { curCh = cur; pump(); }
+    if (cur !== curCh) { curCh = cur; ahead(); pump(); }
     const d = target - shown;
     if (Math.abs(d) > 1e-5 || dirty) {
       shown = Math.abs(d) < 1e-5 ? target : shown + d * 0.12;
@@ -420,7 +434,7 @@
     started = true;
     target = shown = progress();
     curCh = where(target).cur;
-    loadDark();
+    ahead();
     pump();
   }
 
@@ -472,7 +486,7 @@
     seek(u) {
       shown = target = clamp(u);
       const c = where(shown).cur;
-      if (c !== curCh) { curCh = c; pump(); }
+      if (c !== curCh) { curCh = c; ahead(); pump(); }
       dirty = true;
       draw(shown);
       return this.state();
