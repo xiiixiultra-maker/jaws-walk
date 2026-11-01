@@ -13,13 +13,14 @@
 //   data-book        booking page: every pin and button marked #book goes there (data-doctor, data-procedures alike)
 //   data-cuts        "tall,wide" (default) or "tall" when only the phone frames are hosted
 //   data-lights      "off" skips the lights-up intro (the first chapter's dark_0001.webp fading into its lit frame)
+//   data-pace        scroll length, 0.4 to 1.5 (default 1): 0.7 walks the same frames in 70% of the scroll
 //   --jw-top (CSS)   height of a site header that stays pinned over the page (default 0px)
 //   ?cut=tall|wide   force a cut;  ?w=<px>&dur=<s>  capture mode for the MP4 pipeline (window.__scene)
 (() => {
   const root = document.getElementById('jaws-walk');
   if (!root || root.dataset.mounted) return;
   root.dataset.mounted = '1';
-  const VER = '3.4';
+  const VER = '3.5';
   const me = document.currentScript;
   const BASE = root.dataset.base || (me && me.src ? me.src.replace(/[^/]*$/, '') : '');
   const params = new URLSearchParams(location.search);
@@ -29,6 +30,7 @@
   const LIGHTS = !CAPTURE && root.dataset.lights !== 'off';
   const LEAD = 0.5;                        // scroll length of the first room's lights-up intro, in chapter units
   const LEAD_ROOM = 0.3;                   // and of every later room's, right after its door
+  const PACE = Math.min(1.5, Math.max(0.4, parseFloat(root.dataset.pace) || 1));   // data-pace: under 1 = a shorter scroll
   const LINK = { '#book': root.dataset.book, '#doctor': root.dataset.doctor, '#procedures': root.dataset.procedures };
   const href = (h) => LINK[h || '#book'] || h || '#book';
 
@@ -79,8 +81,8 @@
  font:600 12px/1 var(--jw-sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt);transition:opacity .6s}
 #jaws-walk#jaws-walk .jw-skip{position:absolute;left:12px;top:12px;z-index:6;padding:.8em 1.1em;border-radius:999px;background:var(--ink);
  color:var(--gold-lt);font:600 12px/1 var(--jw-sans);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
- transform:translateY(-200%)}
-#jaws-walk#jaws-walk .jw-skip:focus{transform:none}
+ transform:translateY(-200%);opacity:0;pointer-events:none}
+#jaws-walk#jaws-walk .jw-skip:focus{transform:none;opacity:1;pointer-events:auto}
 @media (prefers-reduced-motion:reduce){#jaws-walk#jaws-walk .jw-pin i::after{animation:none}}`;
   if (!document.getElementById('jaws-walk-css')) {
     const st = document.createElement('style');
@@ -248,7 +250,7 @@
       if (i < N - 1) { segs.push({ kind: 'door', i, a: t, b: t + GAP }); t += GAP; }
     });
     total = t;
-    track.style.height = `${Math.round(t * 120 + 100)}vh`;
+    track.style.height = `${Math.round(t * 120 * PACE + 100)}vh`;
   }
 
   function where(u) {

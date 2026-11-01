@@ -1,4 +1,6 @@
-<!-- JAWS 2 home sections v3: one Duda HTML widget under the office walk.
+<!-- JAWS 2 home v3: the whole home page in one Duda HTML widget, office walk included (walk.js, under the hero).
+     Running order: hero, press, the walk, procedures, results, the surgeon, the experience, confidence lines, reviews,
+     questions, visit. The promise and the proof come first, then the office lights up as you step in.
      Brief (Abi, 10/31): "make believe I am a plastic surgeon for feet... super bougie and chic".
      Copy comes from jawspodiatry.com, Dan's Duda draft and the JAWS Shopify facelift, minus the claims those sites can't back up
      (no "walk immediately", "no pins or screws", "double board certified", unsourced ratings or surgery counts).
@@ -89,8 +91,10 @@
 #jaws-home#jaws-home .jh-btns{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 #jaws-home#jaws-home a:focus-visible,#jaws-home#jaws-home button:focus-visible,#jaws-home#jaws-home summary:focus-visible{outline:2px solid var(--teak-lt);outline-offset:4px}
 
-/* 1. intro and numbers: dark, so the gold instruments' glow and glints read, with the soft pointer light of the dark sections */
-#jaws-home#jaws-home .jh-intro{background:var(--night);padding:clamp(90px,11vw,170px) 0 clamp(60px,7vw,100px)}
+/* 1. intro and numbers, the first screen: dark, so the gold instruments' glow and glints read, with the soft pointer
+   light of the dark sections; the two buttons sit in the first screen on phones too */
+#jaws-home#jaws-home .jh-intro{background:var(--night);padding:clamp(48px,9vh,120px) 0 clamp(60px,7vw,100px)}
+#jaws-home#jaws-home .jh-intro-cta{margin-top:clamp(24px,3vw,40px)}
 #jaws-home#jaws-home .jh-intro-h{font-size:clamp(42px,7.2vw,120px)}
 #jaws-home#jaws-home .jh-intro-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,110px);align-items:start;margin-top:clamp(26px,3vw,44px)}
 #jaws-home#jaws-home .jh-intro-row .jh-es{margin:0}
@@ -113,7 +117,7 @@
   animation:jhBob 6s ease-in-out infinite alternate;will-change:transform}
 @keyframes jhBob{from{translate:0 -7px}to{translate:0 9px}}
 #jaws-home#jaws-home .jh-tool-hemostat{width:clamp(170px,24vw,380px);aspect-ratio:473/402;right:2.5%;top:2%;animation-duration:7s}
-#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(140px,17vw,280px);aspect-ratio:414/294;left:6%;top:52%;animation-duration:5.2s;animation-delay:-2s}
+#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(140px,17vw,280px);aspect-ratio:414/294;left:2.5%;top:55%;animation-duration:5.2s;animation-delay:-2s}
 #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(150px,17vw,270px);aspect-ratio:382/280;left:0;top:0;opacity:0;animation:none;
   background:no-repeat 0 0/100% 100%;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
 #jaws-home#jaws-home .jh-tool-tweezers.is-in{opacity:1}
@@ -132,6 +136,15 @@
 #jaws-home#jaws-home .jh-marq li{position:relative;padding:0 36px;white-space:nowrap;font:italic 400 clamp(22px,2.2vw,32px)/1.2 var(--serif);color:#EDE6DA}
 #jaws-home#jaws-home .jh-marq li::after{content:"";position:absolute;right:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--gold);transform:translateY(-50%)}
 @keyframes jhMarq{to{transform:translateX(-50%)}}
+
+/* the office walk (walk.js), right under the press: it opens dark and the lights come on as you step in. Office colors
+   for its captions and buttons, and the pinned site header's height (110px on phones and tablets, 89px on desktop) */
+#jaws-home#jaws-home .jh-tour{background:var(--night)}
+#jaws-walk#jaws-walk{--gold:#D9B68C;--gold-lt:#EBD5B5;--gold-rgb:217,182,140;--ink:#2A2827;
+  --btn-bg:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#9C7150,#7A5537);
+  --btn-ink:#fff;--btn-glow:0 12px 30px rgba(0,0,0,.3);--jw-top:110px;
+  --jw-serif:"Bodoni Moda","Bodoni MT",Didot,"Bodoni 72",Georgia,serif;--jw-sans:"Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif}
+@media (min-width:1025px){#jaws-walk#jaws-walk{--jw-top:89px}}
 
 /* 3. the signature collection, set like a menu */
 #jaws-home#jaws-home .jh-sig{background:var(--paper);padding:clamp(90px,11vw,170px) 0}
@@ -209,7 +222,8 @@
 #jaws-home#jaws-home .jh-perk b{display:block;margin-bottom:8px;font:500 21px/1.2 var(--serif);color:var(--ink)}
 #jaws-home#jaws-home .jh-perk p{font-size:15px}
 
-/* 7. the office tour (pins on wide screens, swipes on phones) */
+/* 7. the office tour (pins on wide screens, swipes on phones). Off the page since the walk moved up under the hero (it
+   shows the same rooms); its styles and script stay, so the section can come back as it was (Pages repo d9d66e2) */
 #jaws-home#jaws-home .jh-suite-pin{position:relative;z-index:2;padding:clamp(80px,9vw,120px) 0}
 #jaws-home#jaws-home .jh-suite-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(28px,3.4vw,48px)}
 #jaws-home#jaws-home .jh-note{max-width:30ch;font-size:15px;color:var(--mute)}
@@ -382,7 +396,13 @@
       <p class="jh-kicker jh-r">Cosmetic and aesthetic foot surgery</p>
       <h2 id="jh-intro-t" class="jh-display jh-intro-h jh-split">Beautiful feet.<br> <em class="jh-gold">Renewed</em> <em class="jh-gold jh-lift">confidence.</em></h2>
       <div class="jh-intro-row">
-        <p class="jh-es jh-r" style="--d:250ms">Pies hermosos. Confianza renovada.</p>
+        <div class="jh-r" style="--d:250ms">
+          <p class="jh-es">Pies hermosos. Confianza renovada.</p>
+          <div class="jh-btns jh-intro-cta">
+            <a class="jh-btn" href="/booking">Request a private consultation</a>
+            <a class="jh-btn ghost" href="#tour">Step inside</a>
+          </div>
+        </div>
         <div class="jh-r" style="--d:150ms">
           <p class="jh-lead">JAWS Podiatry, led by Dr. Abraham Wagner, DPM, offers cosmetic and minimally invasive foot surgery in Hollywood, Florida, with a concierge-level experience from your first call to your final follow-up.</p>
           <a class="jh-link" href="#procedures">Explore the signature procedures</a>
@@ -406,6 +426,10 @@
       <ul><li>New York Post</li><li>Univision</li><li>Telemundo</li><li>Miami Herald</li><li>Essence</li><li>NewBeauty</li><li>Vibe</li><li>BET</li><li>Vanidades</li></ul>
       <ul aria-hidden="true"><li>New York Post</li><li>Univision</li><li>Telemundo</li><li>Miami Herald</li><li>Essence</li><li>NewBeauty</li><li>Vibe</li><li>BET</li><li>Vanidades</li></ul>
     </div>
+  </section>
+
+  <section class="jh-tour" id="tour" aria-label="Step inside the office">
+    <div id="jaws-walk" data-base="https://xiiixiultra-maker.github.io/jaws-walk/" data-book="/booking" data-doctor="#doctor" data-procedures="#procedures" data-pace="0.7"></div>
   </section>
 
   <section class="jh-sig" id="procedures" aria-labelledby="jh-sig-t">
@@ -453,6 +477,28 @@
     </div>
   </section>
 
+  <section class="jh-reels jh-dark" id="results" aria-labelledby="jh-reels-t">
+    <div class="jh-wrap">
+      <div class="jh-reels-head">
+        <div>
+          <p class="jh-kicker jh-r">Watched by millions</p>
+          <h2 id="jh-reels-t" class="jh-display jh-h2 jh-split">The <em class="jh-gold">transformations</em></h2>
+          <p class="jh-es jh-r" style="--d:200ms">Transformaciones</p>
+        </div>
+        <p class="jh-note jh-r">Straight from Dr. Wagner's YouTube channel. Tap any video to watch it on YouTube.</p>
+      </div>
+      <div class="jh-reel-row">
+        <a class="jh-reel jh-r" href="https://www.youtube.com/shorts/GRUbV9jpGSI" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/GRUbV9jpGSI.webp" width="480" height="853" alt="Before and after: minimally invasive bunion and toe shortening, two months after surgery" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Bunion and toe shortening</b><span>130K views</span></span></a>
+        <a class="jh-reel jh-r" style="--d:80ms" href="https://www.youtube.com/shorts/E8Tp6VPOlIY" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/E8Tp6VPOlIY.webp" width="480" height="853" alt="Toe shortening and foot slimming result" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Toe shortening and foot slimming</b><span>124K views</span></span></a>
+        <a class="jh-reel jh-r" style="--d:160ms" href="https://www.youtube.com/shorts/7RFU-LasamM" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/7RFU-LasamM.webp" width="480" height="853" alt="Brachymetatarsia transformation" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Brachymetatarsia</b><span>241K views</span></span></a>
+        <a class="jh-reel jh-r" style="--d:240ms" href="https://www.youtube.com/shorts/sX5sNJ0iHSM" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/sX5sNJ0iHSM.webp" width="480" height="853" alt="Dr. Wagner explaining minimally invasive bunion surgery" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Bunion surgery, explained</b><span>498K views</span></span></a>
+        <a class="jh-reel jh-r" style="--d:320ms" href="https://www.youtube.com/shorts/WdznnHjmzws" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/WdznnHjmzws.webp" width="480" height="853" alt="How a toe is lengthened" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>How we lengthen a toe</b><span>62K views</span></span></a>
+        <a class="jh-reel jh-r" style="--d:400ms" href="https://www.youtube.com/shorts/duhvx4I28Oo" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/duhvx4I28Oo.webp" width="480" height="853" alt="Toe straightening and hammertoe transformation" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Toe straightening</b><span>174K views</span></span></a>
+      </div>
+      <p class="jh-fine">View counts from YouTube, October 2026. Individual results vary.</p>
+    </div>
+  </section>
+
   <section class="jh-doc jh-dark" id="doctor" aria-labelledby="jh-doc-t">
     <div class="jh-doc-bg" aria-hidden="true">
       <video class="jh-doc-video" muted playsinline loop preload="none" data-wide="https://xiiixiultra-maker.github.io/jaws-walk/office/sign-loop-wide.mp4" data-tall="https://xiiixiultra-maker.github.io/jaws-walk/office/sign-loop-tall.mp4"></video>
@@ -488,28 +534,6 @@
     </div>
   </section>
 
-  <section class="jh-reels jh-dark" id="results" aria-labelledby="jh-reels-t">
-    <div class="jh-wrap">
-      <div class="jh-reels-head">
-        <div>
-          <p class="jh-kicker jh-r">Watched by millions</p>
-          <h2 id="jh-reels-t" class="jh-display jh-h2 jh-split">The <em class="jh-gold">transformations</em></h2>
-          <p class="jh-es jh-r" style="--d:200ms">Transformaciones</p>
-        </div>
-        <p class="jh-note jh-r">Straight from Dr. Wagner's YouTube channel. Tap any video to watch it on YouTube.</p>
-      </div>
-      <div class="jh-reel-row">
-        <a class="jh-reel jh-r" href="https://www.youtube.com/shorts/GRUbV9jpGSI" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/GRUbV9jpGSI.webp" width="480" height="853" alt="Before and after: minimally invasive bunion and toe shortening, two months after surgery" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Bunion and toe shortening</b><span>130K views</span></span></a>
-        <a class="jh-reel jh-r" style="--d:80ms" href="https://www.youtube.com/shorts/E8Tp6VPOlIY" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/E8Tp6VPOlIY.webp" width="480" height="853" alt="Toe shortening and foot slimming result" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Toe shortening and foot slimming</b><span>124K views</span></span></a>
-        <a class="jh-reel jh-r" style="--d:160ms" href="https://www.youtube.com/shorts/7RFU-LasamM" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/7RFU-LasamM.webp" width="480" height="853" alt="Brachymetatarsia transformation" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Brachymetatarsia</b><span>241K views</span></span></a>
-        <a class="jh-reel jh-r" style="--d:240ms" href="https://www.youtube.com/shorts/sX5sNJ0iHSM" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/sX5sNJ0iHSM.webp" width="480" height="853" alt="Dr. Wagner explaining minimally invasive bunion surgery" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Bunion surgery, explained</b><span>498K views</span></span></a>
-        <a class="jh-reel jh-r" style="--d:320ms" href="https://www.youtube.com/shorts/WdznnHjmzws" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/WdznnHjmzws.webp" width="480" height="853" alt="How a toe is lengthened" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>How we lengthen a toe</b><span>62K views</span></span></a>
-        <a class="jh-reel jh-r" style="--d:400ms" href="https://www.youtube.com/shorts/duhvx4I28Oo" target="_blank" rel="noopener"><img src="https://xiiixiultra-maker.github.io/jaws-walk/yt/duhvx4I28Oo.webp" width="480" height="853" alt="Toe straightening and hammertoe transformation" loading="lazy"><span class="jh-reel-play" aria-hidden="true"></span><span class="jh-reel-cap"><b>Toe straightening</b><span>174K views</span></span></a>
-      </div>
-      <p class="jh-fine">View counts from YouTube, October 2026. Individual results vary.</p>
-    </div>
-  </section>
-
   <section class="jh-exp" id="experience" aria-labelledby="jh-exp-t">
     <div class="jh-wrap jh-exp-grid">
       <div>
@@ -528,30 +552,6 @@
         <li class="jh-r" style="--d:200ms"><i>III</i><div><b>Procedure day</b><p>In our private, in-office surgical suite, with local anesthesia when it's right for your procedure.</p></div></li>
         <li class="jh-r" style="--d:300ms"><i>IV</i><div><b>Recovery and follow-up</b><p>Clear aftercare instructions and follow-up visits as you heal.</p></div></li>
       </ol>
-    </div>
-  </section>
-
-  <section class="jh-suite jh-dark" id="suite" aria-labelledby="jh-suite-t">
-    <div class="jh-suite-pin">
-      <div class="jh-wrap jh-suite-head">
-        <div>
-          <p class="jh-kicker">Step inside</p>
-          <h2 id="jh-suite-t" class="jh-display jh-h2 jh-split">A space made to <em class="jh-gold">calm you</em></h2>
-          <p class="jh-es">Pase adelante</p>
-        </div>
-        <p class="jh-note">Our Hollywood office, rebuilt in 3D from the real rooms.</p>
-      </div>
-      <div class="jh-track">
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/entrance.webp" alt="3D render of the Jaws Podiatry entrance: the gold JAWS sign on a charcoal wall between teak slats" width="900" height="1200" loading="lazy"></div><figcaption><b>The entrance</b><span>The gold sign that greets you.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/reception.webp" alt="3D render of the reception desk with teak slats and two YouTube Creator Awards on the wall" width="900" height="1200" loading="lazy"></div><figcaption><b>Reception</b><span>Our concierge team checks you in.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/lounge.webp" alt="3D render of the lounge: green velvet chairs, a teak slat wall with LED strips and colorful foot art" width="900" height="1200" loading="lazy"></div><figcaption><b>The lounge</b><span>Green velvet, teak and original art.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/hallway.webp" alt="3D render of the hallway with lit teak slats leading back to the gold sign" width="900" height="1200" loading="lazy"></div><figcaption><b>The hallway</b><span>Teak slats, lit from within.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/exam-a.webp" alt="3D render of an exam room with a gray treatment chair, a navy velvet chair and a gold stool" width="900" height="1200" loading="lazy"></div><figcaption><b>Exam suite</b><span>Private, bright and calm.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/exam-b.webp" alt="3D render of the consultation room with a DPM art print and a navy velvet chair" width="900" height="1200" loading="lazy"></div><figcaption><b>The DPM suite</b><span>Where your plan comes together.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/procedure.webp" alt="3D render of the procedure room with a surgical chair, gold stools and teak panels" width="900" height="1200" loading="lazy"></div><figcaption><b>The procedure room</b><span>Where your new beginning happens.</span></figcaption></figure>
-        <figure class="jh-room"><div class="jh-room-img"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/sterile.webp" alt="3D render of the sterile station with white cabinets and a gold instrument tray" width="900" height="1200" loading="lazy"></div><figcaption><b>The sterile station</b><span>Right next to the procedure room.</span></figcaption></figure>
-      </div>
-      <div class="jh-suite-bar" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
@@ -1153,6 +1153,16 @@
   if (qbox) { qbox.addEventListener('mouseenter', function () { clearInterval(timer); }); qbox.addEventListener('mouseleave', auto); }
   auto();
 
+  // "Step inside" glides down to the walk
+  each(root.querySelectorAll('a[href="#tour"]'), function (a) {
+    a.addEventListener('click', function (e) {
+      var tour = document.getElementById('tour');
+      if (!tour) return;
+      e.preventDefault();
+      window.scrollTo({ top: tour.getBoundingClientRect().top + window.pageYOffset - headerTop(), behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
   // a soft light follows the pointer across the dark sections
   if (mm('(pointer: fine)').matches && !reduce) {
     each(root.querySelectorAll('.jh-dark'), function (sec) {
@@ -1165,3 +1175,4 @@
   }
 })();
 </script>
+<script src="https://xiiixiultra-maker.github.io/jaws-walk/walk.js?v=3.5" defer></script>
