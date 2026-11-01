@@ -12,19 +12,22 @@
 //   data-base        folder with walk-data.js, tall/ and wide/ (default: the folder walk.js comes from)
 //   data-book        booking page: every pin and button marked #book goes there (data-doctor, data-procedures alike)
 //   data-cuts        "tall,wide" (default) or "tall" when only the phone frames are hosted
+//   data-lights      "off" skips the lights-up intro (the first chapter's dark_0001.webp fading into its lit frame)
 //   --jw-top (CSS)   height of a site header that stays pinned over the page (default 0px)
 //   ?cut=tall|wide   force a cut;  ?w=<px>&dur=<s>  capture mode for the MP4 pipeline (window.__scene)
 (() => {
   const root = document.getElementById('jaws-walk');
   if (!root || root.dataset.mounted) return;
   root.dataset.mounted = '1';
-  const VER = '3.0';
+  const VER = '3.2';
   const me = document.currentScript;
   const BASE = root.dataset.base || (me && me.src ? me.src.replace(/[^/]*$/, '') : '');
   const params = new URLSearchParams(location.search);
   const CAPTURE = params.has('w');
   const DUR = parseFloat(params.get('dur') || '30');
   const GAP = 0.22;                        // scroll length of a door transition, in chapter units
+  const LIGHTS = !CAPTURE && root.dataset.lights !== 'off';
+  const LEAD = 0.5;                        // scroll length of the lights-up intro, in chapter units
   const LINK = { '#book': root.dataset.book, '#doctor': root.dataset.doctor, '#procedures': root.dataset.procedures };
   const href = (h) => LINK[h || '#book'] || h || '#book';
 
@@ -230,9 +233,10 @@
     return r;
   }
 
-  function layout() {                     // scroll timeline: chapter, door, chapter, door, ...
+  function layout() {                     // scroll timeline: lights up, chapter, door, chapter, door, ...
     segs = [];
     let t = 0;
+    if (LIGHTS) { segs.push({ kind: 'lead', i: 0, a: 0, b: LEAD }); t = LEAD; }
     D.chapters.forEach((ch, i) => {
       segs.push({ kind: 'ch', i, a: t, b: t + ch.scroll });
       t += ch.scroll;
@@ -246,17 +250,29 @@
     const T = u * total;
     const s = segs.find((g) => T <= g.b) || segs[segs.length - 1];
     const k = clamp((T - s.a) / (s.b - s.a));
-    const cur = s.kind === 'ch' ? s.i : (k < 0.5 ? s.i : s.i + 1);
+    const cur = s.kind === 'door' ? (k < 0.5 ? s.i : s.i + 1) : s.i;
     return { s, k, cur };
+  }
+
+  const dark = {};                        // the lights-off render of the walk's first frame, per cut
+  function loadDark() {
+    if (!LIGHTS) return;
+    for (const c of Object.keys(D.cuts)) {
+      const im = new Image();
+      im.decoding = 'async';
+      im.onload = () => { dark[c] = im; dirty = true; };
+      im.src = `${BASE}${c}/${D.chapters[0].id}/dark_0001.webp` + (D.build ? `?b=${D.build}` : '');
+    }
   }
 
   function draw(u) {                      // u = 0..1 over the whole walk
     const { s, k, cur } = where(u);
-    const door = s.kind === 'door';
-    const a = frameAt(s.i, door ? 1 : k);
+    const door = s.kind === 'door', lead = s.kind === 'lead';
+    const a = frameAt(s.i, door ? 1 : lead ? 0 : k);
     if (!a) return false;
     ctx.globalCompositeOperation = 'source-over';
     const r = paint(a.img, 1);
+    if (lead && dark[a.c]) paint(dark[a.c], 1 - smooth(0.12, 0.9, k));   // the camera holds while the lights come up
     if (door) {
       const b = frameAt(s.i + 1, 0);
       if (b) paint(b.img, smooth(0.25, 0.75, k));
@@ -267,7 +283,7 @@
       ctx.globalAlpha = 1;
       ctx.globalCompositeOperation = 'source-over';
     }
-    const local = door ? (k < 0.5 ? 1 : 0) : k;
+    const local = door ? (k < 0.5 ? 1 : 0) : lead ? 0 : k;
     captions(cur, local, door ? Math.sin(Math.PI * k) : 0);
     pins(cur, local, a, r, door);
     dots.forEach((d, i) => d.classList.toggle('on', i === cur));
@@ -404,6 +420,7 @@
     started = true;
     target = shown = progress();
     curCh = where(target).cur;
+    loadDark();
     pump();
   }
 
@@ -466,7 +483,7 @@
     },
     state() {
       const w = D ? where(shown) : null;
-      const fr = w ? frameAt(w.s.i, w.s.kind === 'door' ? 1 : w.k) : null;
+      const fr = w ? frameAt(w.s.i, w.s.kind === 'door' ? 1 : w.s.kind === 'lead' ? 0 : w.k) : null;
       return { cut, W, H, canvas: [canvas.width, canvas.height], manual, started, live, inflight,
         chapter: D ? D.chapters[curCh].id : null, shown: +shown.toFixed(4),
         frame: fr ? fr.img.src.split('/').slice(-3).join('/') : null,

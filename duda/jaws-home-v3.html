@@ -129,6 +129,12 @@
 #jaws-home#jaws-home .jh-doc-bg,#jaws-home#jaws-home .jh-doc-stage{height:calc(100vh - var(--top));max-height:940px;min-height:600px}
 #jaws-home#jaws-home .jh-doc-bg{position:absolute;inset:0 0 auto;z-index:0;background:#121110 url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-wide.webp") center 22%/cover no-repeat}
 #jaws-home#jaws-home .jh-doc-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 28%,rgba(18,17,16,.05),rgba(18,17,16,.78) 72%),linear-gradient(180deg,rgba(18,17,16,.15) 0%,rgba(18,17,16,.35) 60%,#121110 100%)}
+/* lights-off render of the same frame on top: the script fades it out as the section scrolls in, then the loop plays */
+#jaws-home#jaws-home .jh-doc-video,#jaws-home#jaws-home .jh-doc-dark{position:absolute;inset:0;width:100%;height:100%}
+#jaws-home#jaws-home .jh-doc-video{object-fit:cover;object-position:50% 22%;opacity:0;transition:opacity .7s ease}
+#jaws-home#jaws-home .jh-doc-bg.is-playing .jh-doc-video{opacity:1}
+#jaws-home#jaws-home .jh-doc-dark{background:#0d0c0b url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-dark.webp") center 22%/cover no-repeat;opacity:0}
+#jaws-home#jaws-home.jh-js .jh-doc-dark{opacity:var(--dark,1)}
 #jaws-home#jaws-home .jh-doc-stage{position:relative;z-index:2;display:flex;justify-content:center;align-items:flex-end;overflow:hidden}
 #jaws-home#jaws-home .jh-doc-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(18,17,16,0),rgba(18,17,16,.82) 72%,#121110)}
 #jaws-home#jaws-home .jh-doc-cut{position:relative;z-index:1;height:80%;width:auto;max-width:none;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
@@ -199,13 +205,31 @@
 #jaws-home#jaws-home .jh-suite.is-pinned .jh-room{width:auto}
 #jaws-home#jaws-home .jh-suite.is-pinned .jh-room-img{height:min(50vh,540px)}
 
-/* 8. confidence */
-#jaws-home#jaws-home .jh-conf{background:var(--paper);padding:clamp(90px,11vw,170px) 0}
-#jaws-home#jaws-home .jh-conf-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,6vw,110px);align-items:center}
-#jaws-home#jaws-home .jh-conf-lines{margin-top:38px;border-top:1px solid rgba(42,40,39,.14)}
-#jaws-home#jaws-home .jh-conf-lines li{padding:16px 0;border-bottom:1px solid rgba(42,40,39,.12);font:italic 400 clamp(22px,2.2vw,32px)/1.3 var(--serif);color:var(--ink)}
-#jaws-home#jaws-home .jh-conf-img{aspect-ratio:3/4;overflow:hidden;border-radius:4px;box-shadow:0 40px 80px rgba(42,40,39,.18)}
-#jaws-home#jaws-home .jh-conf-img img{width:100%;height:100%;object-fit:cover}
+/* 8. one line per screen over soft close-ups of the lounge: pins and fades line to line, or stacks without the pin */
+#jaws-home#jaws-home .jh-lines{background:#121110}
+#jaws-home#jaws-home .jh-lines-pin{position:relative;overflow:hidden}
+#jaws-home#jaws-home .jh-lines-bg{position:absolute;inset:0;z-index:0}
+#jaws-home#jaws-home .jh-lines-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);transition:opacity 1.6s ease,transform 9s linear}
+#jaws-home#jaws-home .jh-lines-bg img.is-on{opacity:1;transform:scale(1.02)}
+#jaws-home#jaws-home .jh-lines-bg::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 75% 65% at 50% 50%,rgba(18,17,16,.5),rgba(18,17,16,.86)),linear-gradient(180deg,rgba(18,17,16,.55),rgba(18,17,16,.15) 45%,rgba(18,17,16,.65))}
+#jaws-home#jaws-home .jh-lines-stage{position:relative;z-index:2;display:grid;justify-items:center;align-content:center;text-align:center;padding:0 clamp(20px,5vw,56px)}
+#jaws-home#jaws-home .jh-lines .jh-line{grid-area:1/1;max-width:15ch;margin:0;font:500 clamp(34px,6.6vw,112px)/1.02 var(--serif);letter-spacing:-.025em;color:#F7F2E9;
+  text-wrap:balance;font-variation-settings:"opsz" 48}
+#jaws-home#jaws-home .jh-lines .jh-line em{font-style:italic}
+#jaws-home#jaws-home .jh-lines .jh-line-intro{max-width:none}
+#jaws-home#jaws-home .jh-lines .jh-line-intro .jh-kicker{justify-content:center}
+#jaws-home#jaws-home .jh-lines .jh-line-intro h2{max-width:14ch;margin:0 auto;font:inherit;letter-spacing:inherit}
+#jaws-home#jaws-home .jh-lines-bar{position:absolute;z-index:2;left:50%;bottom:clamp(28px,5vh,56px);width:min(220px,40vw);height:1px;transform:translateX(-50%);background:rgba(243,226,188,.2);overflow:hidden}
+#jaws-home#jaws-home .jh-lines-bar span{display:block;height:100%;background:var(--gold);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-bg img:first-child{opacity:1}
+#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-stage{display:block;padding-top:clamp(90px,12vw,170px);padding-bottom:clamp(20px,3vw,40px)}
+#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-line{margin:0 auto clamp(70px,9vw,130px)}
+#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-bar{display:none}
+#jaws-home#jaws-home .jh-lines.is-pinned .jh-lines-pin{position:sticky;top:var(--top);height:calc(100vh - var(--top))}
+#jaws-home#jaws-home .jh-lines.is-pinned .jh-lines-stage{height:100%}
+#jaws-home#jaws-home .jh-lines.is-pinned .jh-line{opacity:0;transform:translateY(22px);filter:blur(8px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease)}
+#jaws-home#jaws-home .jh-lines.is-pinned .jh-line.is-on{opacity:1;transform:none;filter:none;transition-delay:.25s}
 
 /* 9. reviews */
 #jaws-home#jaws-home .jh-reviews{background:var(--mist);padding:clamp(90px,11vw,160px) 0;text-align:center}
@@ -240,13 +264,22 @@
 #jaws-home#jaws-home .jh-cta-bg::before{content:"";position:absolute;inset:0;background:url("https://xiiixiultra-maker.github.io/jaws-walk/office/or-wide.webp") center 40%/cover no-repeat;animation:jhKen 30s ease-in-out infinite alternate}
 #jaws-home#jaws-home .jh-cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,17,16,.5) 0%,rgba(18,17,16,.8) 50%,#121110 88%)}
 @keyframes jhKen{from{transform:scale(1.04)}to{transform:scale(1.14)}}
-#jaws-home#jaws-home .jh-cta-inner{max-width:1120px;text-align:center}
-#jaws-home#jaws-home .jh-quote-davinci{max-width:34ch;margin:0 auto 34px;font:italic 400 clamp(19px,1.8vw,26px)/1.35 var(--serif);color:#E9DFCC}
+#jaws-home#jaws-home .jh-quote-davinci{max-width:34ch;margin:0 0 clamp(30px,4vw,56px);font:italic 400 clamp(19px,1.8vw,26px)/1.35 var(--serif);color:#E9DFCC}
 #jaws-home#jaws-home .jh-quote-davinci span{display:block;margin-top:10px;font:500 14px/1 var(--sans);font-style:normal;color:var(--gold)}
-#jaws-home#jaws-home .jh-cta .jh-display{font-size:clamp(46px,7.4vw,124px);color:#F7F2E9}
-#jaws-home#jaws-home .jh-ask{margin:46px 0 16px;font:500 15px/1.2 var(--sans);color:#D8D1C5}
-#jaws-home#jaws-home .jh-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-#jaws-home#jaws-home .jh-cta .jh-btns{justify-content:center;margin-top:40px}
+/* giant thin type and two huge lines, like a two-line form; the real form stays on the Booking page */
+#jaws-home#jaws-home .jh-cta .jh-display{font-size:clamp(52px,10.4vw,188px);font-weight:400;line-height:.9;letter-spacing:-.035em;color:#F7F2E9}
+#jaws-home#jaws-home .jh-biglines{margin-top:clamp(44px,6vw,90px);border-top:1px solid rgba(243,226,188,.22)}
+#jaws-home#jaws-home .jh-bigline{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(14px,2.4vw,36px);padding:clamp(18px,2.4vw,32px) 0;
+  border-bottom:1px solid rgba(243,226,188,.22);color:#F7F2E9;text-decoration:none}
+#jaws-home#jaws-home .jh-bigline::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,#A9853F,#F0D79C 60%,#A9853F);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform 1s var(--ease)}
+#jaws-home#jaws-home .jh-bigline:hover::after,#jaws-home#jaws-home .jh-bigline:focus-visible::after{transform:scaleX(1)}
+#jaws-home#jaws-home .jh-bigline-n{font:italic 400 clamp(18px,1.7vw,26px)/1 var(--serif);color:var(--gold)}
+#jaws-home#jaws-home .jh-bigline-t{font:400 clamp(26px,4.8vw,82px)/1.04 var(--serif);letter-spacing:-.025em}
+#jaws-home#jaws-home .jh-bigline-a{font:300 clamp(26px,3.4vw,58px)/1 var(--serif);color:var(--gold);transition:transform .6s var(--ease)}
+#jaws-home#jaws-home .jh-bigline:hover .jh-bigline-a{transform:translateX(12px)}
+#jaws-home#jaws-home .jh-ask{margin:clamp(40px,5vw,64px) 0 16px;font:500 15px/1.2 var(--sans);color:#D8D1C5}
+#jaws-home#jaws-home .jh-chips{display:flex;flex-wrap:wrap;gap:10px}
 #jaws-home#jaws-home .jh-visit{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:clamp(90px,10vw,150px);padding-top:40px;padding-bottom:64px;border-top:1px solid rgba(243,226,188,.14)}
 #jaws-home#jaws-home .jh-visit h3{margin-bottom:10px;font:italic 500 19px/1.2 var(--serif);color:var(--gold)}
 #jaws-home#jaws-home .jh-visit p{font-size:15px}
@@ -257,7 +290,7 @@
 }
 @media (max-width:900px){
   #jaws-home#jaws-home .jh-intro-row,#jaws-home#jaws-home .jh-sig-head,#jaws-home#jaws-home .jh-doc-grid,#jaws-home#jaws-home .jh-exp-grid,
-  #jaws-home#jaws-home .jh-conf-grid,#jaws-home#jaws-home .jh-faq-grid{grid-template-columns:1fr}
+  #jaws-home#jaws-home .jh-faq-grid{grid-template-columns:1fr}
   #jaws-home#jaws-home .jh-menu{grid-template-columns:1fr;gap:40px}
   #jaws-home#jaws-home .jh-stats{grid-template-columns:1fr 1fr}
   #jaws-home#jaws-home .jh-stats>div:nth-child(3){padding-left:0;border-left:0}
@@ -271,7 +304,6 @@
   #jaws-home#jaws-home .jh-doc-cut{height:78%}
   #jaws-home#jaws-home .jh-doc-name span{font-size:9.6vw}
   #jaws-home#jaws-home .jh-doc-name em{font-size:13.4vw}
-  #jaws-home#jaws-home .jh-conf-img{max-width:420px}
   #jaws-home#jaws-home .jh-visit{grid-template-columns:1fr;gap:22px}
 }
 @media (max-width:600px){
@@ -286,16 +318,24 @@
   #jaws-home#jaws-home *,#jaws-home#jaws-home *::before,#jaws-home#jaws-home *::after{animation:none!important;transition:none!important}
 }
 
-/* booking bar on phones, moved to <body> by the script so nothing in the page can trap it */
-#jh-dock#jh-dock{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:none;gap:10px;padding:8px;border-radius:999px;
+/* booking bar that follows you down the page, moved to <body> by the script so nothing in the page can trap it */
+#jh-dock#jh-dock{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;gap:10px;padding:8px;border-radius:999px;
   background:rgba(27,26,25,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 18px 40px rgba(0,0,0,.35);
   transform:translateY(160%);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 #jh-dock#jh-dock.is-on{transform:none}
-@media (max-width:767px){#jh-dock#jh-dock{display:flex}}
-#jh-dock#jh-dock a{display:flex;align-items:center;justify-content:center;text-decoration:none;font:500 16px/1 "Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif}
+#jh-dock#jh-dock a{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font:500 16px/1 "Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif}
 #jh-dock#jh-dock .jh-dock-book{flex:1;padding:16px 20px;border-radius:999px;color:#fff;
   background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#A17654,#7A5537)}
 #jh-dock#jh-dock .jh-dock-call{flex:0 0 52px;border-radius:999px;border:1px solid rgba(243,226,188,.35);color:#D9B68C}
+#jh-dock#jh-dock .jh-dock-long,#jh-dock#jh-dock .jh-dock-call span{display:none}
+@media (min-width:768px){
+  #jh-dock#jh-dock{left:50%;right:auto;bottom:24px;padding:7px;transform:translate(-50%,160%)}
+  #jh-dock#jh-dock.is-on{transform:translate(-50%,0)}
+  #jh-dock#jh-dock .jh-dock-book{flex:0 0 auto;padding:15px 26px}
+  #jh-dock#jh-dock .jh-dock-call{flex:0 0 auto;padding:0 22px}
+  #jh-dock#jh-dock .jh-dock-long,#jh-dock#jh-dock .jh-dock-call span{display:inline}
+  #jh-dock#jh-dock .jh-dock-short{display:none}
+}
 </style>
 
 <div id="jaws-home">
@@ -377,7 +417,10 @@
   </section>
 
   <section class="jh-doc jh-dark" id="doctor" aria-labelledby="jh-doc-t">
-    <div class="jh-doc-bg" aria-hidden="true"></div>
+    <div class="jh-doc-bg" aria-hidden="true">
+      <video class="jh-doc-video" muted playsinline loop preload="none" data-wide="https://xiiixiultra-maker.github.io/jaws-walk/office/sign-loop-wide.mp4" data-tall="https://xiiixiultra-maker.github.io/jaws-walk/office/sign-loop-tall.mp4"></video>
+      <div class="jh-doc-dark"></div>
+    </div>
     <div class="jh-doc-stage">
       <img class="jh-doc-cut" src="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-cutout.webp" alt="Dr. Abraham Wagner, DPM, smiling in olive scrubs in front of the gold JAWS sign" width="899" height="914" loading="lazy">
       <h2 id="jh-doc-t" class="jh-doc-name"><span>Dr. Abraham</span> <em class="jh-gold">Wagner, DPM</em></h2>
@@ -475,19 +518,25 @@
     </div>
   </section>
 
-  <section class="jh-conf" aria-labelledby="jh-conf-t">
-    <div class="jh-wrap jh-conf-grid">
-      <div>
-        <p class="jh-kicker jh-r">Why patients come to us</p>
-        <h2 id="jh-conf-t" class="jh-display jh-h2 jh-split">More than a procedure. <em class="jh-gold">A new level of confidence.</em></h2>
-        <p class="jh-es jh-r" style="--d:200ms">M&aacute;s que un procedimiento</p>
-        <ul class="jh-conf-lines">
-          <li class="jh-r">Wearing sandals without hesitation.</li>
-          <li class="jh-r" style="--d:120ms">Enjoying a beach vacation without a second thought.</li>
-          <li class="jh-r" style="--d:240ms">No longer hiding your feet in photos.</li>
-        </ul>
+  <section class="jh-lines jh-dark" id="confidence" aria-labelledby="jh-lines-t">
+    <div class="jh-lines-pin">
+      <div class="jh-lines-bg" aria-hidden="true">
+        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-0.webp" alt="" width="1600" height="900" loading="lazy">
+        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-1.webp" alt="" width="1600" height="900" loading="lazy">
+        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-2.webp" alt="" width="1600" height="900" loading="lazy">
+        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-3.webp" alt="" width="1600" height="900" loading="lazy">
       </div>
-      <figure class="jh-conf-img jh-r" style="--d:150ms"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/mirror.webp" alt="3D render of the lounge mirror wall with teak slats and fresh tulips" width="900" height="1200" loading="lazy"></figure>
+      <div class="jh-lines-stage">
+        <div class="jh-line jh-line-intro">
+          <p class="jh-kicker">Why patients come to us</p>
+          <h2 id="jh-lines-t">More than a procedure. <em class="jh-gold">A new level of confidence.</em></h2>
+          <p class="jh-es">M&aacute;s que un procedimiento</p>
+        </div>
+        <p class="jh-line">Wearing sandals <em class="jh-gold">without hesitation.</em></p>
+        <p class="jh-line">Enjoying a beach vacation <em class="jh-gold">without a second thought.</em></p>
+        <p class="jh-line">No longer hiding your feet <em class="jh-gold">in photos.</em></p>
+      </div>
+      <div class="jh-lines-bar" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
@@ -575,10 +624,14 @@
     <div class="jh-cta-bg" aria-hidden="true"></div>
     <div class="jh-wrap jh-cta-inner">
       <p class="jh-quote-davinci jh-r">&ldquo;The human foot is a masterpiece of engineering and a work of art.&rdquo;<span>Leonardo da Vinci</span></p>
-      <h2 id="jh-cta-t" class="jh-display jh-split">Your new beginning <em class="jh-gold">starts here</em></h2>
+      <h2 id="jh-cta-t" class="jh-display jh-split">A new beginning <em class="jh-gold">starts here.</em></h2>
       <p class="jh-es jh-r" style="--d:250ms">Su nuevo comienzo empieza aqu&iacute;</p>
-      <p class="jh-ask jh-r" style="--d:350ms">What would you like to talk about?</p>
-      <div class="jh-chips jh-r" style="--d:450ms">
+      <div class="jh-biglines">
+        <a class="jh-bigline jh-r" style="--d:300ms" href="/booking"><span class="jh-bigline-n">I</span><span class="jh-bigline-t">Request a private consultation</span><span class="jh-bigline-a" aria-hidden="true">&rarr;</span></a>
+        <a class="jh-bigline jh-r" style="--d:420ms" href="tel:+19549227333"><span class="jh-bigline-n">II</span><span class="jh-bigline-t">Call (954) 922-7333</span><span class="jh-bigline-a" aria-hidden="true">&rarr;</span></a>
+      </div>
+      <p class="jh-ask jh-r">Or start with what's on your mind:</p>
+      <div class="jh-chips jh-r" style="--d:100ms">
         <a class="jh-chip" href="/booking">Short toes</a>
         <a class="jh-chip" href="/booking">Toe shortening</a>
         <a class="jh-chip" href="/booking">Foot slimming</a>
@@ -587,10 +640,6 @@
         <a class="jh-chip" href="/booking">Toe tucks</a>
         <a class="jh-chip" href="/booking">Corns</a>
         <a class="jh-chip" href="/booking">Something else</a>
-      </div>
-      <div class="jh-btns jh-r" style="--d:550ms">
-        <a class="jh-btn" href="/booking">Request a private consultation</a>
-        <a class="jh-btn ghost" href="tel:+19549227333">Call (954) 922-7333</a>
       </div>
     </div>
     <div class="jh-wrap jh-visit">
@@ -611,8 +660,8 @@
   </section>
 
   <div id="jh-dock" role="region" aria-label="Quick booking">
-    <a class="jh-dock-book" href="/booking">Request a consultation</a>
-    <a class="jh-dock-call" href="tel:+19549227333" aria-label="Call (954) 922-7333"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></a>
+    <a class="jh-dock-book" href="/booking"><span class="jh-dock-short">Request a consultation</span><span class="jh-dock-long">Request a private consultation</span></a>
+    <a class="jh-dock-call" href="tel:+19549227333" aria-label="Call (954) 922-7333"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><span>(954) 922-7333</span></a>
   </div>
 
 </div>
@@ -694,16 +743,76 @@
     }
     return false;
   }
+  // one line per screen: the section pins and each line fades into the next as you scroll
+  var lines = root.querySelector('.jh-lines');
+  var lpin = lines && lines.querySelector('.jh-lines-pin');
+  var lineEls = lines ? lines.querySelectorAll('.jh-line') : [];
+  var lineBgs = lines ? lines.querySelectorAll('.jh-lines-bg img') : [];
+  var lbar = lines && lines.querySelector('.jh-lines-bar');
+  var lpinned = false, lcur = -1;
+  function layoutLines() {
+    if (!lines) return;
+    lpinned = !reduce && !clipped(lines);
+    lines.classList.toggle('is-pinned', lpinned);
+    lines.style.height = lpinned ? (lpin.offsetHeight + (lineEls.length - 1) * window.innerHeight * 0.8) + 'px' : '';
+    lcur = -1;
+  }
+  function updateLines() {                 // true while the pin holds the screen
+    if (!lpinned) return false;
+    var r = lines.getBoundingClientRect(), span = lines.offsetHeight - lpin.offsetHeight;
+    var p = span > 0 ? Math.min(1, Math.max(0, (headerTop() - r.top) / span)) : 0;
+    var i = Math.round(p * (lineEls.length - 1));
+    if (i !== lcur) {
+      lcur = i;
+      each(lineEls, function (el, k) { el.classList.toggle('is-on', k === i); });
+      each(lineBgs, function (el, k) { el.classList.toggle('is-on', k === i); });
+    }
+    if (lbar) lbar.style.setProperty('--p', p.toFixed(4));
+    return r.top <= headerTop() + 1 && r.bottom >= window.innerHeight - 1;
+  }
+
   function layout() {
-    if (!suite) return;
-    pinned = wide.matches && !reduce && !clipped(suite);
-    suite.classList.toggle('is-pinned', pinned);
-    if (!pinned) { suite.style.height = ''; track.style.removeProperty('--tx'); return; }
-    var last = track.lastElementChild;
-    var full = last.offsetLeft + last.offsetWidth + parseFloat(getComputedStyle(track).paddingRight);
-    dist = Math.max(0, full - pin.clientWidth);
-    suite.style.height = (pin.offsetHeight + dist) + 'px';
+    layoutLines();
+    if (suite) {
+      pinned = wide.matches && !reduce && !clipped(suite);
+      suite.classList.toggle('is-pinned', pinned);
+      if (!pinned) { suite.style.height = ''; track.style.removeProperty('--tx'); }
+      else {
+        var last = track.lastElementChild;
+        var full = last.offsetLeft + last.offsetWidth + parseFloat(getComputedStyle(track).paddingRight);
+        dist = Math.max(0, full - pin.clientWidth);
+        suite.style.height = (pin.offsetHeight + dist) + 'px';
+      }
+    }
     update();
+  }
+
+  // the lights come up on the sign behind Dr. Wagner as his section scrolls in, then the camera starts to breathe
+  var dbg = root.querySelector('.jh-doc-bg');
+  var dvid = dbg && dbg.querySelector('video');
+  var vidOK = !!dvid && !reduce && !(navigator.connection && navigator.connection.saveData);
+  var vidOn = false, vidTimer = null;
+  if (dbg && reduce) dbg.style.setProperty('--dark', '0');
+  function docLights(d, vh) {
+    if (!dbg || reduce) return;
+    var t = Math.min(1, Math.max(0, (vh * 0.85 - d.top) / (vh * 0.7)));
+    var e = t * t * (3 - 2 * t);
+    dbg.style.setProperty('--dark', (1 - e).toFixed(3));
+    if (!vidOK) return;
+    var want = e > 0.995 && d.bottom > 0 && d.top < vh;
+    if (want && !vidOn) {                  // the loop starts on the same frame as the lit still, so the swap can't be seen
+      vidOn = true;
+      clearTimeout(vidTimer);
+      if (!dvid.getAttribute('src')) dvid.src = dvid.getAttribute(mm('(max-width: 767px)').matches ? 'data-tall' : 'data-wide');
+      try { dvid.currentTime = 0; } catch (x) { /* not loaded yet: it starts at 0 anyway */ }
+      var go = function () { if (vidOn) dbg.classList.add('is-playing'); };
+      var pr = dvid.play();
+      if (pr && pr.then) pr.then(go, function () { vidOn = false; vidOK = false; }); else go();
+    } else if (!want && vidOn) {
+      vidOn = false;
+      dbg.classList.remove('is-playing');
+      vidTimer = setTimeout(function () { if (!vidOn) dvid.pause(); }, 800);
+    }
   }
 
   var doc = root.querySelector('.jh-doc-stage');
@@ -716,10 +825,11 @@
   }
 
   function update() {
-    var vh = window.innerHeight, vw = window.innerWidth;
+    var vh = window.innerHeight, vw = window.innerWidth, holding = false;
     if (pinned) {
       var r = suite.getBoundingClientRect(), span = suite.offsetHeight - pin.offsetHeight;
       var p = span > 0 ? Math.min(1, Math.max(0, (headerTop() - r.top) / span)) : 0;
+      holding = r.top <= headerTop() + 1 && r.bottom >= vh - 1;
       track.style.setProperty('--tx', (-p * dist).toFixed(1) + 'px');
       bar.style.setProperty('--p', p.toFixed(4));
       each(rooms, function (img) {
@@ -727,14 +837,17 @@
         img.style.setProperty('--px', (((b.left + b.width / 2) - vw / 2) / vw * -40).toFixed(1) + 'px');
       });
     }
-    if (doc && !reduce) {
+    if (doc) {
       var d = doc.getBoundingClientRect();
-      if (d.bottom > 0 && d.top < vh) doc.style.setProperty('--front', ((d.top + d.height / 2 - vh / 2) / vh * -50).toFixed(1) + 'px');
+      if (!reduce && d.bottom > 0 && d.top < vh) doc.style.setProperty('--front', ((d.top + d.height / 2 - vh / 2) / vh * -50).toFixed(1) + 'px');
+      docLights(d, vh);
+      if (d.top < vh * 0.5 && d.bottom > vh * 0.75) holding = true;   // his name sits where the booking bar would
     }
-    if (dock) {
+    holding = updateLines() || holding;
+    if (dock) {                            // out of the way during the walk, the pinned screens and the closing section
       var after = walk ? walk.getBoundingClientRect().bottom < 0 : window.pageYOffset > vh;
       var nearEnd = cta ? cta.getBoundingClientRect().top < vh * 0.8 : false;
-      dock.classList.toggle('is-on', after && !nearEnd);
+      dock.classList.toggle('is-on', after && !nearEnd && !holding);
     }
   }
   var ticking = false;
