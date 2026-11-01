@@ -152,12 +152,16 @@
 #jaws-home#jaws-home .jh-lift.is-lifted{transform:translate3d(0,var(--lift,-14px),0) rotate(-1.5deg);filter:drop-shadow(8px 18px 12px rgba(42,40,39,.2))}
 #jaws-home#jaws-home .jh-dark .jh-lift.is-lifted{filter:drop-shadow(8px 18px 14px rgba(0,0,0,.55))}
 #jaws-home#jaws-home .jh-lift.is-lifted,#jaws-home#jaws-home .jh-tool-tweezers.is-lifted{animation:jhBob 6s ease-in-out infinite alternate}
-/* phones and tablets: the awards fill the dark beside his head, the scalpel and hemostat float at his right */
+/* phones and tablets: sized and placed from his portrait's width (--P), so they keep to the dark around him at every
+   width. The awards fill the dark beside his head, the hemostat sits at his shoulder, under his chin and above the
+   kicker. The knife never points at him (Remmy, 11/1: "knife always away from head / face"): the scalpel is mirrored
+   so the blade faces the screen's edge, and the script sets it in the gap just above the numbers */
 @media (max-width:900px){
-  #jaws-home#jaws-home .jh-tool-silver{width:31vw;left:0;top:14px}
-  #jaws-home#jaws-home .jh-tool-gold{width:36vw;left:11vw;top:calc(14px + 25vw)}
-  #jaws-home#jaws-home .jh-tool-scalpel{width:30vw;left:auto;right:-2vw;top:4vw}
-  #jaws-home#jaws-home .jh-tool-hemostat{width:38vw;right:-10vw;top:calc(min(80vw,460px) * .44)}
+  #jaws-home#jaws-home .jh-intro{--P:min(80vw,460px)}
+  #jaws-home#jaws-home .jh-tool-silver{width:calc(var(--P) * .4);left:calc(100% - var(--P) * 1.25);top:calc(var(--P) * .03)}
+  #jaws-home#jaws-home .jh-tool-gold{width:calc(var(--P) * .46);left:calc(100% - var(--P) * 1.1);top:calc(var(--P) * .32)}
+  #jaws-home#jaws-home .jh-tool-hemostat{width:calc(var(--P) * .5);right:calc(var(--P) * -.14);top:calc(var(--P) * .38)}
+  #jaws-home#jaws-home .jh-tool-scalpel{width:calc(var(--P) * .36);left:auto;right:0;top:0;transform:translate3d(var(--tx,0px),var(--ty,0px),0) scaleX(-1)}
   #jaws-home#jaws-home .jh-tool-tweezers{width:clamp(160px,44vw,260px)}
   #jaws-home#jaws-home .jh-intro{padding-top:8px}
   #jaws-home#jaws-home .jh-hero-doc{position:relative;top:auto;right:auto;width:min(80vw,460px);margin:0 0 0 auto}
@@ -172,6 +176,12 @@
 #jaws-home#jaws-home .jh-marq ul{display:flex;align-items:center}
 #jaws-home#jaws-home .jh-marq li{position:relative;padding:0 36px;white-space:nowrap;font:italic 400 clamp(22px,2.2vw,32px)/1.2 var(--serif);color:#EDE6DA}
 #jaws-home#jaws-home .jh-marq li::after{content:"";position:absolute;right:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--gold);transform:translateY(-50%)}
+/* the outlets' own logos (tools/make_press_logos.py, from the old site's files) in one colour: cream, gold under the
+   pointer. Each is a mask, sized so square marks and long wordmarks carry the same weight (--h, px; --a, its shape) */
+#jaws-home#jaws-home .jh-logo{display:block;height:calc(var(--h) * var(--k,1) * 1px);aspect-ratio:var(--a);background:#EDE6DA;opacity:.86;
+  -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;transition:opacity .4s}
+#jaws-home#jaws-home .jh-marq li:hover .jh-logo{opacity:1;background:linear-gradient(105deg,#9C7633 0%,#E7C987 20%,#FFF3D1 34%,#C29A4D 50%,#F0D79C 70%,#A9853F 100%)}
+@media (max-width:767px){#jaws-home#jaws-home .jh-marq{--k:.8}}
 @keyframes jhMarq{to{transform:translateX(-50%)}}
 
 /* the office walk (walk.js), right under the press: it opens dark and the lights come on as you step in. Office colors
@@ -548,8 +558,28 @@
   <section class="jh-press jh-dark" aria-label="Press">
     <p class="jh-kicker jh-wrap">As featured in</p>
     <div class="jh-marq">
-      <ul><li>New York Post</li><li>Univision</li><li>Telemundo</li><li>Miami Herald</li><li>Essence</li><li>NewBeauty</li><li>Vibe</li><li>BET</li><li>Vanidades</li></ul>
-      <ul aria-hidden="true"><li>New York Post</li><li>Univision</li><li>Telemundo</li><li>Miami Herald</li><li>Essence</li><li>NewBeauty</li><li>Vibe</li><li>BET</li><li>Vanidades</li></ul>
+      <ul>
+        <li><span class="jh-logo" role="img" aria-label="New York Post" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/nypost.webp');--a:.925;--h:42"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="Univision" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/univision.webp');--a:1.026;--h:40"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="Telemundo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/telemundo.webp');--a:1.013;--h:38"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="Miami Herald" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/herald.webp');--a:5.973;--h:24"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="Essence" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/essence.webp');--a:4.8;--h:22"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="NewBeauty" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/newbeauty.webp');--a:9.233;--h:19"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="Vibe" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/vibe.webp');--a:3.377;--h:28"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="BET" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/bet.webp');--a:1.015;--h:40"></span></li>
+        <li><span class="jh-logo" role="img" aria-label="Vanidades" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/vanidades.webp');--a:5.758;--h:23"></span></li>
+      </ul>
+      <ul aria-hidden="true">
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/nypost.webp');--a:.925;--h:42"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/univision.webp');--a:1.026;--h:40"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/telemundo.webp');--a:1.013;--h:38"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/herald.webp');--a:5.973;--h:24"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/essence.webp');--a:4.8;--h:22"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/newbeauty.webp');--a:9.233;--h:19"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/vibe.webp');--a:3.377;--h:28"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/bet.webp');--a:1.015;--h:40"></span></li>
+        <li><span class="jh-logo" style="--m:url('https://xiiixiultra-maker.github.io/jaws-walk/press/vanidades.webp');--a:5.758;--h:23"></span></li>
+      </ul>
     </div>
   </section>
 
@@ -1103,6 +1133,8 @@
   var tools = intro ? intro.querySelectorAll('canvas.jh-tool') : [];
   var tweez = intro && intro.querySelector('.jh-tool-tweezers');
   var liftEl = intro && intro.querySelector('.jh-lift');
+  var scalpel = intro && intro.querySelector('.jh-tool-scalpel');
+  var stats = intro && intro.querySelector('.jh-stats');
   var TOOLS_BASE = 'https://xiiixiultra-maker.github.io/jaws-walk/tools3d/';
   var TURN_N = 36, TURN_COLS = 6;
   var TWEEZ = { desk: [382, 280, 0.0468, 0.8158], phone: [430, 98, 0.0438, 0.377] };   // image size, tips (share of it)
@@ -1126,8 +1158,17 @@
       var l = layers[k], w = Math.round(c.clientWidth * dpr), h = Math.round(c.clientHeight * dpr);
       if (l && w && (c.width !== w || c.height !== h)) { c.width = l.buf.width = w; c.height = l.buf.height = h; }
     });
+    placeScalpel();
     drawTools();
   }
+  function placeScalpel() {                // phones and tablets: in the gap above the numbers, wherever the copy ends
+    if (!scalpel || !stats) return;
+    if (window.innerWidth > 900) { scalpel.style.top = ''; return; }
+    var y = 0, el = stats;
+    while (el && el !== intro) { y += el.offsetTop; el = el.offsetParent; }
+    scalpel.style.top = Math.round(y - scalpel.offsetHeight * 0.75) + 'px';
+  }
+  if (scalpel && document.fonts && document.fonts.ready) document.fonts.ready.then(placeScalpel);
   function cell(ctx, img, i, alpha, w, h) { // frame i of a 6 x 6 sheet, scaled to the canvas
     var fw = img.naturalWidth / TURN_COLS, fh = img.naturalHeight / Math.ceil(TURN_N / TURN_COLS);
     ctx.globalAlpha = alpha;
@@ -1221,7 +1262,8 @@
     toolsVis = r.bottom > 0 && r.top < vh;
     if (!toolsVis) return;
     if (!finePointer && !reduce) turnTools((vh - r.top) / (vh + r.height));
-    if (!reduce) each(tools, function (t, k) { t.style.setProperty('--ty', (r.top * (k ? -0.12 : -0.06)).toFixed(1) + 'px'); });
+    var small = window.innerWidth <= 900;      // the phone scalpel holds its gap: drifting, it would reach the numbers
+    if (!reduce) each(tools, function (t, k) { t.style.setProperty('--ty', (t === scalpel && small ? 0 : r.top * (k ? -0.12 : -0.06)).toFixed(1) + 'px'); });
   }
   if (intro && 'IntersectionObserver' in window) {
     new IntersectionObserver(function (es, o) {
