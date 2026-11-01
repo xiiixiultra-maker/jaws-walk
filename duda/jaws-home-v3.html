@@ -5,6 +5,8 @@
      YouTube numbers read live on 10/31/2026: 1.78M subscribers, 1,104,497,600 views, 2,603 videos.
      Video thumbnails are his own YouTube Shorts thumbnails, shrunk to webp and hosted in the jaws-walk Pages repo (yt/).
      Type: Bodoni Moda (Google Fonts, OFL) + Apfel Grotezk (Collletttivo, OFL, hosted on the jaws-walk Pages repo).
+     Floating instruments: 3D models by NVIDIA SimReady Assets (CC BY 4.0), rendered in gold (tools3d/).
+     Confidence lines: stills and a swash loop from our own beach film's final render (beach/).
      No tracking and no forms. Every booking link goes to /booking. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,6 +101,23 @@
 #jaws-home#jaws-home .jh-stats dt{font:500 clamp(52px,5.8vw,96px)/1 var(--serif);letter-spacing:-.03em;font-variation-settings:"opsz" 28}
 #jaws-home#jaws-home .jh-stats dd{margin-top:14px;max-width:16ch;font:500 15px/1.35 var(--sans);color:var(--soft)}
 #jaws-home#jaws-home .jh-intro .jh-fine{margin-top:26px}
+/* floating gold instruments (NVIDIA SimReady models, CC BY 4.0) as 12-frame turns: the pointer (or the scroll, on
+   touch screens) turns them; the tweezers come down, pinch "confidence." and lift it off the page */
+#jaws-home#jaws-home .jh-tools{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+#jaws-home#jaws-home .jh-tool{position:absolute;display:block;background-repeat:no-repeat;background-size:1200% 100%;
+  background-position:calc(var(--f,6) * 100% / 11) 0;transform:translate3d(var(--tx,0px),var(--ty,0px),0) rotate(var(--rot,0deg));
+  filter:drop-shadow(0 22px 18px rgba(42,40,39,.16)) drop-shadow(0 4px 5px rgba(42,40,39,.14));
+  animation:jhBob 6s ease-in-out infinite alternate;will-change:transform}
+@keyframes jhBob{from{translate:0 -7px}to{translate:0 9px}}
+#jaws-home#jaws-home .jh-tool-hemostat{width:clamp(150px,21vw,330px);aspect-ratio:619/459;right:2%;top:4%;animation-duration:7s}
+#jaws-home#jaws-home .jh-tool-scalpel{width:clamp(120px,15vw,240px);aspect-ratio:554/345;left:7%;top:54%;animation-duration:5.2s;animation-delay:-2s}
+#jaws-home#jaws-home .jh-tool-tweezers{width:clamp(140px,16vw,250px);aspect-ratio:532/400;left:0;top:0;opacity:0;animation:none;
+  transition:transform 1.1s cubic-bezier(.2,.7,.2,1),opacity .6s ease}
+#jaws-home#jaws-home .jh-tool-tweezers.is-in{opacity:1}
+#jaws-home#jaws-home .jh-lift{display:inline-block;transition:transform 1.1s cubic-bezier(.2,.7,.2,1),filter 1.1s ease}
+#jaws-home#jaws-home .jh-lift.is-lifted{transform:translate3d(0,var(--lift,-14px),0) rotate(-1.5deg);filter:drop-shadow(0 18px 12px rgba(42,40,39,.2))}
+#jaws-home#jaws-home .jh-lift.is-lifted,#jaws-home#jaws-home .jh-tool-tweezers.is-lifted{animation:jhBob 6s ease-in-out infinite alternate}
+@media (max-width:900px){#jaws-home#jaws-home .jh-tool-scalpel,#jaws-home#jaws-home .jh-tool-hemostat{display:none}}
 
 /* 2. press, a quiet band right under the numbers */
 #jaws-home#jaws-home .jh-press{padding:34px 0 38px;overflow:hidden;text-align:center}
@@ -205,15 +224,19 @@
 #jaws-home#jaws-home .jh-suite.is-pinned .jh-room{width:auto}
 #jaws-home#jaws-home .jh-suite.is-pinned .jh-room-img{height:min(50vh,540px)}
 
-/* 8. one line per screen over soft close-ups of the lounge: pins and fades line to line, or stacks without the pin */
+/* 8. one line per screen over close-ups of her feet from the beach film (final render): pins and fades line to line,
+   or stacks without the pin; the beach line plays a short swash loop */
 #jaws-home#jaws-home .jh-lines{background:#121110}
 #jaws-home#jaws-home .jh-lines-pin{position:relative;overflow:hidden}
 #jaws-home#jaws-home .jh-lines-bg{position:absolute;inset:0;z-index:0}
-#jaws-home#jaws-home .jh-lines-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.1);transition:opacity 1.6s ease,transform 9s linear}
-#jaws-home#jaws-home .jh-lines-bg img.is-on{opacity:1;transform:scale(1.02)}
+#jaws-home#jaws-home .jh-lbg{position:absolute;inset:0;opacity:0;transform:scale(1.08);transition:opacity 1.6s ease,transform 9s linear}
+#jaws-home#jaws-home .jh-lbg.is-on{opacity:1;transform:scale(1.01)}
+#jaws-home#jaws-home .jh-lbg img,#jaws-home#jaws-home .jh-lbg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #jaws-home#jaws-home .jh-lines-bg::after{content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse 75% 65% at 50% 50%,rgba(18,17,16,.5),rgba(18,17,16,.86)),linear-gradient(180deg,rgba(18,17,16,.55),rgba(18,17,16,.15) 45%,rgba(18,17,16,.65))}
-#jaws-home#jaws-home .jh-lines-stage{position:relative;z-index:2;display:grid;justify-items:center;align-content:center;text-align:center;padding:0 clamp(20px,5vw,56px)}
+  background:linear-gradient(180deg,rgba(18,17,16,.72) 0%,rgba(18,17,16,.42) 42%,rgba(18,17,16,.08) 70%,rgba(18,17,16,.35) 100%)}
+#jaws-home#jaws-home .jh-lines-stage{position:relative;z-index:2;display:grid;justify-items:center;align-content:start;text-align:center;
+  padding:clamp(56px,11vh,130px) clamp(20px,5vw,56px) 0}
+#jaws-home#jaws-home .jh-lines .jh-line{text-shadow:0 2px 30px rgba(18,17,16,.45)}
 #jaws-home#jaws-home .jh-lines .jh-line{grid-area:1/1;max-width:15ch;margin:0;font:500 clamp(34px,6.6vw,112px)/1.02 var(--serif);letter-spacing:-.025em;color:#F7F2E9;
   text-wrap:balance;font-variation-settings:"opsz" 48}
 #jaws-home#jaws-home .jh-lines .jh-line em{font-style:italic}
@@ -222,7 +245,7 @@
 #jaws-home#jaws-home .jh-lines .jh-line-intro h2{max-width:14ch;margin:0 auto;font:inherit;letter-spacing:inherit}
 #jaws-home#jaws-home .jh-lines-bar{position:absolute;z-index:2;left:50%;bottom:clamp(28px,5vh,56px);width:min(220px,40vw);height:1px;transform:translateX(-50%);background:rgba(243,226,188,.2);overflow:hidden}
 #jaws-home#jaws-home .jh-lines-bar span{display:block;height:100%;background:var(--gold);transform-origin:0 50%;transform:scaleX(var(--p,0))}
-#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-bg img:first-child{opacity:1}
+#jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lbg:first-child{opacity:1}
 #jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-stage{display:block;padding-top:clamp(90px,12vw,170px);padding-bottom:clamp(20px,3vw,40px)}
 #jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-line{margin:0 auto clamp(70px,9vw,130px)}
 #jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-bar{display:none}
@@ -341,9 +364,14 @@
 <div id="jaws-home">
 
   <section class="jh-intro" aria-labelledby="jh-intro-t">
+    <div class="jh-tools" aria-hidden="true">
+      <i class="jh-tool jh-tool-hemostat" data-tool="hemostat"></i>
+      <i class="jh-tool jh-tool-scalpel" data-tool="scalpel"></i>
+      <i class="jh-tool jh-tool-tweezers" data-tool="tweezers"></i>
+    </div>
     <div class="jh-wrap">
       <p class="jh-kicker jh-r">Cosmetic and aesthetic foot surgery</p>
-      <h2 id="jh-intro-t" class="jh-display jh-intro-h jh-split">Beautiful feet.<br> <em class="jh-gold">Renewed confidence.</em></h2>
+      <h2 id="jh-intro-t" class="jh-display jh-intro-h jh-split">Beautiful feet.<br> <em class="jh-gold">Renewed</em> <em class="jh-gold jh-lift">confidence.</em></h2>
       <div class="jh-intro-row">
         <p class="jh-es jh-r" style="--d:250ms">Pies hermosos. Confianza renovada.</p>
         <div class="jh-r" style="--d:150ms">
@@ -521,10 +549,11 @@
   <section class="jh-lines jh-dark" id="confidence" aria-labelledby="jh-lines-t">
     <div class="jh-lines-pin">
       <div class="jh-lines-bg" aria-hidden="true">
-        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-0.webp" alt="" width="1600" height="900" loading="lazy">
-        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-1.webp" alt="" width="1600" height="900" loading="lazy">
-        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-2.webp" alt="" width="1600" height="900" loading="lazy">
-        <img src="https://xiiixiultra-maker.github.io/jaws-walk/office/line-3.webp" alt="" width="1600" height="900" loading="lazy">
+        <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-0t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-0w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
+        <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-1t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-1w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
+        <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2w.webp" alt="" width="1080" height="608" loading="lazy"></picture>
+          <video class="jh-lvid" muted playsinline loop preload="none" data-wide="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2-loop-wide.mp4" data-tall="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-2-loop-tall.mp4"></video></div>
+        <div class="jh-lbg"><picture><source media="(max-aspect-ratio: 4/5)" srcset="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-3t.webp"><img src="https://xiiixiultra-maker.github.io/jaws-walk/beach/line-3w.webp" alt="" width="1080" height="608" loading="lazy"></picture></div>
       </div>
       <div class="jh-lines-stage">
         <div class="jh-line jh-line-intro">
@@ -747,7 +776,7 @@
   var lines = root.querySelector('.jh-lines');
   var lpin = lines && lines.querySelector('.jh-lines-pin');
   var lineEls = lines ? lines.querySelectorAll('.jh-line') : [];
-  var lineBgs = lines ? lines.querySelectorAll('.jh-lines-bg img') : [];
+  var lineBgs = lines ? lines.querySelectorAll('.jh-lbg') : [];
   var lbar = lines && lines.querySelector('.jh-lines-bar');
   var lpinned = false, lcur = -1;
   function layoutLines() {
@@ -768,11 +797,26 @@
       each(lineBgs, function (el, k) { el.classList.toggle('is-on', k === i); });
     }
     if (lbar) lbar.style.setProperty('--p', p.toFixed(4));
-    return r.top <= headerTop() + 1 && r.bottom >= window.innerHeight - 1;
+    var holds = r.top <= headerTop() + 1 && r.bottom >= window.innerHeight - 1;
+    lineVideos(lcur, r.bottom > 0 && r.top < window.innerHeight);
+    return holds;
+  }
+  function lineVideos(i, inView) {         // the beach line's swash loop plays only while its screen is up
+    each(lineBgs, function (el, k) {
+      var v = el.querySelector('video');
+      if (!v || reduce) return;
+      if (k === i && inView) {
+        var tall = mm('(max-aspect-ratio: 4/5)').matches;
+        var src = v.getAttribute(tall ? 'data-tall' : 'data-wide');
+        if (v.getAttribute('src') !== src) v.src = src;
+        if (v.paused) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+      } else if (!v.paused) v.pause();
+    });
   }
 
   function layout() {
     layoutLines();
+    if (tweez && tweez.classList.contains('is-in')) placeTweezers(false);   // the word moves when the width changes
     if (suite) {
       pinned = wide.matches && !reduce && !clipped(suite);
       suite.classList.toggle('is-pinned', pinned);
@@ -816,6 +860,88 @@
     }
   }
 
+  // floating gold instruments: 12 rendered frames each, so the pointer (or the scroll, on touch screens) turns them;
+  // the tweezers come down, pinch "confidence." and lift it off the page
+  var intro = root.querySelector('.jh-intro');
+  var tools = intro ? intro.querySelectorAll('.jh-tool') : [];
+  var tweez = intro && intro.querySelector('.jh-tool-tweezers');
+  var liftEl = intro && intro.querySelector('.jh-lift');
+  var TOOLS_BASE = 'https://xiiixiultra-maker.github.io/jaws-walk/tools3d/';
+  var TIP = [0.9566, 0.0643];              // where the tips sit in the tweezers' middle frame (share of its width, height)
+  var LIFT = -14, lifted = false, toolsOn = false;
+  var finePointer = mm('(hover: hover) and (pointer: fine)').matches;
+  if (liftEl) liftEl.style.setProperty('--lift', LIFT + 'px');
+  function loadTools() {
+    if (toolsOn) return;
+    toolsOn = true;
+    var sm = window.innerWidth < 768 ? '-sm' : '';
+    each(tools, function (t) { t.style.backgroundImage = 'url("' + TOOLS_BASE + t.getAttribute('data-tool') + sm + '.webp")'; });
+  }
+  function placeTweezers(waiting) {        // tips on the top of the word; waiting = drawn back along the tweezers, out of sight
+    if (!tweez || !liftEl) return;
+    var wrap = liftEl.offsetParent, tw = tweez.offsetWidth, th = tweez.offsetHeight;
+    var narrow = window.innerWidth <= 900;  // one column: hold the word level by its end, clear of the line above
+    var rot = narrow ? 212 : 180, gx = narrow ? 0.9 : 0.5, gy = narrow ? 0.45 : 0.16;
+    var a = rot * Math.PI / 180, dx = (TIP[0] - 0.5) * tw, dy = (TIP[1] - 0.5) * th;
+    var tipX = tw / 2 + dx * Math.cos(a) - dy * Math.sin(a), tipY = th / 2 + dx * Math.sin(a) + dy * Math.cos(a);
+    var x = wrap.offsetLeft + liftEl.offsetLeft + liftEl.offsetWidth * gx - tipX;
+    var y = wrap.offsetTop + liftEl.offsetTop + liftEl.offsetHeight * gy - tipY + (lifted ? LIFT : 0);
+    if (waiting) {                         // back away from the tips' direction
+      var back = Math.atan2(tipY - th / 2, tipX - tw / 2) + Math.PI;
+      x += Math.cos(back) * tw * 0.9;
+      y += Math.sin(back) * tw * 0.9;
+    }
+    tweez.style.setProperty('--rot', rot + 'deg');
+    tweez.style.setProperty('--tx', x.toFixed(1) + 'px');
+    tweez.style.setProperty('--ty', y.toFixed(1) + 'px');
+  }
+  function pinch() {
+    if (!tweez || !liftEl || lifted) return;
+    if (reduce) {                          // no motion: the word simply rests lifted in the tweezers
+      lifted = true;
+      liftEl.classList.add('is-lifted');
+      tweez.classList.add('is-in', 'is-lifted');
+      placeTweezers(false);
+      return;
+    }
+    placeTweezers(true);
+    setTimeout(function () {
+      tweez.classList.add('is-in');
+      placeTweezers(false);
+      setTimeout(function () {
+        lifted = true;
+        liftEl.classList.add('is-lifted');
+        tweez.classList.add('is-lifted');
+        placeTweezers(false);
+      }, 1250);
+    }, 80);
+  }
+  function turnTools(f) {
+    each(tools, function (t, k) {
+      if (t === tweez) return;
+      t.style.setProperty('--f', Math.round(k % 2 ? 11 - f : f));   // neighbours turn opposite ways
+    });
+  }
+  function toolsScroll(vh) {               // drift with the scroll; touch screens also turn them with it
+    if (!intro || !toolsOn) return;
+    var r = intro.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > vh) return;
+    if (!finePointer && !reduce) turnTools(11 * Math.min(1, Math.max(0, (vh - r.top) / (vh + r.height))));
+    if (!reduce) each(tools, function (t, k) { if (t !== tweez) t.style.setProperty('--ty', (r.top * (k ? -0.12 : -0.06)).toFixed(1) + 'px'); });
+  }
+  if (intro && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es, o) {
+      if (es.some(function (e) { return e.isIntersecting; })) { loadTools(); o.disconnect(); }
+    }, { rootMargin: '900px 0px 900px 0px' }).observe(intro);
+    var heading = intro.querySelector('h2');
+    new IntersectionObserver(function (es, o) {
+      if (es.some(function (e) { return e.isIntersecting; })) { o.disconnect(); setTimeout(pinch, reduce ? 0 : 900); }
+    }, { threshold: 0.6 }).observe(heading);
+  } else if (intro) { loadTools(); pinch(); }
+  if (finePointer && !reduce) {
+    window.addEventListener('pointermove', function (e) { if (toolsOn) turnTools(11 * e.clientX / window.innerWidth); }, { passive: true });
+  }
+
   var doc = root.querySelector('.jh-doc-stage');
   var cta = root.querySelector('.jh-cta');
   var dock = document.getElementById('jh-dock');
@@ -844,6 +970,7 @@
       if (d.top < vh * 0.5 && d.bottom > vh - 110) holding = true;    // his name would sit under the booking bar
     }
     holding = updateLines() || holding;
+    toolsScroll(vh);
     if (dock) {                            // out of the way during the walk, the pinned screens and the closing section
       var walk = document.getElementById('jaws-walk');   // looked up each time: Duda re-renders the walk widget after load
       var after = walk ? walk.getBoundingClientRect().bottom < 0 : window.pageYOffset > vh;
