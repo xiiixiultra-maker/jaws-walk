@@ -21,6 +21,10 @@
 /* office palette: wall white, floor grey, charcoal sign wall, teak, brass and lit gold, green velvet */
 #jaws-home#jaws-home{--wall:#F7F6F3;--mist:#ECEBE7;--paper:#FBFAF7;--ink:#2A2827;--night:#1B1A19;--soft:#5B5752;--teak:#8A6141;--teak-dk:#5E412C;--teak-lt:#C9A07A;
   --brass:#A9853F;--gold:#D9B68C;--velvet:#1F5A48;--cream:#F4EFE7;--mute:#ABA498;
+  /* the buttons' face: the office wall's teak slats, rendered in 3D from the room's own geometry and wood
+     (tools/render_button_slats.py), lit from the upper left, with a soft top light and a darker foot */
+  --slats:linear-gradient(180deg,rgba(255,236,210,.14),rgba(0,0,0,0) 42%,rgba(0,0,0,.3)),
+    url("https://xiiixiultra-maker.github.io/jaws-walk/office/btn-slats.webp") 0 50%/auto 100% repeat-x,#6B4A31;
   --serif:"Bodoni Moda","Bodoni MT",Didot,"Bodoni 72",Georgia,serif;--sans:"Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif;
   --top:110px;--ease:cubic-bezier(.2,.7,.2,1);
   display:block;background:var(--wall);color:var(--ink);font:400 17px/1.65 var(--sans);-webkit-font-smoothing:antialiased;text-align:left;overflow-x:clip}
@@ -74,8 +78,8 @@
 
 /* buttons, chips and links */
 #jaws-home#jaws-home .jh-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;padding:20px 32px;border-radius:999px;
-  font:500 16px/1 var(--sans);color:#fff;text-decoration:none;
-  background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#A17654,#7A5537);
+  font:500 16px/1 var(--sans);color:#fff;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.5);
+  background:var(--slats);
   box-shadow:0 14px 34px rgba(94,65,44,.35),inset 0 1px 0 rgba(255,255,255,.18);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 #jaws-home#jaws-home .jh-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,240,210,.45),transparent);transform:skewX(-20deg);transition:left .9s var(--ease)}
 #jaws-home#jaws-home .jh-btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(94,65,44,.45),inset 0 1px 0 rgba(255,255,255,.2)}
@@ -158,7 +162,7 @@
    for its captions and buttons, and the pinned site header's height (110px on phones and tablets, 89px on desktop) */
 #jaws-home#jaws-home .jh-tour{background:var(--night)}
 #jaws-walk#jaws-walk{--gold:#D9B68C;--gold-lt:#EBD5B5;--gold-rgb:217,182,140;--ink:#2A2827;
-  --btn-bg:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#9C7150,#7A5537);
+  --btn-bg:var(--slats);
   --btn-ink:#fff;--btn-glow:0 12px 30px rgba(0,0,0,.3);--jw-top:110px;
   --jw-serif:"Bodoni Moda","Bodoni MT",Didot,"Bodoni 72",Georgia,serif;--jw-sans:"Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif}
 @media (min-width:1025px){#jaws-walk#jaws-walk{--jw-top:89px}}
@@ -389,8 +393,9 @@
   transform:translateY(160%);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 #jh-dock#jh-dock.is-on{transform:none}
 #jh-dock#jh-dock a{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font:500 16px/1 "Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif}
-#jh-dock#jh-dock .jh-dock-book{flex:1;padding:16px 20px;border-radius:999px;color:#fff;
-  background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,rgba(255,255,255,0) 2px 11px),linear-gradient(180deg,#A17654,#7A5537)}
+#jh-dock#jh-dock .jh-dock-book{flex:1;padding:16px 20px;border-radius:999px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5);
+  background:linear-gradient(180deg,rgba(255,236,210,.14),rgba(0,0,0,0) 42%,rgba(0,0,0,.3)),
+    url("https://xiiixiultra-maker.github.io/jaws-walk/office/btn-slats.webp") 0 50%/auto 100% repeat-x,#6B4A31}
 #jh-dock#jh-dock .jh-dock-call{flex:0 0 52px;border-radius:999px;border:1px solid rgba(243,226,188,.35);color:#D9B68C}
 #jh-dock#jh-dock .jh-dock-long,#jh-dock#jh-dock .jh-dock-call span{display:none}
 @media (min-width:768px){
