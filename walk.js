@@ -19,7 +19,7 @@
   const root = document.getElementById('jaws-walk');
   if (!root || root.dataset.mounted) return;
   root.dataset.mounted = '1';
-  const VER = '3.3';
+  const VER = '3.4';
   const me = document.currentScript;
   const BASE = root.dataset.base || (me && me.src ? me.src.replace(/[^/]*$/, '') : '');
   const params = new URLSearchParams(location.search);
@@ -43,7 +43,7 @@
 #jaws-walk#jaws-walk{position:relative;background:var(--ink);color:#fff;font-family:var(--jw-sans)}
 #jaws-walk#jaws-walk *,#jaws-walk#jaws-walk *::before,#jaws-walk#jaws-walk *::after{box-sizing:border-box}
 #jaws-walk#jaws-walk .jw-track{position:relative}
-#jaws-walk#jaws-walk .jw-stage{position:sticky;top:var(--jw-top,0px);height:calc(100vh - var(--jw-top,0px));height:calc(100dvh - var(--jw-top,0px));
+#jaws-walk#jaws-walk .jw-stage{position:sticky;top:var(--jw-top,0px);height:calc(100vh - var(--jw-top,0px));height:calc(100svh - var(--jw-top,0px));
  overflow:hidden;container-type:size;background:var(--ink)}
 #jaws-walk#jaws-walk .jw-stage.jw-manual{position:absolute;left:0;right:0;top:0;will-change:transform}
 #jaws-walk#jaws-walk.jw-capture .jw-stage{position:fixed;inset:0;height:100vh;transform:none}
@@ -387,16 +387,45 @@
     if (c !== cut) { cut = c; dirty = true; pump(); }
   }
 
+  function clipsOverflow() {              // a parent that hides or scrolls overflow keeps position: sticky from pinning
+    for (let p = track.parentElement; p && p !== document.body && p !== document.documentElement; p = p.parentElement) {
+      const s = getComputedStyle(p);
+      if (/(hidden|auto|scroll)/.test(`${s.overflowX} ${s.overflowY}`)) return true;
+    }
+    return false;
+  }
+  function fixedWorks() {                 // position: fixed follows the viewport unless a parent is transformed or contained
+    for (let p = track.parentElement; p && p !== document.documentElement; p = p.parentElement) {
+      const s = getComputedStyle(p);
+      if (s.transform !== 'none' || s.filter !== 'none' || s.perspective !== 'none' || /paint|layout|strict|content/.test(s.contain)) return false;
+    }
+    return true;
+  }
+  let suspect = 0, useFixed = false;
   function progress() {
+    top = parseFloat(getComputedStyle(root).getPropertyValue('--jw-top')) || 0;   // fresh: the header offset can change with the width
     const r = track.getBoundingClientRect();
     const span = r.height - H;
     const y = clamp(top - r.top, 0, Math.max(0, span));
     if (!manual && y > 20 && y < span - 20) {   // sticky failed (a parent clips overflow): pin the stage by script
       const st = stage.getBoundingClientRect();
-      if (Math.abs(st.top - top) > 4) { manual = true; stage.classList.add('jw-manual'); }
+      suspect = Math.abs(st.top - top) > 4 ? suspect + 1 : 0;
+      if (suspect > (clipsOverflow() ? 2 : 12)) {   // a real failure lasts; a resize or a device switch only blips
+        manual = true;
+        useFixed = fixedWorks();
+        stage.classList.add('jw-manual');
+      }
     }
-    if (manual) stage.style.transform = `translateY(${y.toFixed(1)}px)`;
+    if (manual) pinByScript(y, span);
     return span > 0 ? y / span : 0;
+  }
+  function pinByScript(y, span) {         // fixed while pinned (no lag behind the scroll), absolute at either end
+    if (useFixed && y > 0 && y < span) {
+      const tr = track.getBoundingClientRect();
+      Object.assign(stage.style, { position: 'fixed', top: `${top}px`, left: `${tr.left}px`, width: `${tr.width}px`, transform: 'none' });
+    } else {
+      Object.assign(stage.style, { position: '', top: '', left: '', width: '', transform: `translateY(${y.toFixed(1)}px)` });
+    }
   }
 
   let looping = false;

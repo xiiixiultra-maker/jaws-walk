@@ -226,7 +226,7 @@
 #jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-stage{display:block;padding-top:clamp(90px,12vw,170px);padding-bottom:clamp(20px,3vw,40px)}
 #jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-line{margin:0 auto clamp(70px,9vw,130px)}
 #jaws-home#jaws-home .jh-lines:not(.is-pinned) .jh-lines-bar{display:none}
-#jaws-home#jaws-home .jh-lines.is-pinned .jh-lines-pin{position:sticky;top:var(--top);height:calc(100vh - var(--top))}
+#jaws-home#jaws-home .jh-lines.is-pinned .jh-lines-pin{position:sticky;top:var(--top);height:calc(100vh - var(--top));height:calc(100svh - var(--top))}
 #jaws-home#jaws-home .jh-lines.is-pinned .jh-lines-stage{height:100%}
 #jaws-home#jaws-home .jh-lines.is-pinned .jh-line{opacity:0;transform:translateY(22px);filter:blur(8px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease)}
 #jaws-home#jaws-home .jh-lines.is-pinned .jh-line.is-on{opacity:1;transform:none;filter:none;transition-delay:.25s}
@@ -754,7 +754,7 @@
     if (!lines) return;
     lpinned = !reduce && !clipped(lines);
     lines.classList.toggle('is-pinned', lpinned);
-    lines.style.height = lpinned ? (lpin.offsetHeight + (lineEls.length - 1) * window.innerHeight * 0.8) + 'px' : '';
+    lines.style.height = lpinned ? (lpin.offsetHeight * (1 + (lineEls.length - 1) * 0.8)) + 'px' : '';   // stable when a phone's address bar moves
     lcur = -1;
   }
   function updateLines() {                 // true while the pin holds the screen
