@@ -196,7 +196,9 @@
 /* 4. the surgeon: in front of the glowing sign, his name set in front of him */
 #jaws-home#jaws-home .jh-doc{background:#121110;overflow:hidden}
 #jaws-home#jaws-home .jh-doc-bg,#jaws-home#jaws-home .jh-doc-stage{height:calc(100vh - var(--top));max-height:940px;min-height:600px}
-#jaws-home#jaws-home .jh-doc-bg{position:absolute;inset:0 0 auto;z-index:0;overflow:hidden;background:#121110 url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-wide.webp") center 22%/cover no-repeat}
+#jaws-home#jaws-home .jh-doc-bg{position:absolute;inset:0 0 auto;z-index:0;overflow:hidden;background:#121110 url("https://xiiixiultra-maker.github.io/jaws-walk/office/sign-wide.webp") center 22%/cover no-repeat;
+  /* gone before its edge: at a fractional height the last, half-covered pixel row let the bright video through */
+  -webkit-mask-image:linear-gradient(180deg,#000 82%,transparent 98%);mask-image:linear-gradient(180deg,#000 82%,transparent 98%)}
 #jaws-home#jaws-home .jh-doc-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 28%,rgba(18,17,16,.05),rgba(18,17,16,.78) 72%),linear-gradient(180deg,rgba(18,17,16,.15) 0%,rgba(18,17,16,.35) 60%,#121110 97%)}
 /* lights-off render of the same frame on top: the script fades it out as the section scrolls in, then the loop plays */
 #jaws-home#jaws-home .jh-doc-video,#jaws-home#jaws-home .jh-doc-dark{position:absolute;inset:0;width:100%;height:100%;margin:0}   /* Duda's theme gives video a 10px margin */
