@@ -816,7 +816,6 @@
   }
 
   var doc = root.querySelector('.jh-doc-stage');
-  var walk = document.getElementById('jaws-walk');
   var cta = root.querySelector('.jh-cta');
   var dock = document.getElementById('jh-dock');
   if (dock) {
@@ -845,6 +844,7 @@
     }
     holding = updateLines() || holding;
     if (dock) {                            // out of the way during the walk, the pinned screens and the closing section
+      var walk = document.getElementById('jaws-walk');   // looked up each time: Duda re-renders the walk widget after load
       var after = walk ? walk.getBoundingClientRect().bottom < 0 : window.pageYOffset > vh;
       var nearEnd = cta ? cta.getBoundingClientRect().top < vh * 0.8 : false;
       dock.classList.toggle('is-on', after && !nearEnd && !holding);
