@@ -46,6 +46,8 @@
 #dm #flex-header .graphicWidget a::before,#dm #flex-header button.hamburgerButton::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:50%;
   padding:1.25px;pointer-events:none;background:linear-gradient(135deg,rgba(255,243,209,.75),rgba(169,133,63,.35) 50%,rgba(240,215,156,.65));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+#dm #flex-header .graphicWidget a{margin:-4px !important}          /* the 40px circle stays centred on Duda's 32px icon */
+#dm #flex-header button.hamburgerButton{margin:-5px !important}      /* and on the 30px menu icon */
 #dm #flex-header .graphicWidget svg,#dm #flex-header .graphicWidget svg *{fill:#E2C27D !important}
 #dm #flex-header button.hamburgerButton svg{width:100% !important;height:100% !important}
 #dm #flex-header button.hamburgerButton svg *{fill:#F3E9D6 !important}
