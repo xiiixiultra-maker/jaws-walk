@@ -955,6 +955,22 @@ html.jh-player-open,html.jh-player-open body{overflow:hidden}
   var wide = mm('(min-width: 901px)');
   var dist = 0, pinned = false;
   var headerTop = function () { return parseFloat(getComputedStyle(root).getPropertyValue('--top')) || 0; };
+  // the site header pins over the page (sticky or fixed): measure where it ends, so the walk and the pinned screens
+  // sit right under it whatever its height; a header that scrolls away pins nothing
+  function syncTop() {
+    var h = document.getElementById('flex-header') || document.querySelector('.dmHeaderContainer, #hcontainer');
+    if (!h) return;
+    var pinned = false;
+    for (var el = h; el && el !== document.body; el = el.parentElement) {
+      var pos = getComputedStyle(el).position;
+      if (pos === 'sticky' || pos === 'fixed') { pinned = true; break; }
+    }
+    var px = (pinned ? Math.max(0, Math.round(h.getBoundingClientRect().bottom)) : 0) + 'px';
+    if (root.style.getPropertyValue('--top') !== px) root.style.setProperty('--top', px);
+    var wk = document.getElementById('jaws-walk');           // looked up each time: Duda re-renders the walk widget after load
+    if (wk && wk.style.getPropertyValue('--jw-top') !== px) wk.style.setProperty('--jw-top', px);
+  }
+  syncTop();
   function clipped(el) {
     for (var p = el.parentElement; p && p !== document.body; p = p.parentElement) {
       if (p === root) continue;
@@ -1085,6 +1101,7 @@ html.jh-player-open,html.jh-player-open body{overflow:hidden}
   }
 
   function layout() {
+    syncTop();
     layoutLines();
     if (tweez && tweez.classList.contains('is-in')) placeTweezers(false);   // the word moves when the width changes
     if (toolsOn) { sizeTools(); tweezImage(); }
@@ -1332,6 +1349,7 @@ html.jh-player-open,html.jh-player-open body{overflow:hidden}
   }
 
   function update() {
+    syncTop();
     var vh = window.innerHeight, vw = window.innerWidth, holding = false;
     if (pinned) {
       var r = suite.getBoundingClientRect(), span = suite.offsetHeight - pin.offsetHeight;
