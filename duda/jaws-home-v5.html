@@ -1354,6 +1354,9 @@ html.jh-player-open,html.jh-player-open body{overflow:hidden}
       if (es.some(function (e) { return e.isIntersecting; })) { o.disconnect(); setTimeout(pinch, reduce ? 0 : 900); }
     }, { threshold: 0.6 }).observe(heading);
   } else if (intro) { loadTools(); pinch(); }
+  if (intro && tweez && 'ResizeObserver' in window) {   // the word moves if the hero settles late (fonts, a preview frame)
+    new ResizeObserver(function () { if (tweez.classList.contains('is-in')) placeTweezers(false); }).observe(intro);
+  }
   if (finePointer && !reduce) {
     window.addEventListener('pointermove', function (e) { turnTools(e.clientX / window.innerWidth); }, { passive: true });
   }
