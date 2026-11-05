@@ -1,0 +1,53 @@
+/* JAWS header, style A "smoked glass" (picked 11/5/2026). Site-wide CSS for the Duda header: the header keeps
+   Duda's own logo, menu, button and phone icons; this only restyles them. Dark smoked glass, a gold hairline with a
+   light gliding along it, and the hero's champagne-glass button. */
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Mittel.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+/* the bar */
+#dm #flex-header{background:linear-gradient(180deg,rgba(36,33,31,.95),rgba(20,18,17,.93)) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%)}
+/* the gold hairline along the bottom, with a light that glides along it every 7 seconds */
+#dm #flex-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;z-index:5;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,244,214,.95),rgba(255,244,214,0)) no-repeat,
+    linear-gradient(90deg,rgba(226,194,125,0),rgba(226,194,125,.5) 18%,rgba(255,243,209,.95) 50%,rgba(226,194,125,.5) 82%,rgba(226,194,125,0)) no-repeat;
+  background-size:200px 3px,100% 1px;background-position:-220px 0,0 1px;animation:jhHdrGlint 7s ease-in-out infinite}
+@keyframes jhHdrGlint{0%{background-position:-220px 0,0 1px}55%,100%{background-position:calc(100% + 220px) 0,0 1px}}
+
+/* the menu: cream text, champagne for the page you're on, with a small glowing dot under it */
+#dm #flex-header nav .unifiednav__item .nav-item-text{font:500 15px/1 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;text-transform:none !important;color:rgba(246,238,223,.8) !important;transition:color .3s}
+#dm #flex-header nav .unifiednav__item:hover .nav-item-text{color:#FFF6DE !important}
+#dm #flex-header nav .unifiednav__item.dmNavItemSelected .nav-item-text{color:#EAD3A4 !important}
+#dm #flex-header nav .unifiednav__item .nav-item-text::after{display:none !important}
+#dm #flex-header nav .unifiednav__item.dmNavItemSelected{position:relative}
+#dm #flex-header nav .unifiednav__item.dmNavItemSelected::after{content:"";position:absolute;left:50%;bottom:-5px;width:4px;height:4px;margin-left:-2px;
+  border-radius:50%;background:#E2C27D;box-shadow:0 0 10px 2px rgba(226,194,125,.75);pointer-events:none}
+
+/* the button: champagne glass with a polished gold rim, like the hero's, and a light that sweeps across it */
+#dm #flex-header a.dmButtonLink{position:relative !important;isolation:isolate;overflow:hidden !important;justify-content:center !important;
+  border:0 !important;border-radius:999px !important;background:linear-gradient(180deg,rgba(240,215,156,.26),rgba(169,133,63,.08)) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.4),0 12px 32px rgba(169,133,63,.25) !important;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s cubic-bezier(.2,.7,.2,1)}
+#dm #flex-header a.dmButtonLink .text{position:relative;z-index:2;font:500 15px/1 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;text-transform:none !important;color:#FFF6DE !important}
+#dm #flex-header a.dmButtonLink::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1.25px;pointer-events:none;
+  background:linear-gradient(135deg,#FFF3D1,#A9853F 30%,#F0D79C 60%,#7A5A26 85%,#E7C987);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+#dm #flex-header a.dmButtonLink::after{content:"" !important;position:absolute !important;top:0;bottom:0;left:-70%;width:45% !important;height:auto !important;
+  z-index:1;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(255,240,210,.45),transparent);transform:skewX(-20deg);
+  animation:jhHdrSweep 5.5s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes jhHdrSweep{0%,62%{left:-70%}100%{left:140%}}
+#dm #flex-header a.dmButtonLink:hover{transform:translateY(-1px);box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.5),0 16px 40px rgba(217,182,140,.32) !important}
+
+/* phones: the call and menu icons sit in small glass circles with a gold rim */
+#dm #flex-header .graphicWidget a,#dm #flex-header button.hamburgerButton{position:relative;isolation:isolate;display:grid !important;place-items:center;
+  box-sizing:border-box;width:40px !important;height:40px !important;padding:10px !important;border-radius:50% !important;background:rgba(255,246,222,.05) !important}
+#dm #flex-header .graphicWidget a::before,#dm #flex-header button.hamburgerButton::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:50%;
+  padding:1.25px;pointer-events:none;background:linear-gradient(135deg,rgba(255,243,209,.75),rgba(169,133,63,.35) 50%,rgba(240,215,156,.65));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+#dm #flex-header .graphicWidget svg,#dm #flex-header .graphicWidget svg *{fill:#E2C27D !important}
+#dm #flex-header button.hamburgerButton svg{width:100% !important;height:100% !important}
+#dm #flex-header button.hamburgerButton svg *{fill:#F3E9D6 !important}
+
+@media (prefers-reduced-motion:reduce){#dm #flex-header::after,#dm #flex-header a.dmButtonLink::after{animation:none !important}}
