@@ -1296,17 +1296,22 @@ html.jh-player-open,html.jh-player-open body{overflow:hidden}
       tweez.style.backgroundImage = 'url("' + TOOLS_BASE + 'tweezers-' + p + '.webp")';
     }
   }
+  function offsetIn(el, anc) {           // where el sits inside anc, summed up its offset parents
+    var x = 0, y = 0;
+    while (el && el !== anc) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; }
+    return [x, y];
+  }
   function placeTweezers(waiting) {        // tips on the top of the word; waiting = drawn back along the tweezers, out of sight
     if (!tweez || !liftEl) return;
     tweezImage();
     var p = tweezPose(), t = TWEEZ[p];
-    var wrap = liftEl.offsetParent, tw = tweez.offsetWidth, th = tweez.offsetHeight;
+    var o = offsetIn(liftEl, intro), tw = tweez.offsetWidth, th = tweez.offsetHeight;   // the word in the hero
     var gx = p === 'phone' ? 0.9 : 0.5, gy = p === 'phone' ? 0.45 : 0.16;   // phones: hold the word level by its end
     var tipX = t[2] * tw, tipY = t[3] * th;
     var cs = getComputedStyle(liftEl), pt = parseFloat(cs.paddingTop) || 0, pb = parseFloat(cs.paddingBottom) || 0;
     var w = liftEl.offsetWidth - (parseFloat(cs.paddingRight) || 0), h = liftEl.offsetHeight - pt - pb;   // the word, not its padding
-    var x = wrap.offsetLeft + liftEl.offsetLeft + w * gx - tipX;
-    var y = wrap.offsetTop + liftEl.offsetTop + pt + h * gy - tipY + (lifted ? LIFT : 0);
+    var x = o[0] + w * gx - tipX;
+    var y = o[1] + pt + h * gy - tipY + (lifted ? LIFT : 0);
     if (waiting) {                         // back away from the tips' direction
       var back = Math.atan2(tipY - th / 2, tipX - tw / 2) + Math.PI;
       x += Math.cos(back) * tw * 0.9;
