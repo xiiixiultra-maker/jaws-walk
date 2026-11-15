@@ -53,3 +53,13 @@
 #dm #flex-header button.hamburgerButton svg *{fill:#F3E9D6 !important}
 
 @media (prefers-reduced-motion:reduce){#dm #flex-header::after,#dm #flex-header a.dmButtonLink::after{animation:none !important}}
+
+/* Procedures dropdown: the same smoked glass as the bar, so the cream menu text reads */
+#dm #flex-header nav .unifiednav__container_sub-nav{background:rgba(27,26,25,.97) !important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid rgba(217,182,140,.28) !important;border-radius:18px !important;padding:10px 0 !important;min-width:270px;box-shadow:0 26px 60px rgba(0,0,0,.45) !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item{padding:10px 22px !important;background:transparent !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item .nav-item-text{font-size:14px !important;color:#E9E1D3 !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item:hover{background:rgba(217,182,140,.08) !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item:hover .nav-item-text,
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item.dmNavItemSelected .nav-item-text{color:#F0D79C !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item.dmNavItemSelected::after{display:none !important}

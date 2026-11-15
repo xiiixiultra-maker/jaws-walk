@@ -536,6 +536,17 @@
   #jh-dock#jh-dock .jh-dock-long,#jh-dock#jh-dock .jh-dock-call span{display:inline}
   #jh-dock#jh-dock .jh-dock-short{display:none}
 }
+
+/* procedure list: each name opens its page */
+#jaws-home#jaws-home .jh-index .jh-go{color:inherit;text-decoration:none}
+#jaws-home#jaws-home .jh-index .jh-go i{display:inline-block;margin-left:.28em;font-style:normal;font-size:.58em;vertical-align:.18em;color:var(--teak);opacity:.6;transition:transform .45s var(--ease),opacity .45s}
+#jaws-home#jaws-home .jh-index .jh-go:hover{color:var(--teak-dk)}
+#jaws-home#jaws-home .jh-index .jh-go:hover i{opacity:1;transform:translateX(6px)}
+#jaws-home#jaws-home .jh-index .jh-go:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+#jaws-home#jaws-home .jh-star .jh-star-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:28px}
+#jaws-home#jaws-home .jh-star .jh-star-ctas .jh-btn{margin-top:0}
+#jaws-home#jaws-home .jh-star .jh-btn-more{background:transparent;box-shadow:none}
+#jaws-home#jaws-home .jh-star .jh-btn-more sup{font-size:.6em;line-height:0;vertical-align:.55em;margin-left:.04em}
 </style>
 
 <div id="jaws-home">
@@ -631,33 +642,34 @@
           <i class="jh-star-rim" aria-hidden="true"></i>
           <p class="jh-star-no" aria-hidden="true">N&deg;<b>01</b></p>
           <span class="jh-badge">Signature</span>
-          <h3>BrachyBalancing<sup>&trade;</sup> surgery</h3>
+          <h3>Brachybalancing<sup>&trade;</sup> surgery</h3>
           <p>Dr. Wagner's own surgery for brachymetatarsia, when a toe sits short because its metatarsal bone is short, planned to bring the foot back into balance.</p>
-          <a class="jh-btn" href="https://www.youtube.com/watch?v=NNJOIkXWd2M" target="_blank" rel="noopener"><i aria-hidden="true"></i>Watch the surgery</a>
+          <div class="jh-star-ctas"><a class="jh-btn" href="https://www.youtube.com/watch?v=NNJOIkXWd2M" target="_blank" rel="noopener"><i aria-hidden="true"></i>Watch the surgery</a>
+          <a class="jh-btn jh-btn-more" href="/brachybalancing">Explore Brachybalancing<sup>&trade;</sup></a></div>
         </article>
       </div>
       <div class="jh-index">
         <div class="jh-index-group jh-r">
           <h3 class="jh-index-cat"><span>I</span>Toes</h3>
           <ol>
-            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/E8Tp6VPOlIY.webp"><span class="jh-n">01</span><b>Aesthetic toe shortening</b><a class="jh-watch" href="https://www.youtube.com/shorts/E8Tp6VPOlIY" target="_blank" rel="noopener">124K views</a><p>Restores natural proportion to a noticeably long toe through a minimally invasive, in-office procedure.</p></li>
-            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/WdznnHjmzws.webp"><span class="jh-n">02</span><b>Toe lengthening</b><a class="jh-watch" href="https://www.youtube.com/shorts/WdznnHjmzws" target="_blank" rel="noopener">62K views</a><p>Adds length to a short toe with a sliding bone cut or a bone graft, planned around proportion and alignment.</p></li>
-            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/duhvx4I28Oo.webp"><span class="jh-n">03</span><b>Toe straightening</b><a class="jh-watch" href="https://www.youtube.com/shorts/duhvx4I28Oo" target="_blank" rel="noopener">174K views</a><p>Corrects crooked, rotated, overlapping or curled toes.</p></li>
+            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/E8Tp6VPOlIY.webp"><span class="jh-n">01</span><b><a class="jh-go" href="/toe-shortening">Aesthetic toe shortening<i aria-hidden="true">&rarr;</i></a></b><a class="jh-watch" href="https://www.youtube.com/shorts/E8Tp6VPOlIY" target="_blank" rel="noopener">124K views</a><p>Restores natural proportion to a noticeably long toe through a minimally invasive, in-office procedure.</p></li>
+            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/WdznnHjmzws.webp"><span class="jh-n">02</span><b><a class="jh-go" href="/toe-lengthening">Toe lengthening<i aria-hidden="true">&rarr;</i></a></b><a class="jh-watch" href="https://www.youtube.com/shorts/WdznnHjmzws" target="_blank" rel="noopener">62K views</a><p>Adds length to a short toe with a sliding bone cut or a bone graft, planned around proportion and alignment.</p></li>
+            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/duhvx4I28Oo.webp"><span class="jh-n">03</span><b><a class="jh-go" href="/hammertoe-surgery">Toe straightening<i aria-hidden="true">&rarr;</i></a></b><a class="jh-watch" href="https://www.youtube.com/shorts/duhvx4I28Oo" target="_blank" rel="noopener">174K views</a><p>Corrects crooked, rotated, overlapping or curled toes.</p></li>
           </ol>
         </div>
         <div class="jh-index-group jh-r">
           <h3 class="jh-index-cat"><span>II</span>Contour</h3>
           <ol>
-            <li><span class="jh-n">04</span><b>Toe tucks</b><p>Like a nip and tuck for the toes: fatty tissue is removed so the toes look slimmer.</p></li>
-            <li><span class="jh-n">05</span><b>Side tucks and foot slimming</b><p>Slims the sides of the foot by removing fatty tissue, for a sleeker silhouette.</p></li>
+            <li><span class="jh-n">04</span><b><a class="jh-go" href="/foot-and-toe-tuck">Toe tucks<i aria-hidden="true">&rarr;</i></a></b><p>Like a nip and tuck for the toes: fatty tissue is removed so the toes look slimmer.</p></li>
+            <li><span class="jh-n">05</span><b><a class="jh-go" href="/foot-and-toe-tuck">Side tucks and foot slimming<i aria-hidden="true">&rarr;</i></a></b><p>Slims the sides of the foot by removing fatty tissue, for a sleeker silhouette.</p></li>
           </ol>
         </div>
         <div class="jh-index-group jh-r">
           <h3 class="jh-index-cat"><span>III</span>Correction</h3>
           <ol>
-            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/sX5sNJ0iHSM.webp"><span class="jh-n">06</span><b>Minimally invasive bunion surgery</b><a class="jh-watch" href="https://www.youtube.com/shorts/sX5sNJ0iHSM" target="_blank" rel="noopener">498K views</a><p>Corrects the bunion through tiny keyhole incisions.</p></li>
-            <li><span class="jh-n">07</span><b>Minimally invasive bunionette surgery</b><p>Corrects the tailor's bunion, the bump on the outside of the foot at the base of the little toe, through tiny keyhole incisions.</p></li>
-            <li><span class="jh-n">08</span><b>Minimally invasive hammertoe surgery</b><p>Straightens a bent or curled toe through tiny keyhole incisions.</p></li>
+            <li data-thumb="https://xiiixiultra-maker.github.io/jaws-walk/yt/sX5sNJ0iHSM.webp"><span class="jh-n">06</span><b><a class="jh-go" href="/bunion-surgery">Minimally invasive bunion surgery<i aria-hidden="true">&rarr;</i></a></b><a class="jh-watch" href="https://www.youtube.com/shorts/sX5sNJ0iHSM" target="_blank" rel="noopener">498K views</a><p>Corrects the bunion through tiny keyhole incisions.</p></li>
+            <li><span class="jh-n">07</span><b><a class="jh-go" href="/tailors-bunion">Minimally invasive bunionette surgery<i aria-hidden="true">&rarr;</i></a></b><p>Corrects the tailor's bunion, the bump on the outside of the foot at the base of the little toe, through tiny keyhole incisions.</p></li>
+            <li><span class="jh-n">08</span><b><a class="jh-go" href="/hammertoe-surgery">Minimally invasive hammertoe surgery<i aria-hidden="true">&rarr;</i></a></b><p>Straightens a bent or curled toe through tiny keyhole incisions.</p></li>
           </ol>
         </div>
         <div class="jh-peek" aria-hidden="true"><img alt="" width="270" height="480" decoding="async"></div>
@@ -1577,3 +1589,24 @@ html.jh-player-open,html.jh-player-open body{overflow:hidden}
 })();
 </script>
 <script src="https://xiiixiultra-maker.github.io/jaws-walk/walk.js?v=3.5" defer></script>
+
+<script>
+/* in the draft preview (/site/<id>/...?preview=true) the site's own links carry that prefix: ours follow it there */
+(function () {
+  var pre = location.pathname.match(/^\/site\/[^/]+/);
+  if (!pre) return;
+  var q = location.search.indexOf('preview=true') > -1 ? '?preview=true' : '';
+  function fix() {
+    document.querySelectorAll('#jaws-home a[href^="/"], #jh-dock a[href^="/"]').forEach(function (a) {
+      var h = a.getAttribute('href');
+      if (h.indexOf('/site/') === 0) return;
+      var i = h.indexOf('#'), hash = i > -1 ? h.slice(i) : '';
+      if (i > -1) h = h.slice(0, i);
+      a.setAttribute('href', pre[0] + h + q + hash);
+    });
+  }
+  fix();
+  window.addEventListener('load', fix);
+  setTimeout(fix, 2500);
+})();
+</script>
