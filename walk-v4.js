@@ -83,9 +83,9 @@
 #jaws-walk#jaws-walk .jw-stage.jw-manual{position:absolute;left:0;right:0;top:0;will-change:transform}
 #jaws-walk#jaws-walk.jw-capture .jw-stage{position:fixed;inset:0;height:100vh;transform:none}
 #jaws-walk#jaws-walk.jw-capture .jw-skip-pill,#jaws-walk#jaws-walk.jw-capture .jw-sound{display:none}
-#jaws-walk#jaws-walk canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#jaws-walk#jaws-walk canvas{position:absolute;inset:0;width:100%;height:100%;display:block;filter:saturate(.94) contrast(1.05) sepia(.08)}
 #jaws-walk#jaws-walk .jw-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;
- background:radial-gradient(ellipse 88% 82% at 50% 48%,rgba(var(--gold-rgb),.03) 0%,rgba(14,12,10,.14) 68%,rgba(10,9,8,.56) 100%)}
+ background:radial-gradient(ellipse 88% 82% at 50% 44%,rgba(var(--gold-rgb),.06) 0%,rgba(22,18,14,.18) 68%,rgba(10,9,8,.58) 100%)}
 #jaws-walk#jaws-walk .jw-scrim{position:absolute;inset:auto 0 0 0;height:56%;z-index:1;pointer-events:none;
  background:linear-gradient(to top,rgba(10,10,10,.76),rgba(10,10,10,.36) 46%,rgba(10,10,10,0))}
 #jaws-walk#jaws-walk .jw-caps{position:absolute;inset:0;z-index:2;pointer-events:none}
@@ -163,7 +163,7 @@
 #jaws-walk#jaws-walk .jw-st-media{position:relative;overflow:hidden;border-radius:20px;background:#0F0E0D;border:1px solid rgba(var(--gold-rgb),.26);
  aspect-ratio:16/9;box-shadow:0 30px 70px rgba(0,0,0,.48)}
 #jaws-walk#jaws-walk .jw-st-media.is-tall{aspect-ratio:4/5;max-height:62vh}
-#jaws-walk#jaws-walk .jw-st-media img{display:block;width:100%;height:100%;object-fit:cover}
+#jaws-walk#jaws-walk .jw-st-media img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.94) contrast(1.05) sepia(.08)}
 #jaws-walk#jaws-walk .jw-st-media::after{content:"";position:absolute;inset:0;pointer-events:none;
  background:radial-gradient(ellipse 90% 85% at 50% 50%,transparent 55%,rgba(10,9,8,.42) 100%)}
 #jaws-walk#jaws-walk .jw-st-panel{display:grid;gap:22px;align-content:center}
@@ -827,6 +827,21 @@
 
     const dk = lead && darkFor(s.i, fr.c);
     if (dk) paint(dk, 1 - smooth(0.12, 0.9, k));
+    // Soft warm Architectural Digest tungsten bloom across lit frames
+    const bloomAlpha = dk ? 0.08 * smooth(0.12, 0.9, k) : 0.08;
+    if (bloomAlpha > 0.004) {
+      const cw = canvas.width, ch = canvas.height;
+      const g = ctx.createRadialGradient(cw * 0.5, ch * 0.36, 0, cw * 0.5, ch * 0.42, Math.max(cw, ch) * 0.68);
+      g.addColorStop(0, 'rgba(255,232,190,1)');
+      g.addColorStop(0.55, 'rgba(217,182,140,0.35)');
+      g.addColorStop(1, 'rgba(217,182,140,0)');
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+      ctx.globalAlpha = bloomAlpha;
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, cw, ch);
+      ctx.restore();
+    }
     if (door) {
       const b = frameAt(s.i + 1, 0);
       const bd = b && darkFor(s.i + 1, b.c);

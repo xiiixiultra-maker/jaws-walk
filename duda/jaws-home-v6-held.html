@@ -134,29 +134,28 @@
 #jaws-home#jaws-home .jh-btns{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
 #jaws-home#jaws-home a:focus-visible,#jaws-home#jaws-home button:focus-visible,#jaws-home#jaws-home summary:focus-visible{outline:2px solid var(--teak-lt);outline-offset:4px}
 
-/* 1. intro and numbers, the first screen: uncluttered typography and portrait over the dusk architectural film */
-#jaws-home#jaws-home .jh-intro{background:var(--night);padding:clamp(48px,9vh,120px) 0 clamp(60px,7vw,100px)}
+/* 1. intro and numbers, the first screen: pure architectural dusk cinema + crisp editorial typography */
+#jaws-home#jaws-home .jh-intro{background:var(--night);padding:clamp(56px,10vh,130px) 0 clamp(60px,7vw,100px);overflow:hidden}
 #jaws-home#jaws-home .jh-intro-film{position:absolute;z-index:0;left:0;right:0;top:0;overflow:hidden;pointer-events:none;
-  height:min(100%,max(620px,calc(100vh - var(--top,101px))));height:min(100%,max(620px,calc(100svh - var(--top,101px))));
-  background:var(--night) url("https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1280x720.webp") 50% 50%/cover no-repeat}
+  height:min(100%,max(640px,calc(100vh - var(--top,101px))));height:min(100%,max(640px,calc(100svh - var(--top,101px))));
+  background:var(--night) url("https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1280x720.webp") 60% 50%/cover no-repeat;
+  transform:translate3d(var(--hx,0px),var(--hy,0px),0) scale(1.03);transition:transform 1.1s var(--ease);will-change:transform}
 @media (min-width:1280px),(min-width:901px) and (min-resolution:1.5dppx),(min-width:901px) and (-webkit-min-device-pixel-ratio:1.5){
   #jaws-home#jaws-home .jh-intro-film{background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1920x1080.webp")}}
-#jaws-home#jaws-home .jh-intro-film video{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;object-fit:cover;
+#jaws-home#jaws-home .jh-intro-film video{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;object-fit:cover;object-position:60% 50%;
   opacity:0;transition:opacity .9s ease}
 #jaws-home#jaws-home .jh-intro-film.is-playing video{opacity:1}
 #jaws-home#jaws-home .jh-intro-film::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(27,26,25,.9),rgba(27,26,25,.8) 30%,rgba(27,26,25,.52) 52%,rgba(27,26,25,.26) 72%,rgba(27,26,25,.16)),
-    linear-gradient(180deg,rgba(27,26,25,.3),rgba(27,26,25,0) 14%,rgba(27,26,25,0) 56%,var(--night))}
+  background:linear-gradient(90deg,rgba(27,26,25,.92) 0%,rgba(27,26,25,.76) 32%,rgba(27,26,25,.38) 54%,rgba(27,26,25,.12) 78%,rgba(27,26,25,.05)),
+    linear-gradient(180deg,rgba(27,26,25,.28),rgba(27,26,25,0) 14%,rgba(27,26,25,0) 54%,var(--night))}
 @media (max-width:900px){
-  #jaws-home#jaws-home .jh-intro-film{background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-720x1280.webp")}
-  #jaws-home#jaws-home .jh-intro-film::after{background:linear-gradient(180deg,rgba(27,26,25,.3),rgba(27,26,25,.08) 12%,rgba(27,26,25,.42) 32%,
-    rgba(27,26,25,.86) 56%,var(--night) 80%)}}
+  #jaws-home#jaws-home .jh-intro{padding-top:clamp(42px,8vh,80px)}
+  #jaws-home#jaws-home .jh-intro-film{background-position:50% 42%;background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-720x1280.webp");transform:none}
+  #jaws-home#jaws-home .jh-intro-film video{object-position:50% 42%}
+  #jaws-home#jaws-home .jh-intro-film::after{background:linear-gradient(180deg,rgba(27,26,25,.42),rgba(27,26,25,.24) 24%,rgba(27,26,25,.78) 56%,var(--night) 86%)}}
 @media (min-width:601px) and (max-width:900px){
   #jaws-home#jaws-home .jh-intro-film{background-image:url("https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1080x1920.webp")}}
 #jaws-home#jaws-home .jh-intro-cta{margin-top:clamp(24px,3vw,40px)}
-#jaws-home#jaws-home .jh-hero-doc{position:absolute;z-index:0;top:clamp(6px,1.5vh,20px);right:max(0px,calc(50% - 900px));
-  width:min(34vw,560px);pointer-events:none}
-#jaws-home#jaws-home .jh-hero-doc img{width:100%;height:auto}
 #jaws-home#jaws-home .jh-intro-h{font-size:clamp(42px,7.2vw,120px)}
 #jaws-home#jaws-home .jh-intro-row{display:grid;grid-template-columns:minmax(0,600px);gap:clamp(26px,2.6vw,36px);align-items:start;margin-top:clamp(26px,3vw,44px)}
 #jaws-home#jaws-home .jh-intro-row .jh-es{margin:0}
@@ -170,12 +169,6 @@
 #jaws-home#jaws-home .jh-dark .jh-stats dd{color:#B9B1A4}
 #jaws-home#jaws-home .jh-dark .jh-link{color:#F3EADB;border-bottom-color:rgba(243,226,188,.4)}
 #jaws-home#jaws-home .jh-intro .jh-fine{margin-top:26px}
-@media (max-width:900px){
-  #jaws-home#jaws-home .jh-intro{padding-top:8px}
-  #jaws-home#jaws-home .jh-hero-doc{position:relative;top:auto;right:auto;width:min(80vw,460px);margin:0 0 0 auto}
-  #jaws-home#jaws-home .jh-hero-doc::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52%;
-    background:linear-gradient(180deg,rgba(27,26,25,0),rgba(27,26,25,.78) 62%,var(--night))}
-  #jaws-home#jaws-home .jh-intro-main{margin-top:calc(min(80vw,460px) * -0.5)}}
 
 /* 2. press, a quiet band right under the numbers */
 #jaws-home#jaws-home .jh-press{padding:34px 0 38px;overflow:hidden;text-align:center}
@@ -240,6 +233,57 @@
 #jaws-walk#jaws-walk .jw-btn::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1.25px;background:var(--rim);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude}
+
+/* 3b. Interactive Da Vinci Foot Proportion Blueprint */
+#jaws-home#jaws-home .jh-bp{background:#141312;padding:clamp(84px,10vw,150px) 0;border-top:1px solid rgba(243,226,188,.10);border-bottom:1px solid rgba(243,226,188,.10)}
+#jaws-home#jaws-home .jh-bp-head{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,72px);align-items:end;margin-bottom:clamp(40px,5vw,68px)}
+#jaws-home#jaws-home .jh-bp-quote{font:italic 400 clamp(18px,1.5vw,22px)/1.45 var(--serif);color:#E9DFCC}
+#jaws-home#jaws-home .jh-bp-quote span{display:block;margin-top:8px;font:500 13px/1 var(--sans);font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+#jaws-home#jaws-home .jh-bp-grid{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:clamp(28px,4.5vw,72px);align-items:center}
+#jaws-home#jaws-home .jh-bp-stage{position:relative;width:min(100%,460px);margin:0 auto;aspect-ratio:420/560;border-radius:26px;overflow:hidden;
+  background:radial-gradient(circle at 50% 42%,rgba(226,194,125,.09),rgba(18,17,16,.96) 72%);
+  border:1px solid rgba(243,226,188,.18);box-shadow:0 34px 70px -28px rgba(0,0,0,.65),inset 0 0 60px rgba(217,182,140,.05)}
+#jaws-home#jaws-home .jh-bp-svg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+#jaws-home#jaws-home .jh-bp-arc{stroke-dasharray:1100;stroke-dashoffset:1100;transition:stroke-dashoffset 1.8s var(--ease)}
+#jaws-home#jaws-home.jh-js .jh-bp.is-in .jh-bp-arc,#jaws-home#jaws-home .jh-bp-stage:hover .jh-bp-arc{stroke-dashoffset:0}
+#jaws-home#jaws-home .jh-dv-zone{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;padding:0;margin:0;border:0;border-radius:50%;
+  background:transparent;cursor:pointer;display:grid;place-items:center;z-index:3}
+#jaws-home#jaws-home .jh-dv-dot{position:relative;width:14px;height:14px;border-radius:50%;background:rgba(226,194,125,.85);
+  border:1.5px solid #FFF6DE;box-shadow:0 0 14px rgba(226,194,125,.55);transition:transform .28s var(--ease),background .28s,box-shadow .28s}
+#jaws-home#jaws-home .jh-dv-dot::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(231,201,135,.58);
+  animation:jhBpPing 2.4s ease-out infinite}
+@keyframes jhBpPing{from{transform:scale(.65);opacity:.95}to{transform:scale(1.85);opacity:0}}
+#jaws-home#jaws-home .jh-dv-zone:hover .jh-dv-dot,#jaws-home#jaws-home .jh-dv-zone[aria-pressed="true"] .jh-dv-dot{
+  transform:scale(1.38);background:#FFF3D1;box-shadow:0 0 0 5px rgba(231,201,135,.28),0 0 24px rgba(255,243,209,.9)}
+#jaws-home#jaws-home .jh-dv-zone[aria-pressed="true"] .jh-dv-dot::after{border-color:#FFF3D1}
+#jaws-home#jaws-home .jh-dv-tag{position:absolute;left:50%;top:-26px;transform:translateX(-50%) translateY(4px);padding:4px 9px;border-radius:999px;
+  background:rgba(18,17,16,.88);border:1px solid rgba(231,201,135,.45);font:500 10.5px/1.2 var(--sans);letter-spacing:.08em;text-transform:uppercase;
+  color:#FFF6DE;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .24s ease,transform .24s var(--ease)}
+#jaws-home#jaws-home .jh-dv-zone:hover .jh-dv-tag,#jaws-home#jaws-home .jh-dv-zone:focus-visible .jh-dv-tag,#jaws-home#jaws-home .jh-dv-zone[aria-pressed="true"] .jh-dv-tag{
+  opacity:1;transform:translateX(-50%) translateY(0)}
+#jaws-home#jaws-home .jh-bp-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+#jaws-home#jaws-home .jh-dv-pill{appearance:none;cursor:pointer;min-height:40px;padding:8px 15px;border-radius:999px;
+  border:1px solid rgba(243,226,188,.26);background:rgba(255,255,255,.04);color:#EFE6D8;font:500 13px/1.1 var(--sans);
+  transition:border-color .25s,background .25s,color .25s}
+#jaws-home#jaws-home .jh-dv-pill:hover{border-color:rgba(231,201,135,.65);color:#FFF6DE}
+#jaws-home#jaws-home .jh-dv-pill[aria-pressed="true"]{background:linear-gradient(180deg,rgba(240,215,156,.28),rgba(169,133,63,.12));border-color:#E7C987;color:#FFF6DE}
+#jaws-home#jaws-home .jh-bp-card{position:relative;padding:clamp(26px,3.2vw,42px);border-radius:26px;
+  background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(18,17,16,.84));
+  border:1px solid rgba(231,201,135,.32);box-shadow:0 30px 66px -28px rgba(0,0,0,.6)}
+#jaws-home#jaws-home .jh-bp-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;
+  font:italic 500 15px/1.2 var(--serif);color:var(--gold)}
+#jaws-home#jaws-home .jh-bp-cnt{padding:5px 11px;border-radius:999px;border:1px solid rgba(243,226,188,.24);
+  font:500 12px/1 var(--sans);font-style:normal;color:#F3EADB}
+#jaws-home#jaws-home .jh-bp-card h3{font:500 clamp(28px,2.9vw,44px)/1.06 var(--serif);letter-spacing:-.02em;color:#F6EEDF}
+#jaws-home#jaws-home .jh-bp-card p{margin-top:14px;font-size:16px;line-height:1.65;color:#CFC8BC}
+#jaws-home#jaws-home .jh-bp-acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:26px}
+#jaws-home#jaws-home .jh-bp-acts .jh-btn{padding:15px 24px;font-size:15px}
+#jaws-home#jaws-home .jh-bp-acts .jh-link{margin-top:0;color:#F3EADB;border-bottom-color:rgba(243,226,188,.4);font-size:14.5px}
+@media (max-width:960px){
+  #jaws-home#jaws-home .jh-bp-head,#jaws-home#jaws-home .jh-bp-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){
+  #jaws-home#jaws-home .jh-bp-arc{stroke-dashoffset:0;transition:none}
+  #jaws-home#jaws-home .jh-dv-dot::after{animation:none}}
 
 /* 4. the signature collection */
 #jaws-home#jaws-home .jh-sig{background:var(--paper);padding:clamp(90px,11vw,170px) 0}
@@ -580,9 +624,6 @@
         data-wide="https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1280x720.mp4" data-wide-hd="https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1920x1080.mp4"
         data-tall="https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-720x1280.mp4" data-tall-hd="https://xiiixiultra-maker.github.io/jaws-walk/hollywood/jaws-hollywood-1080x1920.mp4"></video>
     </div>
-    <figure class="jh-hero-doc"><img src="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer.webp"
-      srcset="https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer-sm.webp 481w, https://xiiixiultra-maker.github.io/jaws-walk/office/dr-wagner-blazer.webp 751w"
-      sizes="(max-width: 900px) 82vw, 36vw" alt="Dr. Abraham Wagner, DPM, podiatric physician, in a pinstripe blazer" width="751" height="1000" fetchpriority="high"></figure>
     <div class="jh-wrap jh-intro-main">
       <p class="jh-kicker jh-r">Cosmetic and aesthetic foot surgery</p>
       <h1 id="jh-intro-t" class="jh-display jh-intro-h jh-split">Beautiful feet.<br> <em class="jh-gold">Renewed confidence.</em></h1>
@@ -653,7 +694,7 @@
         </div>
       </div>
       <div class="jh-craft-grid">
-        <article class="jh-craft-card jh-r">
+        <article class="jh-craft-card jh-r" data-cursor="Drag">
           <div class="jh-craft-stage">
             <canvas class="jh-craft-canvas" data-tool="hemostat" data-aspect="473/402" aria-hidden="true"></canvas>
             <div class="jh-craft-fallback" aria-hidden="true"><b>I</b><span>Precision Instrument</span></div>
@@ -664,7 +705,7 @@
             <p>Fine keyhole instrumentation calibrated for delicate tissue handling.</p>
           </div>
         </article>
-        <article class="jh-craft-card jh-r" style="--d:90ms">
+        <article class="jh-craft-card jh-r" style="--d:90ms" data-cursor="Drag">
           <div class="jh-craft-stage">
             <canvas class="jh-craft-canvas" data-tool="plaque-silver" data-aspect="376/359" aria-hidden="true"></canvas>
             <div class="jh-craft-fallback" aria-hidden="true"><b>II</b><span>100K Milestone</span></div>
@@ -675,7 +716,7 @@
             <p>Early patient education milestone on Dr. Wagner&rsquo;s YouTube channel.</p>
           </div>
         </article>
-        <article class="jh-craft-card jh-r" style="--d:180ms">
+        <article class="jh-craft-card jh-r" style="--d:180ms" data-cursor="Drag">
           <div class="jh-craft-stage">
             <canvas class="jh-craft-canvas" data-tool="plaque-gold" data-aspect="373/359" aria-hidden="true"></canvas>
             <div class="jh-craft-fallback" aria-hidden="true"><b>III</b><span>1M Milestone</span></div>
@@ -686,7 +727,7 @@
             <p>1.78M subscribers and more than 1.1 billion views worldwide.</p>
           </div>
         </article>
-        <article class="jh-craft-card jh-r" style="--d:270ms">
+        <article class="jh-craft-card jh-r" style="--d:270ms" data-cursor="Drag">
           <div class="jh-craft-stage">
             <canvas class="jh-craft-canvas" data-tool="scalpel" data-aspect="414/294" aria-hidden="true"></canvas>
             <div class="jh-craft-fallback" aria-hidden="true"><b>IV</b><span>Minimal Access</span></div>
@@ -706,6 +747,73 @@
     <div id="jaws-walk" data-base="https://xiiixiultra-maker.github.io/jaws-walk/" data-book="/booking" data-doctor="#doctor" data-procedures="#procedures" data-pace="0.7"></div>
   </section>
 
+  <section class="jh-bp jh-dark jh-r" id="blueprint" aria-labelledby="jh-bp-t">
+    <div class="jh-wrap">
+      <div class="jh-bp-head">
+        <div>
+          <p class="jh-kicker jh-r">Architectural anatomy</p>
+          <h2 id="jh-bp-t" class="jh-display jh-h2 jh-split">Engineering &amp; artistry, <em class="jh-gold">mapped</em></h2>
+          <p class="jh-es jh-r" lang="es" style="--d:160ms">Anatom&iacute;a de precisi&oacute;n</p>
+        </div>
+        <p class="jh-bp-quote jh-r" style="--d:140ms">&ldquo;The human foot is a masterpiece of engineering and a work of art.&rdquo;<span>Leonardo da Vinci &middot; Select a zone to explore</span></p>
+      </div>
+      <div class="jh-bp-grid">
+        <div class="jh-bp-stage jh-r" aria-label="Interactive foot proportion diagram">
+          <svg class="jh-bp-svg" viewBox="0 0 420 560" aria-hidden="true">
+            <defs>
+              <linearGradient id="jhBpGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF3D1" stop-opacity=".85"/>
+                <stop offset="50%" stop-color="#D9B68C" stop-opacity=".55"/>
+                <stop offset="100%" stop-color="#A9853F" stop-opacity=".8"/>
+              </linearGradient>
+              <pattern id="jhBpGrid" width="28" height="28" patternUnits="userSpaceOnUse">
+                <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#E7C987" stroke-opacity=".06" stroke-width="0.7"/>
+              </pattern>
+            </defs>
+            <rect width="420" height="560" fill="url(#jhBpGrid)"/>
+            <circle class="jh-bp-arc" cx="210" cy="280" r="196" fill="none" stroke="url(#jhBpGold)" stroke-opacity=".28" stroke-width="0.85"/>
+            <circle cx="210" cy="222" r="144" fill="none" stroke="#D9B68C" stroke-opacity=".18" stroke-width="0.7" stroke-dasharray="3 6"/>
+            <line x1="210" y1="24" x2="210" y2="536" stroke="#D9B68C" stroke-opacity=".2" stroke-width="0.7" stroke-dasharray="4 6"/>
+            <line x1="36" y1="220" x2="384" y2="220" stroke="#D9B68C" stroke-opacity=".16" stroke-width="0.7"/>
+            <path class="jh-bp-arc" d="M 94 148 Q 204 82 328 190" fill="none" stroke="#FFF3D1" stroke-opacity=".42" stroke-width="0.9" stroke-dasharray="2 4"/>
+            <!-- Architectural foot contour -->
+            <path class="jh-bp-arc" d="M 152 486 C 128 456 122 396 124 338 C 126 286 106 244 102 198 C 98 158 104 114 126 98 C 146 84 166 104 170 132 C 174 102 192 78 210 82 C 228 86 234 112 232 142 C 242 114 260 100 276 108 C 292 116 292 144 284 172 C 296 150 314 144 324 156 C 334 168 326 196 312 222 C 324 206 340 206 346 220 C 352 236 336 266 322 292 C 306 326 300 388 288 446 C 276 498 242 522 206 522 C 178 522 162 504 152 486 Z" fill="rgba(217,182,140,.035)" stroke="url(#jhBpGold)" stroke-width="1.35"/>
+            <!-- Subtle metatarsal & phalangeal proportion axes -->
+            <path d="M 148 164 L 154 276 L 176 420 M 206 112 L 204 264 L 204 420 M 256 134 L 240 272 L 224 420 M 298 182 L 272 288 L 244 420 M 328 232 L 296 306 L 260 420" fill="none" stroke="#E7C987" stroke-opacity=".26" stroke-width="0.85" stroke-dasharray="3 4"/>
+          </svg>
+          <button type="button" class="jh-dv-zone" style="left:29%;top:36%" data-bp="bunion" data-cursor="Explore" aria-pressed="false" aria-label="Big toe joint — Bunion surgery"><span class="jh-dv-dot"></span><span class="jh-dv-tag">Bunion joint</span></button>
+          <button type="button" class="jh-dv-zone" style="left:49%;top:18%" data-bp="short" data-cursor="Explore" aria-pressed="false" aria-label="Second toe — Toe shortening"><span class="jh-dv-dot"></span><span class="jh-dv-tag">2nd toe length</span></button>
+          <button type="button" class="jh-dv-zone" style="left:63%;top:22%" data-bp="corn" data-cursor="Explore" aria-pressed="false" aria-label="Toe joint prominence — Corn removal"><span class="jh-dv-dot"></span><span class="jh-dv-tag">Toe joint corn</span></button>
+          <button type="button" class="jh-dv-zone" style="left:67%;top:42%" data-bp="brachy" data-cursor="Explore" aria-pressed="true" aria-label="Fourth metatarsal — Brachybalancing"><span class="jh-dv-dot"></span><span class="jh-dv-tag">4th metatarsal</span></button>
+          <button type="button" class="jh-dv-zone" style="left:74%;top:31%" data-bp="length" data-cursor="Explore" aria-pressed="false" aria-label="Short toe — Toe lengthening"><span class="jh-dv-dot"></span><span class="jh-dv-tag">Short toe</span></button>
+          <button type="button" class="jh-dv-zone" style="left:58%;top:29%" data-bp="hammertoe" data-cursor="Explore" aria-pressed="false" aria-label="Curved or overlapping toes — Hammertoe surgery"><span class="jh-dv-dot"></span><span class="jh-dv-tag">Toe alignment</span></button>
+          <button type="button" class="jh-dv-zone" style="left:79%;top:48%" data-bp="tailor" data-cursor="Explore" aria-pressed="false" aria-label="Outer fifth metatarsal — Tailor's bunion"><span class="jh-dv-dot"></span><span class="jh-dv-tag">Outer bunionette</span></button>
+        </div>
+        <div class="jh-r" style="--d:120ms">
+          <div class="jh-bp-pills" role="group" aria-label="Select anatomical focus">
+            <button type="button" class="jh-dv-pill" data-bp="brachy" data-cursor="Explore" aria-pressed="true">4th Metatarsal</button>
+            <button type="button" class="jh-dv-pill" data-bp="short" data-cursor="Explore" aria-pressed="false">2nd Toe</button>
+            <button type="button" class="jh-dv-pill" data-bp="length" data-cursor="Explore" aria-pressed="false">Short Toe</button>
+            <button type="button" class="jh-dv-pill" data-bp="bunion" data-cursor="Explore" aria-pressed="false">Big Toe Joint</button>
+            <button type="button" class="jh-dv-pill" data-bp="tailor" data-cursor="Explore" aria-pressed="false">Outer Foot</button>
+            <button type="button" class="jh-dv-pill" data-bp="hammertoe" data-cursor="Explore" aria-pressed="false">Curved Toes</button>
+            <button type="button" class="jh-dv-pill" data-bp="corn" data-cursor="Explore" aria-pressed="false">Joint Corn</button>
+          </div>
+          <div class="jh-bp-card" id="jh-bp-card" aria-live="polite">
+            <div class="jh-bp-meta"><span id="jh-bp-idx">01 / 07 &middot; Fourth Metatarsal</span><span class="jh-bp-cnt" id="jh-bp-cnt">21 real results</span></div>
+            <h3 id="jh-bp-title">Brachybalancing<sup>&trade;</sup> surgery</h3>
+            <p id="jh-bp-desc">Dr. Wagner&rsquo;s proprietary hardware-free technique for brachymetatarsia, restoring metatarsal length and natural toe-line cascade in one in-office sitting without external fixators, pins, or plates.</p>
+            <div class="jh-bp-acts">
+              <a class="jh-btn" id="jh-bp-book" href="/booking?topic=brachy">Request consultation</a>
+              <a class="jh-link" id="jh-bp-proc" href="/brachybalancing">Explore procedure</a>
+              <a class="jh-link" id="jh-bp-res" href="/#jrr?filter=brachy">View matching results</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="jh-sig" id="procedures" aria-labelledby="jh-sig-t">
     <div class="jh-wrap">
       <div class="jh-sig-head">
@@ -717,7 +825,7 @@
         <p class="jh-lead jh-r" style="--d:150ms">No two feet are alike, so every patient gets a plan made for them, shaped around how the foot looks and how it feels.</p>
       </div>
       <div class="jh-stars jh-r">
-        <article class="jh-star" style="--bg:url('https://xiiixiultra-maker.github.io/jaws-walk/office/or-wide.webp')">
+        <article class="jh-star" data-cursor="Explore" style="--bg:url('https://xiiixiultra-maker.github.io/jaws-walk/office/or-wide.webp')">
           <i class="jh-star-rim" aria-hidden="true"></i>
           <p class="jh-star-no" aria-hidden="true">N&deg;<b>01</b></p>
           <span class="jh-badge">Signature</span>
@@ -1830,7 +1938,7 @@
     });
   });
 
-  // 16. Ambient pointer light on dark sections
+  // 16. Ambient pointer light on dark sections + pure hero cinema depth parallax
   if (mm('(pointer: fine)').matches && !reduce) {
     each(root.querySelectorAll('.jh-dark'), function (sec) {
       sec.addEventListener('pointermove', function (e) {
@@ -1839,10 +1947,122 @@
         sec.style.setProperty('--my', (e.clientY - r.top) + 'px');
       }, { passive: true });
     });
+    var heroSec = root.querySelector('.jh-intro'), heroFilm = heroSec && heroSec.querySelector('.jh-intro-film');
+    if (heroSec && heroFilm) {
+      heroSec.addEventListener('pointermove', function (e) {
+        var r = heroSec.getBoundingClientRect();
+        var dx = ((e.clientX - r.left) / Math.max(1, r.width) - 0.5) * -18;
+        var dy = ((e.clientY - r.top) / Math.max(1, r.height) - 0.5) * -12;
+        heroFilm.style.setProperty('--hx', dx.toFixed(1) + 'px');
+        heroFilm.style.setProperty('--hy', dy.toFixed(1) + 'px');
+      }, { passive: true });
+      heroSec.addEventListener('pointerleave', function () {
+        heroFilm.style.setProperty('--hx', '0px');
+        heroFilm.style.setProperty('--hy', '0px');
+      });
+    }
+  }
+
+  // 17. Interactive Da Vinci Foot Proportion Blueprint
+  var BP_DATA = {
+    brachy: {
+      idx: '01 / 07 \u00b7 Fourth Metatarsal',
+      cnt: '21 real results',
+      title: 'Brachybalancing\u2122 surgery',
+      desc: 'Dr. Wagner\u2019s proprietary hardware-free technique for brachymetatarsia, restoring metatarsal length and natural toe-line cascade in one in-office sitting without external fixators, pins, or plates.',
+      proc: '/brachybalancing',
+      filter: 'brachy',
+      topic: 'brachy'
+    },
+    short: {
+      idx: '02 / 07 \u00b7 Second Toe Proportion',
+      cnt: '29 real results',
+      title: 'Aesthetic toe shortening',
+      desc: 'Precision keyhole reshaping of an elongated second or third toe under local anesthesia in our Miami suite, designed to balance toe cascade without pins, screws, or fusion.',
+      proc: '/toe-shortening',
+      filter: 'short',
+      topic: 'short'
+    },
+    length: {
+      idx: '03 / 07 \u00b7 Short Toe Alignment',
+      cnt: '4 real results',
+      title: 'Toe lengthening',
+      desc: 'Hardware-free structural lengthening planned around natural proportion and joint alignment for visibly short toes, allowing same-day walking in a protective shoe.',
+      proc: '/toe-lengthening',
+      filter: 'length',
+      topic: 'length'
+    },
+    bunion: {
+      idx: '04 / 07 \u00b7 Big Toe Joint',
+      cnt: '20 real results',
+      title: 'Minimally invasive bunion surgery',
+      desc: 'Keyhole structural realignment of hallux valgus deformities through tiny openings \u2014 designed to spare soft tissue and leave no metal screws or plates behind.',
+      proc: '/bunion-surgery',
+      filter: 'bunion',
+      topic: 'bunion'
+    },
+    tailor: {
+      idx: '05 / 07 \u00b7 Outer Fifth Metatarsal',
+      cnt: '20 real results',
+      title: 'Tailor\u2019s bunion correction',
+      desc: 'Minimally invasive narrowing of a prominent bunionette bump along the outer edge of the foot for a sleeker profile and more comfortable shoe fit.',
+      proc: '/tailors-bunion',
+      filter: 'bunion',
+      topic: 'bunion'
+    },
+    hammertoe: {
+      idx: '06 / 07 \u00b7 Curved & Overlapping Toes',
+      cnt: '7 real results',
+      title: 'Hammertoe & toe straightening',
+      desc: 'Tiny-incision tendon and bone balancing to gently straighten bent, curled, or overlapping toes \u2014 completely free of exposed pins or wires.',
+      proc: '/hammertoe-surgery',
+      filter: 'hammertoe',
+      topic: 'hammertoe'
+    },
+    corn: {
+      idx: '07 / 07 \u00b7 Toe Joint Prominence',
+      cnt: '18 real results',
+      title: 'Corn removal surgery',
+      desc: 'Treats the underlying bone prominence causing painful, recurring friction corns over toe joints \u2014 addressing the structural source rather than shaving surface skin.',
+      proc: '/corn-removal',
+      filter: 'corn',
+      topic: 'corn'
+    }
+  };
+  var bpSec = document.getElementById('blueprint');
+  if (bpSec) {
+    var bpIdx = document.getElementById('jh-bp-idx');
+    var bpCnt = document.getElementById('jh-bp-cnt');
+    var bpTitle = document.getElementById('jh-bp-title');
+    var bpDesc = document.getElementById('jh-bp-desc');
+    var bpBook = document.getElementById('jh-bp-book');
+    var bpProc = document.getElementById('jh-bp-proc');
+    var bpRes = document.getElementById('jh-bp-res');
+    function selectBp(key) {
+      var d = BP_DATA[key] || BP_DATA.brachy;
+      if (bpIdx) bpIdx.textContent = d.idx;
+      if (bpCnt) bpCnt.textContent = d.cnt;
+      if (bpTitle) bpTitle.textContent = d.title;
+      if (bpDesc) bpDesc.textContent = d.desc;
+      if (bpBook) bpBook.setAttribute('href', toPreviewUrl('/booking?topic=' + encodeURIComponent(d.topic)));
+      if (bpProc) bpProc.setAttribute('href', toPreviewUrl(d.proc));
+      if (bpRes) bpRes.setAttribute('href', toPreviewUrl('/#jrr?filter=' + encodeURIComponent(d.filter)));
+      each(bpSec.querySelectorAll('[data-bp]'), function (btn) {
+        btn.setAttribute('aria-pressed', btn.getAttribute('data-bp') === key ? 'true' : 'false');
+      });
+    }
+    each(bpSec.querySelectorAll('[data-bp]'), function (btn) {
+      var k = btn.getAttribute('data-bp');
+      btn.addEventListener('click', function () { selectBp(k); });
+      if (finePointer && btn.classList.contains('jh-dv-zone')) {
+        btn.addEventListener('mouseenter', function () { selectBp(k); });
+      }
+    });
+    selectBp('brachy');
   }
 })();
 </script>
-<script src="https://xiiixiultra-maker.github.io/jaws-walk/walk-v4.js?v=4.0" defer></script>
+<script src="https://xiiixiultra-maker.github.io/jaws-walk/walk-v4.js?v=4.1" defer></script>
 
 <script>
 /* in the draft preview (/site/<id>/...?preview=true) preserve existing ? params with &preview=true and keep #fragments intact */
