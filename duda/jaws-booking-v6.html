@@ -1,0 +1,882 @@
+<!-- JAWS Podiatry v6 Booking Widget (Duda HTML widget on the /booking page).
+     Obsidian and champagne-gold concierge consultation layout matching Home and procedure pages.
+     Privacy: Keep GA, GTM and the Meta Pixel off this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap">
+<style>
+/* Typography matching jaws-home-v5.html and jaws-page.css.
+   No angle brackets are used anywhere inside this style block for Duda compatibility. */
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Mittel.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Fett.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+
+#jaws-book#jaws-book{
+  --night:#1B1A19;
+  --obsidian:#121110;
+  --ink:#F4EFE7;
+  --soft:#CFC8BC;
+  --mute:#ABA498;
+  --gold:#D9B68C;
+  --champagne:#E2C27D;
+  --teak-lt:#C9A07A;
+  --velvet:#1F5A48;
+  --cream:#FFF6DE;
+  --line:rgba(217,182,140,.18);
+  --rim:linear-gradient(135deg,#FFF3D1,#A9853F 30%,#F0D79C 60%,#7A5A26 85%,#E7C987);
+  --serif:"Bodoni Moda","Bodoni MT",Didot,"Bodoni 72",Georgia,serif;
+  --sans:"Apfel Grotezk","Gill Sans MT","Gill Sans",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --top:96px;
+  position:relative;
+  display:block;
+  isolation:isolate;
+  overflow-x:clip;
+  background:var(--night);
+  color:var(--ink);
+  font:400 17px/1.65 var(--sans);
+  -webkit-font-smoothing:antialiased;
+  text-align:left;
+  padding:clamp(34px,4.8vw,68px) 0 clamp(76px,9vw,128px);
+}
+#jaws-book#jaws-book *,
+#jaws-book#jaws-book *::before,
+#jaws-book#jaws-book *::after{box-sizing:border-box}
+#jaws-book#jaws-book h1,
+#jaws-book#jaws-book h2,
+#jaws-book#jaws-book h3,
+#jaws-book#jaws-book p,
+#jaws-book#jaws-book ul,
+#jaws-book#jaws-book li,
+#jaws-book#jaws-book dl,
+#jaws-book#jaws-book dt,
+#jaws-book#jaws-book dd{margin:0;padding:0}
+#jaws-book#jaws-book h1,
+#jaws-book#jaws-book h2,
+#jaws-book#jaws-book h3{color:inherit;text-align:inherit;text-transform:none;text-shadow:none;letter-spacing:normal}
+#jaws-book#jaws-book ul{list-style:none}
+#jaws-book#jaws-book a{color:inherit}
+
+/* ambient light and subtle grain */
+#jaws-book#jaws-book::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(50% 62% at 84% 20%,rgba(201,160,122,.16),transparent 70%),
+    radial-gradient(44% 52% at 6% 96%,rgba(31,90,72,.20),transparent 72%);
+}
+#jaws-book#jaws-book::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.06;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#jaws-book#jaws-book .jb-wrap{
+  position:relative;
+  z-index:2;
+  max-width:1240px;
+  margin:0 auto;
+  padding:0 clamp(20px,5vw,56px);
+}
+
+/* breadcrumb */
+#jaws-book#jaws-book .jb-crumbs{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin:0 0 clamp(26px,3.8vw,44px);
+  font:400 13px/1.4 var(--sans);
+  color:var(--mute);
+}
+#jaws-book#jaws-book .jb-crumbs a{
+  text-decoration:none;
+  color:var(--mute);
+  transition:color .25s ease;
+}
+#jaws-book#jaws-book .jb-crumbs a:hover{color:var(--gold)}
+#jaws-book#jaws-book .jb-crumbs i{font-style:normal;opacity:.45}
+#jaws-book#jaws-book .jb-crumbs b{font-weight:400;color:var(--ink);opacity:.78}
+
+/* two-column layout */
+#jaws-book#jaws-book .jb-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(40px,5.8vw,88px);
+  align-items:start;
+}
+#jaws-book#jaws-book .jb-info-col{min-width:0}
+#jaws-book#jaws-book .jb-form-col{min-width:0}
+
+/* editorial typography */
+#jaws-book#jaws-book .jb-kicker{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:0 0 22px;
+  font:italic 500 clamp(16px,1.3vw,19px)/1.25 var(--serif);
+  color:var(--teak-lt);
+}
+#jaws-book#jaws-book .jb-kicker::before{
+  content:"";
+  flex:0 0 40px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold));
+}
+#jaws-book#jaws-book .jb-h1{
+  font:500 clamp(44px,5.6vw,84px)/.98 var(--serif);
+  font-variation-settings:"opsz" 40;
+  letter-spacing:-.022em;
+  color:#F7F2E9;
+  text-wrap:balance;
+}
+#jaws-book#jaws-book .jb-h1 em,
+#jaws-book#jaws-book .jb-gold{
+  font-style:italic;
+  font-variation-settings:"opsz" 32;
+  background:linear-gradient(105deg,#9C7633 0%,#E7C987 22%,#FFF3D1 38%,#C29A4D 54%,#F0D79C 74%,#A9853F 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  -webkit-text-fill-color:transparent;
+  padding:0 .06em 0 0;
+  animation:jbSheen 9s ease-in-out infinite alternate;
+}
+@keyframes jbSheen{
+  from{background-position:100% 50%}
+  to{background-position:0% 50%}
+}
+#jaws-book#jaws-book .jb-es{
+  margin:.48em 0 0;
+  font:italic 400 clamp(19px,1.8vw,26px)/1.25 var(--serif);
+  color:var(--gold);
+}
+#jaws-book#jaws-book .jb-by{
+  display:flex;
+  flex-wrap:wrap;
+  gap:4px 12px;
+  margin:22px 0 0;
+  font:400 13.5px/1.55 var(--sans);
+  color:var(--mute);
+}
+#jaws-book#jaws-book .jb-by span + span::before{
+  content:"";
+  display:inline-block;
+  width:4px;
+  height:4px;
+  margin:0 12px 2px 0;
+  border-radius:50%;
+  background:var(--teak-lt);
+  opacity:.72;
+  vertical-align:middle;
+}
+#jaws-book#jaws-book .jb-rule{
+  width:56px;
+  height:1px;
+  margin:26px 0;
+  background:linear-gradient(90deg,var(--champagne),rgba(217,182,140,.15));
+}
+#jaws-book#jaws-book .jb-lead{
+  max-width:44ch;
+  font:400 clamp(16.5px,1.2vw,18px)/1.68 var(--sans);
+  color:var(--soft);
+  text-wrap:pretty;
+}
+
+/* buttons & links */
+#jaws-book#jaws-book .jb-ctas{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:14px 20px;
+  margin:28px 0 0;
+}
+#jaws-book#jaws-book .jb-btn{
+  position:relative;
+  isolation:isolate;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  padding:19px 30px;
+  border-radius:999px;
+  font:500 15.5px/1 var(--sans);
+  letter-spacing:.01em;
+  color:var(--cream);
+  text-decoration:none;
+  text-align:center;
+  background:linear-gradient(180deg,rgba(240,215,156,.26),rgba(169,133,63,.08));
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.4),0 14px 34px rgba(169,133,63,.22);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+}
+#jaws-book#jaws-book .jb-btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  padding:1.25px;
+  pointer-events:none;
+  background:var(--rim);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+#jaws-book#jaws-book .jb-btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:-65%;
+  width:42%;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,240,210,.45),transparent);
+  transform:skewX(-20deg);
+  transition:left .9s var(--ease);
+}
+#jaws-book#jaws-book .jb-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.48),0 20px 46px rgba(217,182,140,.30);
+}
+#jaws-book#jaws-book .jb-btn:hover::after{left:135%}
+#jaws-book#jaws-book .jb-btn.jb-ghost{
+  background:transparent;
+  color:#EBD5B5;
+  box-shadow:none;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+  --rim:linear-gradient(135deg,rgba(255,243,209,.6),rgba(169,133,63,.35) 50%,rgba(240,215,156,.5));
+}
+#jaws-book#jaws-book .jb-mobile-jump{display:inline-flex}
+@media (min-width:921px){
+  #jaws-book#jaws-book .jb-mobile-jump{display:none}
+}
+
+#jaws-book#jaws-book .jb-link{
+  display:inline-block;
+  margin-top:8px;
+  font:500 14.5px/1.4 var(--sans);
+  color:var(--gold);
+  text-decoration:none;
+  border-bottom:1px solid rgba(217,182,140,.38);
+  padding-bottom:3px;
+  transition:color .25s ease,border-color .25s ease;
+}
+#jaws-book#jaws-book .jb-link:hover{
+  color:#F0D79C;
+  border-bottom-color:#F0D79C;
+}
+#jaws-book#jaws-book a:focus-visible,
+#jaws-book#jaws-book button:focus-visible,
+#jaws-book#jaws-book input:focus-visible{
+  outline:2px solid var(--champagne);
+  outline-offset:4px;
+}
+
+/* fly-in & pre-screening callout */
+#jaws-book#jaws-book .jb-flyin{
+  margin:30px 0 0;
+  padding:18px 20px;
+  border-radius:18px;
+  border:1px solid rgba(217,182,140,.24);
+  background:linear-gradient(135deg,rgba(31,90,72,.22),rgba(255,246,222,.03));
+}
+#jaws-book#jaws-book .jb-flyin-t{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font:italic 500 17px/1.3 var(--serif);
+  color:var(--champagne);
+}
+#jaws-book#jaws-book .jb-flyin-t::before{
+  content:"";
+  flex:0 0 7px;
+  height:7px;
+  transform:rotate(45deg);
+  background:linear-gradient(135deg,#F0D79C,#A9853F);
+}
+#jaws-book#jaws-book .jb-flyin p{
+  margin:8px 0 0;
+  font:400 14.5px/1.6 var(--sans);
+  color:var(--soft);
+}
+
+/* visit & hours details */
+#jaws-book#jaws-book .jb-details{
+  margin:30px 0 0;
+  padding-top:26px;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px 28px;
+}
+#jaws-book#jaws-book .jb-details h2{
+  margin:0 0 8px;
+  font:italic 500 18px/1.25 var(--serif);
+  color:var(--champagne);
+}
+#jaws-book#jaws-book .jb-details p{
+  font:400 15px/1.6 var(--sans);
+  color:var(--soft);
+}
+
+/* CareCredit / Cherry financing notice + clinical risk notice */
+#jaws-book#jaws-book .jb-fin{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin:28px 0 0;
+  padding:15px 18px;
+  border-radius:18px;
+  border:1px solid rgba(217,182,140,.28);
+  background:rgba(244,239,231,.04);
+  font:400 14.5px/1.55 var(--sans);
+  color:var(--ink);
+}
+#jaws-book#jaws-book .jb-fin::before{
+  content:"";
+  flex:0 0 8px;
+  height:8px;
+  margin-top:.46em;
+  transform:rotate(45deg);
+  background:linear-gradient(135deg,#F0D79C,#A9853F);
+}
+#jaws-book#jaws-book .jb-fine{
+  margin:18px 0 0;
+  font:400 13px/1.6 var(--sans);
+  color:var(--mute);
+}
+
+/* right column: gold-rimmed smoked-glass booking card */
+#jaws-book#jaws-book .jb-card{
+  position:relative;
+  isolation:isolate;
+  border-radius:28px;
+  padding:clamp(26px,3.6vw,44px);
+  background:radial-gradient(120% 60% at 92% 0%,rgba(226,194,125,.10),transparent 60%),
+    linear-gradient(180deg,rgba(36,33,31,.94),rgba(18,17,16,.96));
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:0 36px 86px rgba(0,0,0,.55);
+}
+#jaws-book#jaws-book .jb-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  padding:1.25px;
+  pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,243,209,.72),rgba(169,133,63,.35) 35%,rgba(240,215,156,.62) 68%,rgba(122,90,38,.45));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+@media (min-width:921px){
+  #jaws-book#jaws-book .jb-card{
+    position:sticky;
+    top:calc(var(--top,96px) + 24px);
+  }
+}
+#jaws-book#jaws-book .jb-card-kicker{
+  margin:0 0 8px;
+  font:italic 500 15px/1.3 var(--serif);
+  color:var(--champagne);
+}
+#jaws-book#jaws-book .jb-card h2{
+  font:500 clamp(26px,2.4vw,34px)/1.12 var(--serif);
+  letter-spacing:-.015em;
+  color:#F7F2E9;
+}
+#jaws-book#jaws-book .jb-card-sub{
+  margin:10px 0 0;
+  font:400 15px/1.6 var(--sans);
+  color:var(--soft);
+}
+
+/* dynamic consultation context banner */
+#jaws-book#jaws-book .jb-context{
+  margin:22px 0 0;
+  padding:16px 18px;
+  border-radius:16px;
+  border:1px solid rgba(226,194,125,.38);
+  background:linear-gradient(135deg,rgba(226,194,125,.12),rgba(31,90,72,.16));
+}
+#jaws-book#jaws-book .jb-context[hidden]{display:none}
+#jaws-book#jaws-book .jb-ctx-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+#jaws-book#jaws-book .jb-ctx-kicker{
+  font:italic 500 14px/1.3 var(--serif);
+  color:var(--champagne);
+}
+#jaws-book#jaws-book .jb-ctx-clear{
+  appearance:none;
+  background:transparent;
+  border:1px solid rgba(217,182,140,.32);
+  border-radius:999px;
+  padding:5px 12px;
+  cursor:pointer;
+  font:400 12px/1.2 var(--sans);
+  color:var(--soft);
+  transition:color .2s ease,border-color .2s ease;
+}
+#jaws-book#jaws-book .jb-ctx-clear:hover{
+  color:var(--cream);
+  border-color:var(--champagne);
+}
+#jaws-book#jaws-book .jb-ctx-title{
+  margin:6px 0 0;
+  font:500 19px/1.25 var(--serif);
+  color:#FFF6DE;
+}
+#jaws-book#jaws-book .jb-ctx-desc{
+  margin:6px 0 0;
+  font:400 13.5px/1.55 var(--sans);
+  color:var(--soft);
+}
+#jaws-book#jaws-book .jb-ctx-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0 0;
+}
+#jaws-book#jaws-book .jb-ctx-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 11px;
+  border-radius:999px;
+  border:1px solid rgba(226,194,125,.32);
+  background:rgba(18,17,16,.55);
+  font:400 12.5px/1.2 var(--sans);
+  color:#F0D79C;
+}
+
+/* GoHighLevel embed target slot */
+#jaws-book#jaws-book .jb-slot{
+  margin:22px 0 0;
+  border-radius:18px;
+  border:1px dashed rgba(217,182,140,.34);
+  background:rgba(14,13,12,.72);
+  padding:clamp(22px,3vw,32px);
+}
+#jaws-book#jaws-book .jb-slot-placeholder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-height:220px;
+  padding:12px 8px;
+}
+#jaws-book#jaws-book .jb-crest{
+  display:grid;
+  place-items:center;
+  width:46px;
+  height:46px;
+  margin:0 0 14px;
+  border-radius:50%;
+  border:1px solid rgba(226,194,125,.42);
+  background:rgba(226,194,125,.08);
+  font:500 20px/1 var(--serif);
+  color:var(--champagne);
+}
+#jaws-book#jaws-book .jb-slot-title{
+  font:500 18px/1.3 var(--serif);
+  color:#F7F2E9;
+  margin:0 0 6px;
+}
+#jaws-book#jaws-book .jb-slot-copy{
+  max-width:36ch;
+  font:400 14px/1.6 var(--sans);
+  color:var(--mute);
+}
+
+/* TCPA SMS consent checkbox */
+#jaws-book#jaws-book .jb-tcpa{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin:18px 0 0;
+  padding:15px 16px;
+  border-radius:14px;
+  border:1px solid rgba(217,182,140,.22);
+  background:rgba(255,246,222,.03);
+}
+#jaws-book#jaws-book .jb-tcpa-check{
+  flex:0 0 auto;
+  width:20px;
+  height:20px;
+  margin:2px 0 0;
+  accent-color:#D9B68C;
+  cursor:pointer;
+}
+#jaws-book#jaws-book .jb-tcpa-label{
+  font:400 12.5px/1.55 var(--sans);
+  color:var(--soft);
+  cursor:pointer;
+}
+#jaws-book#jaws-book .jb-card-priv{
+  margin:14px 0 0;
+  font:400 12.5px/1.5 var(--sans);
+  color:var(--mute);
+}
+
+/* secondary navigation footer strip inside booking section */
+#jaws-book#jaws-book .jb-more{
+  margin:clamp(54px,7vw,88px) 0 0;
+  padding-top:28px;
+  border-top:1px solid var(--line);
+}
+#jaws-book#jaws-book .jb-more-t{
+  margin:0 0 14px;
+  font:italic 500 16px/1.3 var(--serif);
+  color:var(--teak-lt);
+}
+#jaws-book#jaws-book .jb-more ul{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+#jaws-book#jaws-book .jb-more a{
+  display:inline-block;
+  padding:11px 17px;
+  border-radius:999px;
+  border:1px solid rgba(244,239,231,.16);
+  font:400 14px/1 var(--sans);
+  color:var(--ink);
+  text-decoration:none;
+  transition:border-color .3s ease,color .3s ease,background .3s ease;
+}
+#jaws-book#jaws-book .jb-more a:hover{
+  border-color:rgba(217,182,140,.6);
+  color:#F0D79C;
+  background:rgba(217,182,140,.06);
+}
+
+/* responsive adjustments */
+@media (max-width:920px){
+  #jaws-book#jaws-book .jb-grid{grid-template-columns:1fr;gap:36px}
+}
+@media (max-width:600px){
+  #jaws-book#jaws-book .jb-by{flex-direction:column}
+  #jaws-book#jaws-book .jb-by span + span::before{display:none}
+  #jaws-book#jaws-book .jb-ctas .jb-btn{width:100%}
+  #jaws-book#jaws-book .jb-details{grid-template-columns:1fr;gap:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  #jaws-book#jaws-book .jb-h1 em,
+  #jaws-book#jaws-book .jb-gold{animation:none}
+  #jaws-book#jaws-book .jb-btn,
+  #jaws-book#jaws-book .jb-btn::after,
+  #jaws-book#jaws-book .jb-link,
+  #jaws-book#jaws-book .jb-more a{transition:none}
+}
+</style>
+
+<div id="jaws-book">
+  <div class="jb-wrap">
+    <nav class="jb-crumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a><i>/</i><b>Private consultations</b>
+    </nav>
+
+    <div class="jb-grid">
+      <div class="jb-info-col">
+        <p class="jb-kicker">Private consultations</p>
+        <h1 id="jb-h1" class="jb-h1">Begin your <em class="jb-gold">consultation</em></h1>
+        <p class="jb-es" lang="es">Reserve su consulta privada</p>
+        <p class="jb-by">
+          <span>Dr. Abraham Wagner, DPM, podiatric physician</span>
+          <span>In-office surgical suite</span>
+          <span>Miami, Florida</span>
+        </p>
+        <div class="jb-rule" aria-hidden="true"></div>
+        <p class="jb-lead">Share what brings you in and our Miami concierge team will coordinate a personal consultation time. Prefer to speak with our suite directly? Call us and we will set up your visit.</p>
+
+        <div class="jb-ctas">
+          <a class="jb-btn" href="tel:+19549227333">Call (954) 922-7333</a>
+          <a class="jb-btn jb-ghost jb-mobile-jump" href="#ghl-form-slot">Request online</a>
+        </div>
+
+        <div class="jb-flyin">
+          <p class="jb-flyin-t">Miami &amp; Fly-In Patients</p>
+          <p>Virtual informational pre-screening from home — clinical evaluation and surgical care take place in our Miami, Florida suite.</p>
+        </div>
+
+        <div class="jb-details">
+          <div>
+            <h2>Suite</h2>
+            <p>3700 Washington St, Suite 403<br>Hollywood, FL 33021</p>
+            <a class="jb-link" href="https://www.google.com/maps/search/?api=1&amp;query=3700+Washington+St+403+Hollywood+FL+33021" target="_blank" rel="noopener noreferrer">Get directions</a>
+          </div>
+          <div>
+            <h2>Hours</h2>
+            <p>Monday to Friday, 9 AM to 5 PM<br>Saturday and Sunday, closed</p>
+          </div>
+        </div>
+
+        <p class="jb-fin">We do not take insurance. We do offer financing, through CareCredit and Cherry, subject to their approval.</p>
+        <p class="jb-fine">Every surgery has risks. Individual results vary.</p>
+      </div>
+
+      <div class="jb-form-col">
+        <div class="jb-card">
+          <p class="jb-card-kicker">Concierge scheduling</p>
+          <h2>Request your visit</h2>
+          <p class="jb-card-sub">Tell us a little about your goals and when you are available. Our coordinator follows up personally.</p>
+
+          <div id="jb-context" class="jb-context" hidden aria-live="polite">
+            <div class="jb-ctx-top">
+              <span class="jb-ctx-kicker">Selected consultation context</span>
+              <button type="button" id="jb-ctx-clear" class="jb-ctx-clear">Clear</button>
+            </div>
+            <p id="jb-ctx-title" class="jb-ctx-title"></p>
+            <p id="jb-ctx-desc" class="jb-ctx-desc"></p>
+            <div id="jb-ctx-tags" class="jb-ctx-tags"></div>
+          </div>
+
+          <div id="ghl-form-slot" class="jb-slot">
+            <!-- AGENCY EMBED GUIDE (Higher Images):
+                 1. Replace .jb-slot-placeholder below with your GoHighLevel <iframe ...> and form_embed.js script.
+                 2. Keep GA, GTM, and the Meta Pixel OFF /booking for patient privacy.
+                 3. Configure the GoHighLevel form with an UNCHECKED TCPA SMS consent checkbox matching #jb-tcpa-consent below.
+                 4. Optional: Read data-topic and data-travel from #jb-context if passing prefill metadata into GHL. -->
+            <div class="jb-slot-placeholder">
+              <div class="jb-crest" aria-hidden="true">J</div>
+              <b class="jb-slot-title">Online booking intake</b>
+              <span class="jb-slot-copy">The GoHighLevel private consultation form mounts cleanly inside this container (#ghl-form-slot).</span>
+            </div>
+
+            <div class="jb-tcpa">
+              <input type="checkbox" id="jb-tcpa-consent" class="jb-tcpa-check">
+              <label for="jb-tcpa-consent" class="jb-tcpa-label">Optional SMS updates: I consent to receive appointment confirmations and concierge text messages from JAWS Podiatry at the phone number provided. Message frequency varies; message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of medical care.</label>
+            </div>
+          </div>
+
+          <p class="jb-card-priv">Private intake environment: no advertising pixels or third-party tracking scripts run on this page.</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="jb-more" aria-label="Explore the practice">
+      <p class="jb-more-t">Continue exploring</p>
+      <ul>
+        <li><a href="/#procedures">Signature procedures</a></li>
+        <li><a href="/#jrr">Real results</a></li>
+        <li><a href="/experience">The experience</a></li>
+        <li><a href="/about-dr-wagner">About Dr. Wagner</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.getElementById('jaws-book');
+  if (!root || root.getAttribute('data-ready') === '1') return;
+  root.setAttribute('data-ready', '1');
+
+  // Keep sticky booking card positioned comfortably beneath Duda's pinned header
+  function syncTop() {
+    var h = document.getElementById('flex-header') || document.querySelector('.dmHeaderContainer, #hcontainer');
+    if (!h) return;
+    var pinned = false;
+    for (var el = h; el && el !== document.body; el = el.parentElement) {
+      var pos = window.getComputedStyle ? getComputedStyle(el).position : '';
+      if (pos === 'sticky' || pos === 'fixed') { pinned = true; break; }
+    }
+    var px = (pinned ? Math.max(0, Math.round(h.getBoundingClientRect().bottom)) : 0) + 'px';
+    if (root.style.getPropertyValue('--top') !== px) {
+      root.style.setProperty('--top', px);
+    }
+  }
+  syncTop();
+  window.addEventListener('resize', syncTop, { passive: true });
+  window.addEventListener('scroll', syncTop, { passive: true });
+
+  // Strict allowlists for ?topic= and ?travel= (zero raw XSS reflection)
+  var TOPICS = {
+    brachy: {
+      label: 'Brachybalancing\u2122',
+      desc: 'Inquiring about Brachybalancing\u2122 for brachymetatarsia with Dr. Abraham Wagner, DPM, podiatric physician.'
+    },
+    short: {
+      label: 'Toe shortening surgery',
+      desc: 'Inquiring about minimally invasive toe shortening in our Miami, Florida surgical suite.'
+    },
+    length: {
+      label: 'Toe lengthening surgery',
+      desc: 'Inquiring about structural, hardware-free toe lengthening options.'
+    },
+    bunion: {
+      label: 'Minimally invasive bunion surgery',
+      desc: 'Inquiring about keyhole bunion correction without pins, screws or plates.'
+    },
+    tailor: {
+      label: "Tailor's bunion surgery",
+      desc: "Inquiring about minimally invasive tailor's bunion (bunionette) correction."
+    },
+    hammertoe: {
+      label: 'Hammertoe & toe straightening',
+      desc: 'Inquiring about minimally invasive toe straightening without pins or joint fusion.'
+    },
+    reduction: {
+      label: 'Foot reduction & shortening',
+      desc: 'Inquiring about structural foot reduction and proportion refinement.'
+    },
+    corn: {
+      label: 'Corn removal surgery',
+      desc: 'Inquiring about in-office corn removal addressing underlying bone alignment.'
+    },
+    revision: {
+      label: 'Revision foot & toe surgery',
+      desc: 'Inquiring about a second opinion or corrective revision foot procedure.'
+    },
+    congenital: {
+      label: 'Congenital foot & toe deformities',
+      desc: 'Inquiring about evaluation for congenital foot or toe structural differences.'
+    },
+    tuck: {
+      label: 'Foot & toe tucks',
+      desc: 'Inquiring about targeted foot and toe contour refinement.'
+    },
+    fem: {
+      label: 'Foot feminization',
+      desc: 'Inquiring about foot slimming and delicate forefoot contouring.'
+    }
+  };
+
+  var TRAVEL = {
+    local: {
+      label: 'Local Miami Visit',
+      desc: 'In-person consultation at our Miami, Florida suite.'
+    },
+    flyin: {
+      label: 'Fly-In / Out-of-Town',
+      desc: 'Virtual informational pre-screening from home — clinical evaluation and surgical care take place in our Miami, Florida suite.'
+    }
+  };
+
+  function getParam(name) {
+    if (window.URLSearchParams) {
+      var sp = new URLSearchParams(location.search);
+      return (sp.get(name) || '').toLowerCase().trim();
+    }
+    var re = new RegExp('[?&]' + name + '=([^&#]*)', 'i');
+    var m = re.exec(location.search);
+    return m ? decodeURIComponent(m[1]).toLowerCase().trim() : '';
+  }
+
+  function renderContext() {
+    var box = document.getElementById('jb-context');
+    if (!box) return;
+
+    var rawTopic = getParam('topic');
+    var rawTravel = getParam('travel');
+    var topic = Object.prototype.hasOwnProperty.call(TOPICS, rawTopic) ? TOPICS[rawTopic] : null;
+    var travel = Object.prototype.hasOwnProperty.call(TRAVEL, rawTravel) ? TRAVEL[rawTravel] : null;
+
+    if (!topic && !travel) {
+      box.hidden = true;
+      box.removeAttribute('data-topic');
+      box.removeAttribute('data-travel');
+      return;
+    }
+
+    var titleEl = document.getElementById('jb-ctx-title');
+    var descEl = document.getElementById('jb-ctx-desc');
+    var tagsEl = document.getElementById('jb-ctx-tags');
+    if (!titleEl || !descEl || !tagsEl) return;
+
+    titleEl.textContent = topic ? topic.label : travel.label;
+    descEl.textContent = topic
+      ? (travel ? topic.desc + ' ' + travel.desc : topic.desc)
+      : travel.desc;
+
+    while (tagsEl.firstChild) tagsEl.removeChild(tagsEl.firstChild);
+
+    if (topic) {
+      box.setAttribute('data-topic', rawTopic);
+      var tTag = document.createElement('span');
+      tTag.className = 'jb-ctx-tag';
+      tTag.textContent = topic.label;
+      tagsEl.appendChild(tTag);
+    } else {
+      box.removeAttribute('data-topic');
+    }
+
+    if (travel) {
+      box.setAttribute('data-travel', rawTravel);
+      var vTag = document.createElement('span');
+      vTag.className = 'jb-ctx-tag';
+      vTag.textContent = travel.label;
+      tagsEl.appendChild(vTag);
+    } else {
+      box.removeAttribute('data-travel');
+    }
+
+    box.hidden = false;
+  }
+
+  renderContext();
+
+  var clearBtn = document.getElementById('jb-ctx-clear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function () {
+      var box = document.getElementById('jb-context');
+      if (box) {
+        box.hidden = true;
+        box.removeAttribute('data-topic');
+        box.removeAttribute('data-travel');
+      }
+      if (window.history && window.history.replaceState && window.URLSearchParams) {
+        var sp = new URLSearchParams(location.search);
+        sp.delete('topic');
+        sp.delete('travel');
+        var qs = sp.toString();
+        window.history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+      }
+    });
+  }
+
+  // Duda preview link rewriter: handles /site/<id> and both ?preview=true and &preview=true safely
+  var pre = location.pathname.match(/^(\/site\/[^/]+)/);
+  if (pre) {
+    var hasPreview = /(?:^|[?&])preview=true(?:&|$)/.test(location.search);
+    function fixLinks() {
+      root.querySelectorAll('a[href^="/"]').forEach(function (a) {
+        var h = a.getAttribute('href');
+        if (!h || h.indexOf('/site/') === 0 || h.indexOf('//') === 0) return;
+        var hashIdx = h.indexOf('#');
+        var hash = hashIdx > -1 ? h.slice(hashIdx) : '';
+        var base = hashIdx > -1 ? h.slice(0, hashIdx) : h;
+        if (hasPreview && !/(?:^|[?&])preview=true(?:&|$)/.test(base)) {
+          base += (base.indexOf('?') > -1 ? '&' : '?') + 'preview=true';
+        }
+        a.setAttribute('href', pre[1] + base + hash);
+      });
+    }
+    fixLinks();
+    window.addEventListener('load', fixLinks);
+    window.setTimeout(fixLinks, 2000);
+  }
+})();
+</script>

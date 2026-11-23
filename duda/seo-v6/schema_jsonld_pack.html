@@ -1,0 +1,542 @@
+<!--
+  JAWS Podiatry v6 — Structured Data (JSON-LD) & Social Meta Pack
+  ================================================================
+  Deployment notes for Agency (Duda Site / Page Head HTML):
+  1. Replace asset image placeholders (e.g. R2 CDN URLs) once Cloudflare R2 migration is complete.
+  2. Deploy MedicalClinic + Physician globally (or on Home + About Dr. Wagner).
+  3. Deploy FAQPage on Home (/).
+  4. Deploy the matching BreadcrumbList + MedicalProcedure block on each procedure page.
+     DO NOT deploy the two [HELD] blocks (foot-feminization, foot-and-toe-tuck) until Attorney & Trademark clear them.
+  5. Florida Advertising Compliance (Fla. Admin. Code 64B18-14.004(3) & s. 456.072(1)(t)):
+     - Includes "podiatric physician" license designation.
+     - Lists ONLY verified American Board of Podiatric Medicine (ABPM) certification until Attorney clears ABMSP.
+     - No superiority claims or guaranteed outcomes.
+-->
+
+<!-- =========================================================================
+     1. GLOBAL / PRACTICE: MedicalClinic (NAP: Hollywood, FL | areaServed: Miami, FL)
+     ========================================================================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalClinic",
+  "@id": "https://www.jawspodiatry.com/#clinic",
+  "name": "JAWS Podiatry",
+  "url": "https://www.jawspodiatry.com/",
+  "telephone": "+1-954-922-7333",
+  "image": "https://www.jawspodiatry.com/assets/office/entrance.webp",
+  "priceRange": "$$$$",
+  "paymentAccepted": "Cash, Credit Card, CareCredit, Cherry Financing",
+  "currenciesAccepted": "USD",
+  "isAcceptingNewPatients": true,
+  "medicalSpecialty": "Podiatric",
+  "description": "JAWS Podiatry, led by Dr. Abraham Wagner, DPM, podiatric physician, offers cosmetic and minimally invasive foot surgery in an in-office surgical suite serving Miami, Florida and traveling patients. We do not take insurance; financing is available through CareCredit and Cherry, subject to approval.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3700 Washington St, Suite 403",
+    "addressLocality": "Hollywood",
+    "addressRegion": "FL",
+    "postalCode": "33021",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Miami, FL"
+  },
+  "openingHours": "Mo-Fr 09:00-17:00",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "founder": {
+    "@id": "https://www.jawspodiatry.com/#physician"
+  },
+  "employee": {
+    "@id": "https://www.jawspodiatry.com/#physician"
+  }
+}
+</script>
+
+<!-- =========================================================================
+     2. GLOBAL / SURGEON: Physician (Dr. Abraham Wagner, DPM, podiatric physician)
+     ========================================================================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "@id": "https://www.jawspodiatry.com/#physician",
+  "name": "Dr. Abraham Wagner, DPM",
+  "givenName": "Abraham",
+  "familyName": "Wagner",
+  "honorificPrefix": "Dr.",
+  "honorificSuffix": "DPM",
+  "jobTitle": "Podiatric Physician",
+  "description": "Dr. Abraham Wagner, DPM, podiatric physician and founder of JAWS Podiatry, focuses on minimally invasive cosmetic and reconstructive foot and toe surgery in Miami, Florida.",
+  "url": "https://www.jawspodiatry.com/about-dr-wagner",
+  "image": "https://www.jawspodiatry.com/assets/office/dr-wagner-blazer-sign.webp",
+  "telephone": "+1-954-922-7333",
+  "medicalSpecialty": "Podiatric",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3700 Washington St, Suite 403",
+    "addressLocality": "Hollywood",
+    "addressRegion": "FL",
+    "postalCode": "33021",
+    "addressCountry": "US"
+  },
+  "worksFor": {
+    "@id": "https://www.jawspodiatry.com/#clinic"
+  },
+  "alumniOf": [
+    {
+      "@type": "EducationalOrganization",
+      "name": "Hofstra University"
+    },
+    {
+      "@type": "EducationalOrganization",
+      "name": "Barry University School of Podiatric Medicine"
+    },
+    {
+      "@type": "MedicalOrganization",
+      "name": "South Miami / Baptist Hospital Foot and Ankle Surgical Residency"
+    },
+    {
+      "@type": "MedicalOrganization",
+      "name": "Minimally Invasive Foot and Ankle Surgery Fellowship under Dr. Orlando Nunez, MD, DPM"
+    }
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Board Certification",
+      "name": "Diplomate, American Board of Podiatric Medicine",
+      "recognizedBy": {
+        "@type": "Organization",
+        "name": "American Board of Podiatric Medicine"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- =========================================================================
+     3. HOME PAGE (/): FAQPage (Matches all 7 Home FAQs verbatim)
+     ========================================================================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is cosmetic foot surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cosmetic foot surgery refers to procedures focused on refining the shape, proportion and appearance of the foot and toes, such as toe shortening, lengthening, straightening and foot slimming, in addition to improving comfort in footwear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is surgery done under local anesthesia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Appropriate procedures may be performed under local anesthesia, in our in-office surgical suite. Your anesthesia plan depends on your procedure and your individual needs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is recovery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Recovery varies by procedure and by patient. Dr. Wagner reviews expected recovery in detail during your personalized evaluation and treatment plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I walk after surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some patients may be permitted to walk with protective footwear following treatment, while other procedures may require greater restrictions. Dr. Wagner will give you instructions specific to your treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can both feet be done at the same time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For selected patients, yes. Dr. Wagner decides whether it's right for you based on your procedure and your case."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I live out of state. Can I still come to JAWS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Patients travel to JAWS Podiatry from across the United States and beyond, and a virtual consultation lets you start from home."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I book a consultation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Request a consultation online or call (954) 922-7333, and our team will follow up to find a time that works for you."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- =========================================================================
+     4. BREADCRUMBLIST TEMPLATES (Customize name & item URL per page)
+     ========================================================================= -->
+
+<!-- 4A. Procedure Page BreadcrumbList Template (replace {{PROCEDURE_NAME}} and {{PROCEDURE_URL}}) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.jawspodiatry.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Procedures",
+      "item": "https://www.jawspodiatry.com/#procedures"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{PROCEDURE_NAME}}",
+      "item": "https://www.jawspodiatry.com/{{PROCEDURE_SLUG}}"
+    }
+  ]
+}
+</script>
+
+<!-- 4B. Practice / Booking Page BreadcrumbList Examples -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.jawspodiatry.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "About Dr. Wagner",
+      "item": "https://www.jawspodiatry.com/about-dr-wagner"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.jawspodiatry.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "The experience",
+      "item": "https://www.jawspodiatry.com/experience"
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.jawspodiatry.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Request a private consultation",
+      "item": "https://www.jawspodiatry.com/booking"
+    }
+  ]
+}
+</script>
+
+<!-- =========================================================================
+     5. MEDICALPROCEDURE BLOCKS (10 Launch-Ready + 2 Held Drafts)
+     ========================================================================= -->
+
+<!-- 5.01 Brachybalancing™ (/brachybalancing) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Brachybalancing™ Brachymetatarsia Surgery",
+  "alternateName": "Brachymetatarsia Correction",
+  "url": "https://www.jawspodiatry.com/brachybalancing",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Metatarsal bones and toes of the foot",
+  "description": "Brachybalancing™ combines minimally invasive procedures performed in one sitting in an in-office surgical suite to address brachymetatarsia and neighboring toe proportions. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed under local anesthesia in an in-office surgical suite using keyhole and hidden incisions without external fixators, internal pins, screws, or plates.",
+  "preparation": "Private consultation in Miami or virtually, imaging review, and individualized surgical planning with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Same-day ambulation when appropriate with protective footwear and structured follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.02 Toe Shortening (/toe-shortening) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Minimally Invasive Toe Shortening Surgery",
+  "url": "https://www.jawspodiatry.com/toe-shortening",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Toes",
+  "description": "Minimally invasive toe shortening surgery in Miami designed to restore natural toe proportions and footwear comfort without pins, screws, or joint fusion. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed under local anesthesia in an in-office surgical suite through tiny incisions without pins, screws, or joint fusion.",
+  "preparation": "Private consultation and radiographic evaluation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Post-operative aftercare instructions and follow-up visits as healing progresses.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.03 Toe Lengthening (/toe-lengthening) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Structural Toe Lengthening Surgery",
+  "url": "https://www.jawspodiatry.com/toe-lengthening",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Phalanges and metatarsals of the foot",
+  "description": "Structural toe lengthening surgery in Miami for a visibly short toe caused by brachyphalangia or brachymetatarsia using a hardware-free minimally invasive approach. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed in an in-office surgical suite under local anesthesia using a hardware-free technique tailored to toe and metatarsal anatomy.",
+  "preparation": "Personalized diagnostic imaging and anatomical assessment with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Dedicated recovery guidance and scheduled clinical follow-ups.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.04 Hammertoe & Toe Straightening (/hammertoe-surgery) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Minimally Invasive Hammertoe & Toe Straightening Surgery",
+  "alternateName": "Hammertoe, Claw Toe & Mallet Toe Correction",
+  "url": "https://www.jawspodiatry.com/hammertoe-surgery",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Toes",
+  "description": "Minimally invasive surgery in Miami to realign and straighten curved, bent, or overlapping toes without pins, wires, or joint fusion. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed in an in-office surgical suite under local anesthesia through tiny incisions without protruding pins, K-wires, or joint fusion.",
+  "preparation": "Clinical evaluation and treatment planning with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Individualized post-operative shoe guidance and follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.05 Foot Reduction (/foot-reduction) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Structural Foot Reduction & Shortening Surgery",
+  "url": "https://www.jawspodiatry.com/foot-reduction",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Forefoot and toes",
+  "description": "Structural foot reduction and shortening surgery in Miami planned in millimeters to align forefoot and toe proportions. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed under local anesthesia in an in-office surgical suite using keyhole and hidden incisions.",
+  "preparation": "Precision millimeter measurement and personalized surgical evaluation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Structured recovery roadmap and post-operative follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.06 Bunion Surgery (/bunion-surgery) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Minimally Invasive Bunion Surgery",
+  "alternateName": "Hallux Valgus Correction",
+  "url": "https://www.jawspodiatry.com/bunion-surgery",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "First metatarsophalangeal joint and great toe",
+  "description": "Minimally invasive bunion correction in Miami performed through tiny keyhole openings without pins, screws, or plates. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed in an in-office surgical suite under local anesthesia through keyhole openings without hardware.",
+  "preparation": "Weight-bearing assessment and radiographic consultation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Protected walking instructions and follow-up care throughout healing.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.07 Tailor's Bunion (/tailors-bunion) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Minimally Invasive Tailor's Bunion (Bunionette) Surgery",
+  "alternateName": "Bunionette Correction",
+  "url": "https://www.jawspodiatry.com/tailors-bunion",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Fifth metatarsal head and outer border of the foot",
+  "description": "Minimally invasive tailor's bunion correction in Miami reshaping and realigning the fifth metatarsal head without pins or screws. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed in an in-office surgical suite under local anesthesia through tiny keyhole incisions without pins or screws.",
+  "preparation": "Clinical consultation and imaging evaluation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Post-operative footwear instructions and follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.08 Corn Removal (/corn-removal) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Minimally Invasive Corn Removal Surgery",
+  "url": "https://www.jawspodiatry.com/corn-removal",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Toes and forefoot bony prominences",
+  "description": "Minimally invasive corn removal surgery in Miami addressing the underlying bone friction beneath painful toe corns, performed in the office. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed in an in-office surgical suite under local anesthesia to address both the surface skin lesion and the underlying bony prominence.",
+  "preparation": "Evaluation of toe alignment and footwear friction points with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Same-day discharge with clear aftercare and follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.09 Revision Surgery (/revision-surgery) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Revision Foot & Toe Surgery",
+  "url": "https://www.jawspodiatry.com/revision-surgery",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Foot and toes",
+  "description": "Minimally invasive revision foot and toe surgery in Miami for prior surgical outcomes that fell short, with second opinions welcome. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Individualized reconstructive and minimally invasive techniques tailored to prior surgical anatomy.",
+  "preparation": "Comprehensive chart, imaging, and structural review with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Closely monitored healing protocol and follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.10 Congenital Deformities (/congenital-deformities) [LAUNCH READY] -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Congenital Foot & Toe Deformity Correction",
+  "url": "https://www.jawspodiatry.com/congenital-deformities",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Foot and toes",
+  "description": "Minimally invasive surgical options in Miami for congenital foot and toe deformities such as brachymetatarsia, polydactyly, syndactyly, and overlapping toes. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Customized minimally invasive surgical reconstruction in an in-office surgical suite.",
+  "preparation": "Detailed anatomical and imaging consultation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Personalized recovery plan and scheduled follow-up visits.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.11 [HELD - ATTORNEY REVIEW] Foot Feminization (/foot-feminization) -->
+<!-- DO NOT DEPLOY UNTIL ATTORNEY CLEARS Fla. Stat. s. 456.52 REVIEW -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Foot Feminization & Aesthetic Foot Contouring",
+  "url": "https://www.jawspodiatry.com/foot-feminization",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Forefoot and toes",
+  "description": "Combined minimally invasive procedures in Miami designed to slim, narrow, and refine wide or disproportionate feet. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Tailored minimally invasive combination procedures performed in an in-office surgical suite under local anesthesia.",
+  "preparation": "Comprehensive aesthetic and structural consultation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Structured recovery roadmap and post-operative follow-up care.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- 5.12 [HELD - TRADEMARK CHECK] Foot & Toe Tucks (/foot-and-toe-tuck) -->
+<!-- DO NOT DEPLOY UNTIL TRADEMARK COUNSEL CLEARS "SKINNY FOOT/TOE TUCK" -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalProcedure",
+  "name": "Foot & Toe Tucks (Skinny Foot Tuck™ & Skinny Toe Tuck™)",
+  "url": "https://www.jawspodiatry.com/foot-and-toe-tuck",
+  "procedureType": "https://schema.org/SurgicalProcedure",
+  "bodyLocation": "Forefoot and toes",
+  "description": "Minimally invasive foot and toe tuck procedures in Miami designed to reduce excess width and bulk for a streamlined foot profile. Every surgery has risks. Individual results vary.",
+  "howPerformed": "Performed in an in-office surgical suite under local anesthesia through tiny incisions.",
+  "preparation": "Individualized structural consultation with Dr. Abraham Wagner, DPM, podiatric physician.",
+  "followup": "Clear post-operative instructions and scheduled clinical follow-ups.",
+  "performer": { "@id": "https://www.jawspodiatry.com/#physician" },
+  "provider": { "@id": "https://www.jawspodiatry.com/#clinic" }
+}
+</script>
+
+<!-- =========================================================================
+     6. OPEN GRAPH, TWITTER CARD & CANONICAL META TEMPLATE
+     Populate {{PAGE_TITLE}}, {{PAGE_DESCRIPTION}}, {{CANONICAL_URL}}, and {{OG_IMAGE}}
+     from seo/page_titles_descriptions_DRAFT.csv in Duda Page Settings.
+     ========================================================================= -->
+<!--
+<link rel="canonical" href="{{CANONICAL_URL}}" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="JAWS Podiatry" />
+<meta property="og:title" content="{{PAGE_TITLE}}" />
+<meta property="og:description" content="{{PAGE_DESCRIPTION}}" />
+<meta property="og:url" content="{{CANONICAL_URL}}" />
+<meta property="og:image" content="{{OG_IMAGE}}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{PAGE_TITLE}}" />
+<meta name="twitter:description" content="{{PAGE_DESCRIPTION}}" />
+<meta name="twitter:image" content="{{OG_IMAGE}}" />
+-->

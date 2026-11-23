@@ -1,0 +1,603 @@
+/* JAWS Podiatry v6 site-wide Duda shell CSS (header, smoked-glass drawer, scroll progress, obsidian luxury footer).
+   Upgrades site.css: preserves Duda's own logo, menu, button and phone icons while adding scroll-condensing header,
+   liquid-gold scroll progress bar (--jh-progress), drawer consultation CTA (.jh-drawer-book), standard unprefixed
+   mask alongside -webkit-mask, and full Obsidian Luxury Footer styling. */
+
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Apfel Grotezk";src:url("https://xiiixiultra-maker.github.io/jaws-walk/fonts/ApfelGrotezk-Mittel.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}
+
+/* --------------------------------------------------------------------------
+   1. Header bar — smoked glass + bottom gold hairline + scroll progress
+   -------------------------------------------------------------------------- */
+#dm #flex-header{
+  background:linear-gradient(180deg,rgba(36,33,31,.95),rgba(20,18,17,.93)) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%);
+  transition:background .35s cubic-bezier(.2,.7,.2,1),padding .35s cubic-bezier(.2,.7,.2,1),min-height .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s cubic-bezier(.2,.7,.2,1);
+}
+#dm #flex-header .flex-element.section,
+#dm #flex-header .flex-element.grid{
+  transition:padding .35s cubic-bezier(.2,.7,.2,1),min-height .35s cubic-bezier(.2,.7,.2,1);
+}
+#dm #flex-header img{
+  transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  transform-origin:center center;
+}
+
+/* ambient 1px gold hairline with 7-second gliding glint at rest */
+#dm #flex-header::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:3px;
+  z-index:5;
+  pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,244,214,.95),rgba(255,244,214,0)) no-repeat,
+    linear-gradient(90deg,rgba(226,194,125,0),rgba(226,194,125,.5) 18%,rgba(255,243,209,.95) 50%,rgba(226,194,125,.5) 82%,rgba(226,194,125,0)) no-repeat;
+  background-size:200px 3px,100% 1px;
+  background-position:-220px 0,0 1px;
+  animation:jhHdrGlint 7s ease-in-out infinite;
+  transition:opacity .3s ease;
+}
+@keyframes jhHdrGlint{
+  0%{background-position:-220px 0,0 1px}
+  55%,100%{background-position:calc(100% + 220px) 0,0 1px}
+}
+
+/* razor-thin liquid-gold scroll progress bar driven by --jh-progress (0..1) */
+#dm #flex-header::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:2px;
+  z-index:6;
+  pointer-events:none;
+  background:linear-gradient(90deg,#A9853F 0%,#E2C27D 45%,#FFF3D1 88%,#E7C987 100%);
+  box-shadow:0 0 10px rgba(226,194,125,.55);
+  transform-origin:0 50%;
+  transform:scaleX(var(--jh-progress,0));
+  opacity:0;
+  transition:opacity .28s ease;
+}
+
+/* condensing scroll state toggled by header-scroll.js when scrollY > 56 */
+#dm #flex-header.jh-scrolled{
+  background:linear-gradient(180deg,rgba(28,25,24,.97),rgba(20,18,17,.96)) !important;
+  padding-top:4px !important;
+  padding-bottom:4px !important;
+  min-height:0 !important;
+  box-shadow:0 14px 36px rgba(0,0,0,.42) !important;
+}
+#dm #flex-header.jh-scrolled .flex-element.section,
+#dm #flex-header.jh-scrolled .flex-element.grid{
+  padding-top:6px !important;
+  padding-bottom:6px !important;
+  min-height:0 !important;
+}
+#dm #flex-header.jh-scrolled img{
+  transform:scale(.93);
+}
+#dm #flex-header.jh-scrolled a.dmButtonLink{
+  padding-top:10px !important;
+  padding-bottom:10px !important;
+  min-height:44px !important;
+}
+#dm #flex-header.jh-scrolled::after{
+  animation:none !important;
+  background:linear-gradient(90deg,rgba(226,194,125,0),rgba(226,194,125,.28) 18%,rgba(255,243,209,.42) 50%,rgba(226,194,125,.28) 82%,rgba(226,194,125,0)) no-repeat;
+  background-size:100% 1px;
+  background-position:0 1px;
+}
+#dm #flex-header.jh-scrolled::before{
+  opacity:1;
+}
+
+/* --------------------------------------------------------------------------
+   2. Header menu: cream text, champagne active state + glowing gold dot
+   -------------------------------------------------------------------------- */
+#dm #flex-header nav .unifiednav__item .nav-item-text{
+  font:500 15px/1 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;
+  text-transform:none !important;
+  color:rgba(246,238,223,.8) !important;
+  transition:color .3s;
+}
+#dm #flex-header nav .unifiednav__item:hover .nav-item-text{color:#FFF6DE !important}
+#dm #flex-header nav .unifiednav__item.dmNavItemSelected .nav-item-text{color:#EAD3A4 !important}
+#dm #flex-header nav .unifiednav__item .nav-item-text::after{display:none !important}
+#dm #flex-header nav .unifiednav__item.dmNavItemSelected{position:relative}
+#dm #flex-header nav .unifiednav__item.dmNavItemSelected::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-5px;
+  width:4px;
+  height:4px;
+  margin-left:-2px;
+  border-radius:50%;
+  background:#E2C27D;
+  box-shadow:0 0 10px 2px rgba(226,194,125,.75);
+  pointer-events:none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header champagne-glass CTA button + focus states
+   -------------------------------------------------------------------------- */
+#dm #flex-header a.dmButtonLink{
+  position:relative !important;
+  isolation:isolate;
+  overflow:hidden !important;
+  justify-content:center !important;
+  border:0 !important;
+  border-radius:999px !important;
+  background:linear-gradient(180deg,rgba(240,215,156,.26),rgba(169,133,63,.08)) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.4),0 12px 32px rgba(169,133,63,.25) !important;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s cubic-bezier(.2,.7,.2,1),padding .35s cubic-bezier(.2,.7,.2,1),min-height .35s cubic-bezier(.2,.7,.2,1);
+}
+#dm #flex-header a.dmButtonLink .text{
+  position:relative;
+  z-index:2;
+  font:500 15px/1 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;
+  text-transform:none !important;
+  color:#FFF6DE !important;
+}
+#dm #flex-header a.dmButtonLink::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  padding:1.25px;
+  pointer-events:none;
+  background:linear-gradient(135deg,#FFF3D1,#A9853F 30%,#F0D79C 60%,#7A5A26 85%,#E7C987);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+#dm #flex-header a.dmButtonLink::after{
+  content:"" !important;
+  position:absolute !important;
+  top:0;
+  bottom:0;
+  left:-70%;
+  width:45% !important;
+  height:auto !important;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,240,210,.45),transparent);
+  transform:skewX(-20deg);
+  animation:jhHdrSweep 5.5s cubic-bezier(.2,.7,.2,1) infinite;
+}
+@keyframes jhHdrSweep{
+  0%,62%{left:-70%}
+  100%{left:140%}
+}
+#dm #flex-header a.dmButtonLink:hover{
+  transform:translateY(-1px);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.5),0 16px 40px rgba(217,182,140,.32) !important;
+}
+#dm #flex-header a:focus-visible,
+#dm #flex-header button:focus-visible{
+  outline:2px solid #E2C27D !important;
+  outline-offset:4px !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Mobile circular glass icons (phone + hamburger)
+   -------------------------------------------------------------------------- */
+#dm #flex-header .graphicWidget a,
+#dm #flex-header button.hamburgerButton{
+  position:relative;
+  isolation:isolate;
+  display:grid !important;
+  place-items:center;
+  box-sizing:border-box;
+  width:40px !important;
+  height:40px !important;
+  padding:10px !important;
+  border-radius:50% !important;
+  background:rgba(255,246,222,.05) !important;
+}
+#dm #flex-header .graphicWidget a::before,
+#dm #flex-header button.hamburgerButton::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:50%;
+  padding:1.25px;
+  pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,243,209,.75),rgba(169,133,63,.35) 50%,rgba(240,215,156,.65));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+#dm #flex-header .graphicWidget a{margin:-4px !important}
+#dm #flex-header button.hamburgerButton{margin:-5px !important}
+#dm #flex-header .graphicWidget svg,
+#dm #flex-header .graphicWidget svg *{fill:#E2C27D !important}
+#dm #flex-header button.hamburgerButton svg{width:100% !important;height:100% !important}
+#dm #flex-header button.hamburgerButton svg *{fill:#F3E9D6 !important}
+
+/* --------------------------------------------------------------------------
+   5. Procedures dropdown (smoked glass)
+   -------------------------------------------------------------------------- */
+#dm #flex-header nav .unifiednav__container_sub-nav{
+  background:rgba(27,26,25,.97) !important;
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid rgba(217,182,140,.28) !important;
+  border-radius:18px !important;
+  padding:10px 0 !important;
+  min-width:270px;
+  box-shadow:0 26px 60px rgba(0,0,0,.45) !important;
+}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item{padding:10px 22px !important;background:transparent !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item .nav-item-text{font-size:14px !important;color:#E9E1D3 !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item:hover{background:rgba(217,182,140,.08) !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item:hover .nav-item-text,
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item.dmNavItemSelected .nav-item-text{color:#F0D79C !important}
+#dm #flex-header nav .unifiednav__container_sub-nav .unifiednav__item.dmNavItemSelected::after{display:none !important}
+
+/* --------------------------------------------------------------------------
+   6. Phone menu drawer + injected consultation CTA (.jh-drawer-book)
+   -------------------------------------------------------------------------- */
+#dm #hamburger-drawer{
+  background:radial-gradient(130% 55% at 100% 0%,rgba(226,194,125,.10),rgba(226,194,125,0) 62%),
+    linear-gradient(180deg,rgba(36,33,31,.97),rgba(20,18,17,.97)) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  backdrop-filter:blur(18px) saturate(140%);
+  box-shadow:inset 1px 0 0 rgba(217,182,140,.38),-24px 0 60px rgba(0,0,0,.5) !important;
+  color:#F3E9D6 !important;
+}
+#dm #hamburger-drawer .flex-element.section,
+#dm #hamburger-drawer .flex-element.grid,
+#dm #hamburger-drawer .flex-element.group{background:transparent !important}
+
+#dm #hamburger-drawer nav .unifiednav__container.unav-top>.unifiednav__item-wrap{border-bottom:1px solid rgba(217,182,140,.14)}
+#dm #hamburger-drawer nav .unifiednav__item{position:relative;background:transparent !important}
+#dm #hamburger-drawer nav .unifiednav__item .nav-item-text{
+  font:500 19px/1.25 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;
+  text-transform:none !important;
+  color:rgba(246,238,223,.84) !important;
+}
+#dm #hamburger-drawer nav .unifiednav__item .nav-item-text::after,
+#dm #hamburger-drawer nav .unifiednav__item::after{display:none !important}
+#dm #hamburger-drawer nav .unifiednav__item.dmNavItemSelected .nav-item-text{color:#EAD3A4 !important}
+#dm #hamburger-drawer nav .unifiednav__item.dmNavItemSelected::before{
+  content:"";
+  position:absolute;
+  left:-13px;
+  top:50%;
+  width:5px;
+  height:5px;
+  margin-top:-2.5px;
+  border-radius:50%;
+  background:#E2C27D;
+  box-shadow:0 0 10px 2px rgba(226,194,125,.75);
+  pointer-events:none;
+}
+#dm #hamburger-drawer nav .icon,
+#dm #hamburger-drawer nav .icon:before{color:#E2C27D !important}
+
+#dm #hamburger-drawer nav .unifiednav__container_sub-nav{
+  background:transparent !important;
+  border-left:1px solid rgba(217,182,140,.32) !important;
+  margin-left:1px !important;
+  box-shadow:none !important;
+}
+#dm #hamburger-drawer nav .unifiednav__container_sub-nav>.unifiednav__item-wrap:last-child{padding-bottom:10px}
+#dm #hamburger-drawer nav .unifiednav__container_sub-nav .unifiednav__item .nav-item-text{font-size:15px !important;color:rgba(233,225,211,.72) !important}
+#dm #hamburger-drawer nav .unifiednav__container_sub-nav .unifiednav__item.dmNavItemSelected .nav-item-text{color:#F0D79C !important}
+
+#dm #hamburger-drawer button.hamburgerButton{
+  position:relative;
+  isolation:isolate;
+  display:grid !important;
+  place-items:center;
+  box-sizing:border-box;
+  width:40px !important;
+  height:40px !important;
+  padding:12px !important;
+  margin:-5px !important;
+  border-radius:50% !important;
+  background:rgba(255,246,222,.05) !important;
+}
+#dm #hamburger-drawer button.hamburgerButton::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:50%;
+  padding:1.25px;
+  pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,243,209,.75),rgba(169,133,63,.35) 50%,rgba(240,215,156,.65));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+#dm #hamburger-drawer button.hamburgerButton svg{width:100% !important;height:100% !important}
+#dm #hamburger-drawer button.hamburgerButton svg *{fill:#F3E9D6 !important}
+
+/* champagne-glass "Request a consultation" CTA injected above Get in touch */
+#dm #hamburger-drawer a.jh-drawer-book{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  box-sizing:border-box;
+  margin:20px 0 22px;
+  padding:17px 22px;
+  border-radius:999px;
+  text-decoration:none !important;
+  text-align:center;
+  font:500 15px/1.15 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;
+  text-transform:none !important;
+  color:#FFF6DE !important;
+  background:linear-gradient(180deg,rgba(240,215,156,.26),rgba(169,133,63,.08)) !important;
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.4),0 12px 32px rgba(169,133,63,.24) !important;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s cubic-bezier(.2,.7,.2,1);
+}
+#dm #hamburger-drawer a.jh-drawer-book::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  border-radius:inherit;
+  padding:1.25px;
+  pointer-events:none;
+  background:linear-gradient(135deg,#FFF3D1,#A9853F 30%,#F0D79C 60%,#7A5A26 85%,#E7C987);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+#dm #hamburger-drawer a.jh-drawer-book::after{
+  content:"";
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:-65%;
+  width:42%;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,240,210,.42),transparent);
+  transform:skewX(-20deg);
+  transition:left .85s cubic-bezier(.2,.7,.2,1);
+}
+#dm #hamburger-drawer a.jh-drawer-book:hover{
+  transform:translateY(-1px);
+  box-shadow:inset 0 8px 14px -8px rgba(255,236,190,.5),0 16px 38px rgba(217,182,140,.32) !important;
+}
+#dm #hamburger-drawer a.jh-drawer-book:hover::after{left:135%}
+#dm #hamburger-drawer a:focus-visible,
+#dm #hamburger-drawer button:focus-visible{
+  outline:2px solid #E2C27D !important;
+  outline-offset:4px !important;
+}
+
+#dm #hamburger-drawer .dmNewParagraph h4,
+#dm #hamburger-drawer .dmNewParagraph h4 *{
+  font:italic 500 23px/1.15 "Bodoni Moda","Bodoni MT",Didot,Georgia,serif !important;
+  color:#E2C27D !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+}
+#dm #hamburger-drawer .dmNewParagraph p,
+#dm #hamburger-drawer .dmNewParagraph a{
+  font:500 17px/1.35 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  color:#F3E9D6 !important;
+}
+#dm #hamburger-drawer .dmNewParagraph a{
+  text-decoration:underline !important;
+  text-decoration-color:rgba(226,194,125,.55) !important;
+  text-decoration-thickness:1px !important;
+  text-underline-offset:6px !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Obsidian Luxury Footer
+   -------------------------------------------------------------------------- */
+#dm .dmFooterContainer{
+  background:#121110 !important;
+  color:#CFC8BC !important;
+}
+#dm #flex-footer,
+#dm footer#flex-footer{
+  position:relative !important;
+  background:#121110 !important;
+  color:#CFC8BC !important;
+  font-family:"Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  border-top:0 !important;
+  padding-top:clamp(36px,4.5vw,56px) !important;
+  padding-bottom:clamp(28px,3.8vw,44px) !important;
+}
+#dm #flex-footer::before,
+#dm footer#flex-footer::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  height:1px;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(226,194,125,0),rgba(226,194,125,.45) 18%,rgba(255,243,209,.88) 50%,rgba(226,194,125,.45) 82%,rgba(226,194,125,0));
+}
+#dm #flex-footer .flex-element.section,
+#dm #flex-footer .flex-element.grid,
+#dm #flex-footer .flex-element.group,
+#dm #flex-footer .dmRespRow,
+#dm #flex-footer .dmRespCol{
+  background:transparent !important;
+  border-color:rgba(217,182,140,.16) !important;
+}
+
+/* typography & headings */
+#dm #flex-footer p,
+#dm #flex-footer li,
+#dm #flex-footer .dmNewParagraph,
+#dm #flex-footer .dmNewParagraph p,
+#dm #flex-footer .dmNewParagraph span,
+#dm #flex-footer .dmNewParagraph strong,
+#dm #flex-footer .copyright,
+#dm #flex-footer .copyright *,
+#dm #flex-footer .rteBlock,
+#dm #flex-footer .rteBlock *,
+#dm .dmFooterContainer .dmNewParagraph p,
+#dm .dmFooterContainer .dmNewParagraph strong{
+  font-family:"Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  color:#CFC8BC !important;
+  font-size:14px !important;
+  line-height:1.6 !important;
+}
+#dm #flex-footer h1,
+#dm #flex-footer h2,
+#dm #flex-footer h3,
+#dm #flex-footer h4,
+#dm #flex-footer h5,
+#dm #flex-footer h6,
+#dm #flex-footer h1 *,
+#dm #flex-footer h2 *,
+#dm #flex-footer h3 *,
+#dm #flex-footer h4 *,
+#dm #flex-footer h5 *,
+#dm #flex-footer h6 *{
+  font-family:"Bodoni Moda","Bodoni MT",Didot,Georgia,serif !important;
+  font-style:italic !important;
+  font-weight:500 !important;
+  color:#E2C27D !important;
+  letter-spacing:0 !important;
+  text-transform:none !important;
+}
+
+/* footer links & gold hover */
+#dm #flex-footer a,
+#dm .dmFooterContainer a{
+  color:#CFC8BC !important;
+  text-decoration:none !important;
+  border-bottom:1px solid rgba(217,182,140,.28);
+  padding-bottom:2px;
+  transition:color .25s ease,border-color .25s ease;
+}
+#dm #flex-footer a:hover,
+#dm .dmFooterContainer a:hover{
+  color:#E2C27D !important;
+  border-bottom-color:#E2C27D !important;
+}
+#dm #flex-footer a:focus-visible,
+#dm .dmFooterContainer a:focus-visible{
+  outline:2px solid #E2C27D !important;
+  outline-offset:4px !important;
+  color:#E2C27D !important;
+}
+
+/* white / champagne treatment for dark-ink JAWS logo & footer SVGs */
+#dm #flex-footer img{
+  filter:brightness(0) invert(1) opacity(.92) !important;
+  transition:filter .25s ease;
+}
+#dm #flex-footer .imageWidget a,
+#dm #flex-footer .graphicWidget a{
+  border-bottom:0 !important;
+  padding-bottom:0 !important;
+  display:inline-flex;
+  align-items:center;
+}
+#dm #flex-footer .graphicWidget svg,
+#dm #flex-footer .graphicWidget svg *{
+  fill:#E2C27D !important;
+}
+
+/* clean responsive layout for legal & credit links (Privacy policy, Terms of use, Medical disclaimer, Accessibility, Credits) */
+#dm #flex-footer nav .unifiednav__container,
+#dm #flex-footer .jh-footer-legal,
+#dm #flex-footer .jh-footer-links{
+  display:flex !important;
+  flex-wrap:wrap !important;
+  align-items:center !important;
+  gap:10px 24px !important;
+  list-style:none !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+#dm #flex-footer nav .unifiednav__item,
+#dm #flex-footer .jh-footer-legal a,
+#dm #flex-footer .jh-footer-links a{
+  display:inline-flex !important;
+  align-items:center !important;
+  min-height:36px;
+  font:400 13.5px/1.4 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  letter-spacing:.01em !important;
+  color:#CFC8BC !important;
+  background:transparent !important;
+}
+#dm #flex-footer nav .unifiednav__item .nav-item-text{
+  font:400 13.5px/1.4 "Apfel Grotezk","Gill Sans MT",system-ui,sans-serif !important;
+  color:inherit !important;
+}
+#dm #flex-footer nav .unifiednav__item:hover .nav-item-text{
+  color:#E2C27D !important;
+}
+#dm #flex-footer .jh-footer-legal .jh-footer-sep{
+  color:rgba(217,182,140,.42) !important;
+  user-select:none;
+}
+
+@media (max-width:767px){
+  #dm #flex-footer nav .unifiednav__container,
+  #dm #flex-footer .jh-footer-legal,
+  #dm #flex-footer .jh-footer-links{
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:6px !important;
+  }
+  #dm #flex-footer nav .unifiednav__item,
+  #dm #flex-footer .jh-footer-legal a,
+  #dm #flex-footer .jh-footer-links a{
+    min-height:44px !important;
+  }
+  #dm #flex-footer .jh-footer-legal .jh-footer-sep{
+    display:none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Reduced motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  #dm #flex-header::after,
+  #dm #flex-header a.dmButtonLink::after{
+    animation:none !important;
+  }
+  #dm #flex-header,
+  #dm #flex-header::before,
+  #dm #flex-header::after,
+  #dm #flex-header .flex-element.section,
+  #dm #flex-header .flex-element.grid,
+  #dm #flex-header img,
+  #dm #flex-header a.dmButtonLink,
+  #dm #hamburger-drawer a.jh-drawer-book,
+  #dm #hamburger-drawer a.jh-drawer-book::after,
+  #dm #flex-footer a,
+  #dm #flex-footer img{
+    transition:none !important;
+  }
+}
