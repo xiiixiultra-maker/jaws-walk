@@ -244,7 +244,7 @@
   background:radial-gradient(circle at 50% 42%,rgba(226,194,125,.09),rgba(18,17,16,.96) 72%);
   border:1px solid rgba(243,226,188,.18);box-shadow:0 34px 70px -28px rgba(0,0,0,.65),inset 0 0 60px rgba(217,182,140,.05)}
 #jaws-home#jaws-home .jh-bp-svg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
-#jaws-home#jaws-home .jh-bp-arc{stroke-dasharray:1100;stroke-dashoffset:1100;transition:stroke-dashoffset 1.8s var(--ease)}
+#jaws-home#jaws-home.jh-js .jh-bp-arc{stroke-dasharray:1100;stroke-dashoffset:1100;transition:stroke-dashoffset 1.8s var(--ease)}
 #jaws-home#jaws-home.jh-js .jh-bp.is-in .jh-bp-arc,#jaws-home#jaws-home .jh-bp-stage:hover .jh-bp-arc{stroke-dashoffset:0}
 #jaws-home#jaws-home .jh-dv-zone{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;padding:0;margin:0;border:0;border-radius:50%;
   background:transparent;cursor:pointer;display:grid;place-items:center;z-index:3}
@@ -282,7 +282,7 @@
 @media (max-width:960px){
   #jaws-home#jaws-home .jh-bp-head,#jaws-home#jaws-home .jh-bp-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){
-  #jaws-home#jaws-home .jh-bp-arc{stroke-dashoffset:0;transition:none}
+  #jaws-home#jaws-home.jh-js .jh-bp-arc{stroke-dashoffset:0;transition:none}
   #jaws-home#jaws-home .jh-dv-dot::after{animation:none}}
 
 /* 4. the signature collection */

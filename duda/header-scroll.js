@@ -7,6 +7,9 @@
   window.__jhShellV6Init = true;
 
   var SCROLL_THRESHOLD = 56;
+  // The footer's plain-text "Privacy policy" becomes a link only once this path is a live page.
+  // Left empty on Nov 23, 2026: /privacy-policy didn't exist yet (404). Set it to '/privacy-policy' then.
+  var PRIVACY_PATH = '';
   var ticking = false;
   var observer = null;
 
@@ -109,8 +112,8 @@
 
     footer.classList.add('jh-footer');
 
-    // Upgrade unlinked plain-text "Privacy policy" without clobbering Duda's DOM bindings
-    if (document.createTreeWalker && window.NodeFilter) {
+    // Upgrade unlinked plain-text "Privacy policy" without clobbering Duda's DOM bindings (only once PRIVACY_PATH is set)
+    if (PRIVACY_PATH && document.createTreeWalker && window.NodeFilter) {
       var walker = document.createTreeWalker(footer, NodeFilter.SHOW_TEXT, null, false);
       var textNodes = [];
       var node;
@@ -135,7 +138,7 @@
         }
         var a = document.createElement('a');
         a.className = 'jh-footer-link jh-footer-legal-link jh-privacy-link';
-        a.href = buildSiteUrl('/privacy-policy');
+        a.href = buildSiteUrl(PRIVACY_PATH);
         a.textContent = m[0];
         frag.appendChild(a);
 
